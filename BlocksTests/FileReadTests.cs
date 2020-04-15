@@ -11,11 +11,12 @@ namespace BlocksTests
         [TestMethod]
         public void BlockListNotEmpty()
         {
-            string root = Directory.GetCurrentDirectory() + @"\";
+            string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\";
             string path = root + "marvin.blocks";
 
             List<Block> blocks = Program.GatherBlocks(path);
-            
+
+            Assert.IsFalse(blocks.Count.Equals(0), "The list of blocks is empty");
         }
     }
 }

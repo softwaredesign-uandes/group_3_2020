@@ -9,7 +9,7 @@ namespace SDPreSubmissionNS
     {
         static void Main(string[] args)
         {
-            string root = Directory.GetCurrentDirectory() + @"\";
+            string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\";
             string path = root + "marvin.blocks";
             List<Block> blocks = GatherBlocks(path);
         }
@@ -58,7 +58,7 @@ namespace SDPreSubmissionNS
                 }
             }
             Console.WriteLine("Done");
-            Console.ReadLine();
+            //Console.ReadLine();
             return blocks;
         }
     }
