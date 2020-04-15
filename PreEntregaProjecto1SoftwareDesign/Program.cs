@@ -9,7 +9,7 @@ namespace PreEntregaProjecto1SoftwareDesign
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Users\ignap\source\repos\PreEntregaProjecto1SoftwareDesign\PreEntregaProjecto1SoftwareDesign\marvin.blocks";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "marvin.blocks";
             List<Block> blocks = new List<Block>();
             using (FileStream fileStream = File.OpenRead(path))
             {
