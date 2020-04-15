@@ -20,6 +20,15 @@ namespace SDPreSubmissionNS
 
             while (menu)
             {
+                if (blocks == null)
+                {
+                    Console.WriteLine("database not loaded");
+                }
+                else
+                {
+                    Console.WriteLine($"database loaded {path}");
+                }
+                    
                 StartMenu();
                 if (option.Equals("1"))
                 {
@@ -34,6 +43,16 @@ namespace SDPreSubmissionNS
                     }
                 }
                 else if (option.Equals("3"))
+                {
+                    Console.WriteLine("Enter Block id:");
+                    option = Console.ReadLine();
+                    PrintBlockById(option, blocks);
+                }
+                else if (option.Equals("4"))
+                {
+                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                }
+                else if (option.Equals("5"))
                 {
                     menu = false;
                 }
@@ -88,7 +107,27 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-
+        static public void PrintBlockById(string stringId, List<Block> blocks)
+        {
+            int intid = -1;
+            if (int.TryParse(stringId, out intid))
+            {
+                Block block = blocks.Find(i => i.id == intid);
+                if (block != null)
+                {
+                    Console.Write($"ID: {block.id}, x:{block.x}, y:{block.y}, z:{block.z}, tonn:{block.tonn}, " +
+                    $"au:{block.au}, cu:{block.cu}, proc_profit:{block.porc_profit} \n");
+                }
+                else
+                {
+                    Console.WriteLine("Block id not found");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No int detected, going back to menu");
+            }
+        }
         static public void SerializeBlocks()
         {
             IFormatter formatter = new BinaryFormatter();
@@ -132,7 +171,9 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Welcome, please select an option: ");
             Console.WriteLine("1. Save Block Model.");
             Console.WriteLine("2. Load Block Model.");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Load information from a Specific Block id");
+            Console.WriteLine("4. Help");
+            Console.WriteLine("5. Exit");
             option = Console.ReadLine();
             if (option.Equals("1"))
             {
