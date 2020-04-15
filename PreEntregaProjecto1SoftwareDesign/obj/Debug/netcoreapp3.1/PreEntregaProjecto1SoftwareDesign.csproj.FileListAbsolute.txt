@@ -22,3 +22,16 @@ C:\Users\Raimundo Gonzalez\Desktop\SOFTWARE DESIGN\group_3_2020\PreEntregaProjec
 C:\Users\Raimundo Gonzalez\Desktop\SOFTWARE DESIGN\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
 C:\Users\Raimundo Gonzalez\Desktop\SOFTWARE DESIGN\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb
 C:\Users\Raimundo Gonzalez\Desktop\SOFTWARE DESIGN\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.genruntimeconfig.cache
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.csprojAssemblyReference.cache
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.csproj.CoreCompileInputs.cache
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.AssemblyInfoInputs.cache
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.AssemblyInfo.cs
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.exe
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.deps.json
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.runtimeconfig.json
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.runtimeconfig.dev.json
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb
+C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.genruntimeconfig.cache

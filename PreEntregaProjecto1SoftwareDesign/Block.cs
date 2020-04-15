@@ -4,6 +4,7 @@ using System.Text;
 
 namespace SDPreSubmissionNS
 {
+    [Serializable]
     public class Block
     {
         //<id> <x> <y> <z> <tonn> <au [ppm]> <cu %> <proc_profit>

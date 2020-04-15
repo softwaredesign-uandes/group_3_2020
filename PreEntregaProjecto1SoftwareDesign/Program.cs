@@ -7,12 +7,28 @@ namespace SDPreSubmissionNS
 {
     public class Program
     {
+        static private string path;
+        static private string newPath;
+        static private string option;
+        static private List<Block> blocks;
+
         static void Main(string[] args)
         {
-            string root = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + @"\";
-            string path = root + "marvin.blocks";
-            List<Block> blocks = GatherBlocks(path);
+            StartMenu();
+            if (option.Equals('1'))
+            {
+                blocks = GatherBlocks(path);
+                SerializeBlocks();
+            }
+            else if (option.Equals('2'))
+            {
+                DeserializeBlocks();
+                PrintBlocks();
+            }
+
+            Console.ReadLine();
         }
+
         static public List<Block> GatherBlocks(string path)
         {
             List<Block> blocks = new List<Block>();
@@ -57,9 +73,52 @@ namespace SDPreSubmissionNS
                     }
                 }
             }
-            Console.WriteLine("Done");
+            Console.WriteLine("Done gathering blocks.");
             //Console.ReadLine();
             return blocks;
+        }
+
+        static public void SerializeBlocks()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(@newPath,FileMode.Create,FileAccess.Write);
+            formatter.Serialize(stream, blocks);
+            stream.Close();
+            Console.WriteLine("Done saving Block Model.");
+        }
+
+        static public void DeserializeBlocks()
+        {
+            stream = new FileStream(@newPath,FileMode.Open,FileAccess.Read);
+            blocks = (Block)formatter.Deserialize(stream);
+        }
+
+        static public void PrintBlocks()
+        {
+            foreach (Block block in blocks)
+            {
+                Console.WriteLine(block.id);
+            }
+        }
+
+        static public void StartMenu()
+        {
+            Console.WriteLine("Welcome, please select an option: ");
+            Console.WriteLine("1. Save Block Model.");
+            Console.WriteLine("2. Load Block Model.");
+            option = Console.ReadLine();
+            if (option.Equals('1'))
+            {
+                Console.Write("Please enter the path of your Block Model file:");
+                path = Console.ReadLine();
+                Console.Write("Please enter the name of the file you want to save: ");
+                newPath = Console.ReadLine();
+            }
+            else if (option.Equals('2'))
+            {
+                Console.Write("Please enter the name of the file you want to load:");
+                newPath = Console.ReadLine();
+            }
         }
     }
 }
