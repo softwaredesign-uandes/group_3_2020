@@ -7,8 +7,9 @@ namespace BlocksTests
     public class FileReadTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CorrectPath()
         {
+
         }
     }
 }

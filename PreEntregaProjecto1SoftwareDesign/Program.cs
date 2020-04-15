@@ -9,7 +9,12 @@ namespace PreEntregaProjecto1SoftwareDesign
     {
         static void Main(string[] args)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "marvin.blocks";
+            string root = AppDomain.CurrentDomain.BaseDirectory;
+            string path = root + "marvin.blocks";
+            GatherBlocks(path);
+        }
+        static public List<Block> GatherBlocks(string path)
+        {
             List<Block> blocks = new List<Block>();
             using (FileStream fileStream = File.OpenRead(path))
             {
@@ -25,7 +30,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                             //esto es para devolver el lector en caso que el buffer se quede sin espacio a la mitad de una linea
                             if (line.Trim(' ').Split(' ').Length != 8 || line.Trim(' ').EndsWith('-'))
                             {
-                                fileStream.Position = fileStream.Position - line.Length; 
+                                fileStream.Position = fileStream.Position - line.Length;
                             }
                             //este else agrega los bloques del archivo a una lista
                             else
@@ -54,6 +59,7 @@ namespace PreEntregaProjecto1SoftwareDesign
             }
             Console.WriteLine("Done");
             Console.ReadLine();
+            return blocks;
         }
     }
 }
