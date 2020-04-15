@@ -44,9 +44,17 @@ namespace SDPreSubmissionNS
                 }
                 else if (option.Equals("3"))
                 {
-                    Console.WriteLine("Enter Block id:");
-                    option = Console.ReadLine();
-                    PrintBlockById(option, blocks);
+                    if (blocks != null)
+                    {
+                        Console.WriteLine("Enter Block id:");
+                        option = Console.ReadLine();
+                        PrintBlockById(option, blocks);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please load a database first");
+                    }
+                    
                 }
                 else if (option.Equals("4"))
                 {
