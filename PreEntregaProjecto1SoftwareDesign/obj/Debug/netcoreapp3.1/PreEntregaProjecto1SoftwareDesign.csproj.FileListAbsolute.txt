@@ -35,3 +35,14 @@ C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1
 C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
 C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb
 C:\Users\gus19\Desktop\Software Design\Proyecto\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.genruntimeconfig.cache
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.csprojAssemblyReference.cache
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.AssemblyInfoInputs.cache
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.AssemblyInfo.cs
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\obj\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.exe
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.deps.json
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.runtimeconfig.json
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.runtimeconfig.dev.json
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.dll
+C:\Users\ignap\Desktop\Nueva carpeta\group_3_2020\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\PreEntregaProjecto1SoftwareDesign.pdb

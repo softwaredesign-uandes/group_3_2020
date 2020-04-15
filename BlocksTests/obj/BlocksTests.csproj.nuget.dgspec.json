@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\BlocksTests\\BlocksTests.csproj": {}
+    "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\BlocksTests\\BlocksTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\BlocksTests\\BlocksTests.csproj": {
+    "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\BlocksTests\\BlocksTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\BlocksTests\\BlocksTests.csproj",
+        "projectUniqueName": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\BlocksTests\\BlocksTests.csproj",
         "projectName": "BlocksTests",
-        "projectPath": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\BlocksTests\\BlocksTests.csproj",
-        "packagesPath": "C:\\Users\\Raimundo Gonzalez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\BlocksTests\\obj\\",
+        "projectPath": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\BlocksTests\\BlocksTests.csproj",
+        "packagesPath": "C:\\Users\\ignap\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\BlocksTests\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Raimundo Gonzalez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ignap\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
-                "projectPath": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
+              "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
+                "projectPath": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
               }
             }
           }
@@ -74,21 +77,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
+    "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
+        "projectUniqueName": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
         "projectName": "PreEntregaProjecto1SoftwareDesign",
-        "projectPath": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
-        "packagesPath": "C:\\Users\\Raimundo Gonzalez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Raimundo Gonzalez\\Desktop\\SOFTWARE DESIGN\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\obj\\",
+        "projectPath": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
+        "packagesPath": "C:\\Users\\ignap\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ignap\\Desktop\\Nueva carpeta\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Raimundo Gonzalez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ignap\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -126,7 +132,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
