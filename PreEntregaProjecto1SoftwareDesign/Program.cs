@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace PreEntregaProjecto1SoftwareDesign
+namespace SDPreSubmissionNS
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            string root = AppDomain.CurrentDomain.BaseDirectory;
+            string root = Directory.GetCurrentDirectory() + @"\";
             string path = root + "marvin.blocks";
-            GatherBlocks(path);
+            List<Block> blocks = GatherBlocks(path);
         }
         static public List<Block> GatherBlocks(string path)
         {

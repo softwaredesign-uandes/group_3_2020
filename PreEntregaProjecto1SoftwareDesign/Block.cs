@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PreEntregaProjecto1SoftwareDesign
+namespace SDPreSubmissionNS
 {
-    class Block
+    public class Block
     {
         //<id> <x> <y> <z> <tonn> <au [ppm]> <cu %> <proc_profit>
         public int id { get; set; }
