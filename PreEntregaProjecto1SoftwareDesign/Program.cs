@@ -18,7 +18,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                 while (fileStream.Read(buffer, 0, buffer.Length) > 0)
                 {
                     string[] lines = temp.GetString(buffer).Split('\n');
-                    if (lines.Length != 48) //esto le indica al programa que ya no encontró más lineas en el archivo
+                    if (lines.Length != 48) //test esto le indica al programa que ya no encontró más lineas en el archivo
                     {
                         foreach (string line in lines)
                         {
