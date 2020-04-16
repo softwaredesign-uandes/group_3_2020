@@ -28,15 +28,26 @@ namespace SDPreSubmissionNS
                 {
                     Console.WriteLine($"database loaded {path}");
                 }
-                    
-                StartMenu();
+                Console.WriteLine("Welcome, please select an option: ");
+                Console.WriteLine("1. Save Block Model.");
+                Console.WriteLine("2. Load Block Model.");
+                Console.WriteLine("3. Load information from a Specific Block id");
+                Console.WriteLine("4. Help");
+                Console.WriteLine("5. Exit");
+                option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
+                    Console.Write("Please enter the path of your Block Model file:");
+                    path = Console.ReadLine();
+                    Console.Write("Please enter the name of the file you want to save: ");
+                    newPath = Console.ReadLine();
                     blocks = GatherBlocks(path);
                     SerializeBlocks();
                 }
                 else if (option.Equals("2"))
                 {
+                    Console.Write("Please enter the name of the file you want to load:");
+                    newPath = Console.ReadLine();
                     if (DeserializeBlocks())
                     {
                         PrintBlocks();
@@ -174,27 +185,5 @@ namespace SDPreSubmissionNS
             }
         }
 
-        static public void StartMenu()
-        {
-            Console.WriteLine("Welcome, please select an option: ");
-            Console.WriteLine("1. Save Block Model.");
-            Console.WriteLine("2. Load Block Model.");
-            Console.WriteLine("3. Load information from a Specific Block id");
-            Console.WriteLine("4. Help");
-            Console.WriteLine("5. Exit");
-            option = Console.ReadLine();
-            if (option.Equals("1"))
-            {
-                Console.Write("Please enter the path of your Block Model file:");
-                path = Console.ReadLine();
-                Console.Write("Please enter the name of the file you want to save: ");
-                newPath = Console.ReadLine();
-            }
-            else if (option.Equals("2"))
-            {
-                Console.Write("Please enter the name of the file you want to load:");
-                newPath = Console.ReadLine();
-            }
-        }
     }
 }
