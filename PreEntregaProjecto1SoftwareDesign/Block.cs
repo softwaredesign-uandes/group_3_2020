@@ -28,7 +28,7 @@ namespace SDPreSubmissionNS
         //id x y z type grade tonns min_caf value_extracc value_proc apriori_process
         public string type { get; set; }
         public double grade { get; set; }
-        public double tonns { get; set; }
+        //public double tonns { get; set; } usar tonn de Marvin
         public double min_caf { get; set; }
         public double value_extracc { get; set; }
         public double value_proc { get; set; }

@@ -56,10 +56,48 @@ namespace SDPreSubmissionNS
                 return new List<Block>();
             }
         }
-
         private static List<Block> GatherBlocksNewMan(string path)
         {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    string type = cubeData[4];
+                    double grade = double.Parse(cubeData[5]);
+                    double tonns = double.Parse(cubeData[6]);
+                    double min_caf = double.Parse(cubeData[7]);
+                    double value_extracc = double.Parse(cubeData[8]);
+                    double value_proc = double.Parse(cubeData[9]);
+                    double apriori_process = double.Parse(cubeData[10]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        type = type,
+                        grade = grade,
+                        tonn = tonns,
+                        min_caf = min_caf,
+                        value_extracc = value_extracc,
+                        value_proc = value_proc,
+                        apriori_process = apriori_process
+                    };
+                    blocks.Add(block);
+                }
+            }
+            Console.WriteLine("Done gathering blocks.");
+            return blocks;
         }
         private static List<Block> GatherBlocksZuckSmall(string path)
         {
@@ -80,44 +118,28 @@ namespace SDPreSubmissionNS
         static public List<Block> GatherBlocksMarvin(string path)
         {
             List<Block> blocks = new List<Block>();
-            using (FileStream fileStream = File.OpenRead(path))
+
+            using (StreamReader streamReader = new StreamReader(path))
             {
-                byte[] buffer = new byte[1024];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                while (fileStream.Read(buffer, 0, buffer.Length) > 0)
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
                 {
-                    string[] lines = temp.GetString(buffer).Split('\n');
-                    if (lines.Length != 48) //test esto le indica al programa que ya no encontró más lineas en el archivo
-                    {
-                        foreach (string line in lines)
-                        {
-                            //esto es para devolver el lector en caso que el buffer se quede sin espacio a la mitad de una linea
-                            if (line.Trim(' ').Split(' ').Length != 8 || line.Trim(' ').EndsWith('-'))
-                            {
-                                fileStream.Position = fileStream.Position - line.Length;
-                            }
-                            //este else agrega los bloques del archivo a una lista
-                            else
-                            {
-                                string[] cubeData = line.Trim(' ').Split(' ');
-                                #region preparando variables
+                    string[] cubeData = line.Trim(' ').Split(' ');
 
-                                int id = int.Parse(cubeData[0]);
-                                int x = int.Parse(cubeData[1]);
-                                int y = int.Parse(cubeData[2]);
-                                int z = int.Parse(cubeData[3]);
-                                double tonn = double.Parse(cubeData[4]);
-                                double au = double.Parse(cubeData[5]);
-                                double cu = double.Parse(cubeData[6]);
-                                double porc_profit = double.Parse(cubeData[7]);
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double tonn = double.Parse(cubeData[4]);
+                    double au = double.Parse(cubeData[5]);
+                    double cu = double.Parse(cubeData[6]);
+                    double porc_profit = double.Parse(cubeData[7]);
 
-                                #endregion
-                                Block block = new Block(id, x, y, z, tonn, au, cu, porc_profit);
-                                blocks.Add(block);
-                            }
+                    Block block = new Block(id, x, y, z, tonn, au, cu, porc_profit);
+                    blocks.Add(block);
 
-                        }
-                    }
+                    blocks.Add(block);
+
                 }
             }
             Console.WriteLine("Done gathering blocks.");
