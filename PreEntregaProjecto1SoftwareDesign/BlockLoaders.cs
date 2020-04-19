@@ -48,10 +48,7 @@ namespace SDPreSubmissionNS
                     case "mclaughlin.blocks":
                         blocks = GatherBlocksMcLaughlin(path);
                         break;
-
-
                 }
-
                 return blocks;
             }
             else
@@ -142,8 +139,6 @@ namespace SDPreSubmissionNS
         {
             throw new NotImplementedException();
         }
-
-
 
     }
 }
