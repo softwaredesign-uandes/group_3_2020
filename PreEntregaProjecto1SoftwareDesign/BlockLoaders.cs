@@ -22,13 +22,13 @@ namespace SDPreSubmissionNS
                         blocks = GatherBlocksNewMan(path);
                         break;
                     case "zuck_small.blocks":
-                        blocks = GatherBlocksZuckSmall(path);
+                        blocks = GatherBlocksZuck(path);
                         break;
                     case "kd.blocks":
                         blocks = GatherBlocksKD(path);
                         break;
                     case "zuck_medium.blocks":
-                        blocks = GatherBlocksZuckMedium(path);
+                        blocks = GatherBlocksZuck(path);
                         break;
                     case "p4hd.blocks":
                         blocks = GatherBlocksP4HD(path);
@@ -40,10 +40,10 @@ namespace SDPreSubmissionNS
                         blocks = GatherBlocksW23(path);
                         break;
                     case "zuck_large.blocks":
-                        blocks = GatherBlocksZuckLarge(path);
+                        blocks = GatherBlocksZuck(path);
                         break;
                     case "mclaughlin_limit.blocks":
-                        blocks = GatherBlocksMcLaughlinLimit(path);
+                        blocks = GatherBlocksMcLaughlin(path);
                         break;
                     case "mclaughlin.blocks":
                         blocks = GatherBlocksMcLaughlin(path);
@@ -67,6 +67,7 @@ namespace SDPreSubmissionNS
                 {
                     string[] cubeData = line.Trim(' ').Split(' ');
 
+                    //id x y z type grade tonns min_caf value_extracc value_proc apriori_process
                     int id = int.Parse(cubeData[0]);
                     int x = int.Parse(cubeData[1]);
                     int y = int.Parse(cubeData[2]);
@@ -99,21 +100,120 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-        private static List<Block> GatherBlocksZuckSmall(string path)
+        private static List<Block> GatherBlocksZuck(string path)
         {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+
+                    string[] cubeData = line.Trim(' ').Split(' ');
+
+                    //id x y z cost value rock_tonnes ore_tonnes
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double cost = double.Parse(cubeData[4]);
+                    double value = double.Parse(cubeData[5]);
+                    double rock_tonnes = double.Parse(cubeData[6]);
+                    double ore_tonnes = double.Parse(cubeData[7]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        cost = cost,
+                        value = value,
+                        rock_tonnes = rock_tonnes,
+                        ore_tonnes = ore_tonnes,
+
+                    };
+                    blocks.Add(block);
+                }
+            }
+            return blocks;
         }
         private static List<Block> GatherBlocksKD(string path)
         {
-            throw new NotImplementedException();
-        }
-        private static List<Block> GatherBlocksZuckMedium(string path)
-        {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+
+                    //<id> <x> <y> <z> <tonn> <blockvalue> <destination> <CU %> <process_profit>
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double ton = double.Parse(cubeData[5]);
+                    double blockvalue = double.Parse(cubeData[4]);
+                    double destination = double.Parse(cubeData[6]);
+                    double cu = double.Parse(cubeData[7]);
+                    double processProfit = double.Parse(cubeData[8]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        blockvalue = blockvalue,
+                        tonn = ton,
+                        destination = destination,
+                        porc_profit = processProfit,
+                    };
+                    blocks.Add(block);
+                }
+            }
+            return blocks;
         }
         private static List<Block> GatherBlocksP4HD(string path)
         {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+
+                    //<id> <x> <y> <z> <tonn> <blockvalue> <destination> <Au (oz/ton)> <Ag (oz/ton)> <Cu %>
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double tonn = double.Parse(cubeData[4]);
+                    double blockvalue = double.Parse(cubeData[5]);
+                    double destination = double.Parse(cubeData[6]);
+                    double Au = double.Parse(cubeData[7]);
+                    double Ag = double.Parse(cubeData[8]);
+                    double Cu = double.Parse(cubeData[8]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        tonn = tonn,
+                        blockvalue = blockvalue,
+                        destination = destination,
+                        au = Au,
+                        ag = Ag,
+                        cu = Cu,
+                    };
+                    blocks.Add(block);
+                }
+            }
+            return blocks;
         }
         static public List<Block> GatherBlocksMarvin(string path)
         {
@@ -135,7 +235,18 @@ namespace SDPreSubmissionNS
                     double cu = double.Parse(cubeData[6]);
                     double porc_profit = double.Parse(cubeData[7]);
 
-                    Block block = new Block(id, x, y, z, tonn, au, cu, porc_profit);
+                    //Block block = new Block(id, x, y, z, tonn, au, cu, porc_profit);
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        tonn = tonn,
+                        au = au,
+                        cu = cu,
+                        porc_profit = porc_profit,
+                    };
                     blocks.Add(block);
 
                     blocks.Add(block);
@@ -147,19 +258,97 @@ namespace SDPreSubmissionNS
         }
         private static List<Block> GatherBlocksW23(string path)
         {
-            throw new NotImplementedException();
-        }
-        private static List<Block> GatherBlocksZuckLarge(string path)
-        {
-            throw new NotImplementedException();
-        }
-        private static List<Block> GatherBlocksMcLaughlinLimit(string path)
-        {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+                    //id x y z dest phase AuRec AuFA tons co3 orgc sulf Mcost Pcost Tcost Tvalue Bvalue rc_Stockpile rc_RockChar
+
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double dest = double.Parse(cubeData[4]);
+                    double phase = double.Parse(cubeData[5]);
+                    double AuRec = double.Parse(cubeData[6]);
+                    double AuFA = double.Parse(cubeData[7]);
+                    double tons = double.Parse(cubeData[8]);
+                    double co3 = double.Parse(cubeData[9]);
+                    double orgc = double.Parse(cubeData[10]);
+                    double sulf = double.Parse(cubeData[11]);
+                    double Mcost = double.Parse(cubeData[12]);
+                    double Pcost = double.Parse(cubeData[13]);
+                    double Tcost = double.Parse(cubeData[14]);
+                    double Tvalue = double.Parse(cubeData[15]);
+                    double Bvalue = double.Parse(cubeData[16]);
+                    double rc_Stockpile = double.Parse(cubeData[17]);
+                    double rc_RockChar = double.Parse(cubeData[18]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        destination = dest,
+                        phase = phase,
+                        AuRec = AuRec,
+                        AuFA = AuFA,
+                        tonn = tons,
+                        co3 = co3,
+                        orgc = orgc,
+                        sulf = sulf,
+                        Mcost = Mcost,
+                        Pcost = Pcost,
+                        Tcost = Tcost,
+                        Tvalue = Tvalue,
+                        Bvalue = Bvalue,
+                        rc_Stockpile = rc_Stockpile,
+                        rc_RockChar = rc_RockChar,
+                    };
+
+                    blocks.Add(block);
+                }
+            }
+            return blocks;
         }
         private static List<Block> GatherBlocksMcLaughlin(string path)
         {
-            throw new NotImplementedException();
+            List<Block> blocks = new List<Block>();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+                    //id x y z blockvalue ton destination Au(oz/ton)
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+                    double blockvalue = double.Parse(cubeData[4]);
+                    double ton = double.Parse(cubeData[5]);
+                    double destination = double.Parse(cubeData[6]);
+                    double Au = double.Parse(cubeData[7]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z,
+                        blockvalue = blockvalue,
+                        tonn = ton,
+                        destination = destination,
+                        au = Au,
+                    };
+
+                }
+            }
+            return blocks;
         }
 
     }

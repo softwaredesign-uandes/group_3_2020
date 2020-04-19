@@ -48,6 +48,7 @@ namespace SDPreSubmissionNS
         //<id> <x> <y> <z> <tonn> <blockvalue> <destination> <Au (oz/ton)> <Ag (oz/ton)> <Cu %>
         public double blockvalue { get; set; }
         public double destination { get; set; }
+        public double ag { get; set; }
         #endregion
 
         #region w23
@@ -75,16 +76,6 @@ namespace SDPreSubmissionNS
         #endregion
 
         public Block() { }
-        public Block(int id, int x, int y, int z , double tonn, double au, double cu, double porc_profit)
-        {
-            this.id = id;
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.tonn = tonn;
-            this.au = au;
-            this.cu = cu;
-            this.porc_profit = porc_profit;
-        }
+    
     }
 }
