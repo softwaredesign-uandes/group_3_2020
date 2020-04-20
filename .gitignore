@@ -7,3 +7,8 @@
 /.vs/PreEntregaProjecto1SoftwareDesign/v16/Server/sqlite3/storage.ide
 /.vs/PreEntregaProjecto1SoftwareDesign/v16/Server/sqlite3/db.lock
 /.vs/PreEntregaProjecto1SoftwareDesign/v16/Server/sqlite3
+/TestResults
+/PreEntregaProjecto1SoftwareDesign/bin
+/PreEntregaProjecto1SoftwareDesign/obj
+/BlocksTests/bin
+/BlocksTests/obj
