@@ -76,6 +76,11 @@ namespace SDPreSubmissionNS
         #endregion
 
         public Block() { }
-    
+
+        public int GetMassInKg()
+        {
+            return tonn * 1000;
+        }
+
     }
 }
