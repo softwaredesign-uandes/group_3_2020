@@ -90,7 +90,6 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-
         private static List<Block> GatherBlocksNewMan(string path)
         {
             List<Block> blocks = new List<Block>();
