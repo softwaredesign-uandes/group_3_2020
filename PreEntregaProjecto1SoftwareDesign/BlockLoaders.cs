@@ -48,6 +48,9 @@ namespace SDPreSubmissionNS
                     case "mclaughlin.blocks":
                         blocks = GatherBlocksMcLaughlin(path);
                         break;
+                    default:
+                        blocks = GatherBlocksDefault(path);
+                        break;
                 }
                 return blocks;
             }
@@ -56,6 +59,38 @@ namespace SDPreSubmissionNS
                 return new List<Block>();
             }
         }
+
+        private static List<Block> GatherBlocksDefault(string path)
+        {
+            List<Block> blocks = new List<Block>();
+
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    string[] cubeData = line.Trim(' ').Split(' ');
+
+                    //id x y z
+                    int id = int.Parse(cubeData[0]);
+                    int x = int.Parse(cubeData[1]);
+                    int y = int.Parse(cubeData[2]);
+                    int z = int.Parse(cubeData[3]);
+
+                    Block block = new Block
+                    {
+                        id = id,
+                        x = x,
+                        y = y,
+                        z = z
+                    };
+                    blocks.Add(block);
+                }
+            }
+            Console.WriteLine("Done gathering blocks.");
+            return blocks;
+        }
+
         private static List<Block> GatherBlocksNewMan(string path)
         {
             List<Block> blocks = new List<Block>();

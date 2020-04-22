@@ -13,6 +13,7 @@ namespace SDPreSubmissionNS
         static private string newPath;
         static private string option;
         static private List<Block> blocks;
+        static private string newFileName;
 
         static void Main(string[] args)
         {
@@ -37,16 +38,19 @@ namespace SDPreSubmissionNS
                 option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
-                    Console.Write("Please enter the path of your Block Model file:");
+                    Console.Write("Please enter the path of your Block Model file: ");
                     path = Console.ReadLine();
                     Console.Write("Please enter the name of the file you want to save: ");
+                    newFileName = Console.ReadLine();
+                    Console.Write("Please enter the location where do you want to save: ");
                     newPath = Console.ReadLine();
+                    newPath = newPath + @"\" +newFileName;
                     blocks = BlockLoaders.GatherBlocks(path);
                     SerializeBlocks();
                 }
                 else if (option.Equals("2"))
                 {
-                    Console.Write("Please enter the name of the file you want to load:");
+                    Console.Write("Please enter the path of the file you want to load: ");
                     newPath = Console.ReadLine();
                     if (DeserializeBlocks())
                     {
@@ -57,7 +61,7 @@ namespace SDPreSubmissionNS
                 {
                     if (blocks != null)
                     {
-                        Console.WriteLine("Enter Block id:");
+                        Console.WriteLine("Enter Block id: ");
                         option = Console.ReadLine();
                         PrintBlockById(option, blocks);
                     }
