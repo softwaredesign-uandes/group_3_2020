@@ -18,7 +18,7 @@ namespace SDPreSubmissionNS
 
         public int GetNumberOfBlocks()
         {
-            return blocks.count;
+            return blocks.Count;
         }
     }
 }
