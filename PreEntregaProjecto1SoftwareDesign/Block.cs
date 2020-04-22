@@ -79,8 +79,18 @@ namespace SDPreSubmissionNS
 
         public int GetMassInKg()
         {
-            return tonn * 1000;
+            if (!tonn.IsNullOrEmpty()) return tonn * 1000;
+            else return 0;
         }
 
+        public int GetGrade(string mineral)
+        {
+            if (!tonn.IsNullOrEmpty())
+            {
+                PropertyInfo propertyInfo = Block.GetProperty(mineral);
+                propertyInfo.GetValue(this, null) * 100 / tonn;
+            }
+            else return 0;
+        }
     }
 }
