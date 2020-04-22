@@ -13,5 +13,10 @@ namespace SDPreSubmissionNS
         {
             this.blocks = blocks;
         }
+
+        public int GetNumberOfBlocks()
+        {
+            return blocks.count;
+        }
     }
 }
