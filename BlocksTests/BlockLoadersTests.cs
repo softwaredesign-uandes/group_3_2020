@@ -188,5 +188,57 @@ namespace BlocksTests
                 Assert.Fail("block2 is different that the estimated block");
             }
         }
+
+        //Method Tested: GatherBlocksP4HD
+        //Context: Passing a file containing:
+        //14 59 13 64 3120 -5116 2 0 1.108 0
+        //15 60 13 64 3120 -5116 2 0 1.108 0
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksP4HDTest()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksP4HDTestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 14,
+                x = 59,
+                y = 13,
+                z = 64,
+                tonn = 3120,
+                blockvalue = -5116,
+                destination = 2,
+                au = 0,
+                ag = 1.108,
+                cu = 0,
+            };
+            Block block2 = new Block
+            {
+                id = 15,
+                x = 60,
+                y = 13,
+                z = 64,
+                tonn = 3120,
+                blockvalue = -5116,
+                destination = 2,
+                au = 0,
+                ag = 1.108,
+                cu = 0,
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksP4HD(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+                || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].destination.Equals(block1.destination) ||
+                !blocks[0].au.Equals(block1.au) || !blocks[0].ag.Equals(block1.ag) || !blocks[0].cu.Equals(block1.cu))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+                || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].destination.Equals(block2.destination) ||
+                !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].ag.Equals(block2.ag))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
     }
 }

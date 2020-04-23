@@ -230,7 +230,7 @@ namespace SDPreSubmissionNS
                     double destination = double.Parse(cubeData[6]);
                     double Au = double.Parse(cubeData[7]);
                     double Ag = double.Parse(cubeData[8]);
-                    double Cu = double.Parse(cubeData[8]);
+                    double Cu = double.Parse(cubeData[9]);
 
                     Block block = new Block
                     {
