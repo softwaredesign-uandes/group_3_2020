@@ -362,5 +362,51 @@ namespace BlocksTests
                 Assert.Fail("block2 is different that the estimated block");
             }
         }
+
+        //Method Tested: GatherBlocksMcLaughlin
+        //Context: Passing a file containing:
+        //84 50 267 66 -468 354.17 0 0
+        //85 51 267 66 -357 270.83 0 0
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksMcLaughlinTest()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMcLaughlinTestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 84,
+                x = 50,
+                y = 267,
+                z = 66,
+                blockvalue = -468,
+                tonn = 354.17,
+                destination = 0,
+                au = 0,
+            };
+            Block block2 = new Block
+            {
+                id = 85,
+                x = 51,
+                y = 267,
+                z = 66,
+                blockvalue = -357,
+                tonn = 270.83,
+                destination = 0,
+                au = 0,
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksMcLaughlin(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+                || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].au.Equals(block1.au) || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].destination.Equals(block1.destination))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+                || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].au.Equals(block2.au) || !blocks[1].destination.Equals(block2.destination))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
     }
 }
