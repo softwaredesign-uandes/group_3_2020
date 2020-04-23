@@ -146,7 +146,6 @@ namespace SDPreSubmissionNS
             }
         }
 
-        //TODO: Falta implemetar
         private static void ReportDisplayAttriburesOfOneBlock()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
@@ -256,7 +255,6 @@ namespace SDPreSubmissionNS
             throw new NotImplementedException();
         }
 
-        //TODO: Falta que la funcion GetMassInKg retorne las tonneladas de los modelos sin tonns
         private static void ReportMassInKilograms()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
