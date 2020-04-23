@@ -66,7 +66,7 @@ namespace SDPreSubmissionNS
         public double Tvalue { get; set; }
         public double Bvalue { get; set; }
         public double rc_Stockpile { get; set; }
-        public double rc_RockChar { get; set; }
+        public string rc_RockChar { get; set; }
 
         #endregion
 

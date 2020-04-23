@@ -318,7 +318,7 @@ namespace SDPreSubmissionNS
                     double Tvalue = double.Parse(cubeData[15]);
                     double Bvalue = double.Parse(cubeData[16]);
                     double rc_Stockpile = double.Parse(cubeData[17]);
-                    double rc_RockChar = double.Parse(cubeData[18]);
+                    string rc_RockChar = cubeData[18];
 
                     Block block = new Block
                     {
@@ -378,6 +378,7 @@ namespace SDPreSubmissionNS
                         destination = destination,
                         au = Au,
                     };
+                    blocks.Add(block);
 
                 }
             }

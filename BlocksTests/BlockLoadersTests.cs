@@ -280,8 +280,84 @@ namespace BlocksTests
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) 
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
                 || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].porc_profit.Equals(block2.porc_profit))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
+
+        //Method Tested: GatherBlocksW23
+        //Context: Passing a file containing:
+        //16 27 18 37 1 2 0.37 0.04715 2406.01492 3.7 0.6 2.6 1.901 28.28 0.18 -14.66 -35272 4 ssf
+        //17 27 19 37 1 2 0.43 0.0521 2406.01492 3.7 0.6 2.6 1.901 28.28 0.18 -10.198 -24537 4 lsf
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksW23Test()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksW23TestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 16,
+                x = 27,
+                y = 18,
+                z = 37,
+                destination = 1,
+                phase = 2,
+                AuRec = 0.37,
+                AuFA = 0.04715,
+                tonn = 2406.01492,
+                co3 = 3.7,
+                orgc = 0.6,
+                sulf = 2.6,
+                Mcost = 1.901,
+                Pcost = 28.28,
+                Tcost = 0.18,
+                Tvalue = -14.66,
+                Bvalue = -35272,
+                rc_Stockpile = 4,
+                rc_RockChar = "ssf",
+            };
+            Block block2 = new Block
+            {
+                id = 17,
+                x = 27,
+                y = 19,
+                z = 37,
+                destination = 1,
+                phase = 2,
+                AuRec = 0.43,
+                AuFA = 0.0521,
+                tonn = 2406.01492,
+                co3 = 3.7,
+                orgc = 0.6,
+                sulf = 2.6,
+                Mcost = 1.901,
+                Pcost = 28.28,
+                Tcost = 0.18,
+                Tvalue = -10.198,
+                Bvalue = -24537,
+                rc_Stockpile = 4,
+                rc_RockChar = "lsf",
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksW23(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+                || !blocks[0].destination.Equals(block1.destination) || !blocks[0].phase.Equals(block1.phase) || !blocks[0].AuRec.Equals(block1.AuRec)
+                || !blocks[0].AuFA.Equals(block1.AuFA) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].co3.Equals(block1.co3)
+                || !blocks[0].orgc.Equals(block1.orgc) || !blocks[0].sulf.Equals(block1.sulf) || !blocks[0].Mcost.Equals(block1.Mcost)
+                || !blocks[0].Pcost.Equals(block1.Pcost) || !blocks[0].Tcost.Equals(block1.Tcost) || !blocks[0].Tvalue.Equals(block1.Tvalue)
+                || !blocks[0].Bvalue.Equals(block1.Bvalue) || !blocks[0].rc_Stockpile.Equals(block1.rc_Stockpile) || !blocks[0].rc_RockChar.Equals(block1.rc_RockChar))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+                || !blocks[1].destination.Equals(block2.destination) || !blocks[1].phase.Equals(block2.phase) || !blocks[1].AuRec.Equals(block2.AuRec)
+                || !blocks[1].AuFA.Equals(block2.AuFA) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].co3.Equals(block2.co3)
+                || !blocks[1].orgc.Equals(block2.orgc) || !blocks[1].sulf.Equals(block2.sulf) || !blocks[1].Mcost.Equals(block2.Mcost)
+                || !blocks[1].Pcost.Equals(block2.Pcost) || !blocks[1].Tcost.Equals(block2.Tcost) || !blocks[1].Tvalue.Equals(block2.Tvalue)
+                || !blocks[1].Bvalue.Equals(block2.Bvalue) || !blocks[1].rc_Stockpile.Equals(block2.rc_Stockpile) || !blocks[1].rc_RockChar.Equals(block2.rc_RockChar))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }
