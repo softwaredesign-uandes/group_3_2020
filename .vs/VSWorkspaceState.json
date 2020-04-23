@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\BlocksTests",
+    "\\BlocksTests\\BlockLoaderTestsFiles",
     "\\PreEntregaProjecto1SoftwareDesign"
   ],
-  "SelectedNode": "\\PreEntregaProjecto1SoftwareDesign\\Program.cs",
+  "SelectedNode": "\\BlocksTests\\BlockLoadersTests.cs",
   "PreviewInSolutionExplorer": false
 }

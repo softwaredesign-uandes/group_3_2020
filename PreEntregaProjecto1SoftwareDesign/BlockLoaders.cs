@@ -6,7 +6,7 @@ using SDPreSubmissionNS;
 
 namespace SDPreSubmissionNS
 {
-    class BlockLoaders
+    public class BlockLoaders
     {
         static public List<Block> GatherBlocks(string path)
         {
@@ -60,7 +60,7 @@ namespace SDPreSubmissionNS
             }
         }
 
-        private static List<Block> GatherBlocksDefault(string path)
+        static public List<Block> GatherBlocksDefault(string path)
         {
             List<Block> blocks = new List<Block>();
 
@@ -90,7 +90,7 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-        private static List<Block> GatherBlocksNewMan(string path)
+        static public List<Block> GatherBlocksNewMan(string path)
         {
             List<Block> blocks = new List<Block>();
 
@@ -134,7 +134,7 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-        private static List<Block> GatherBlocksZuck(string path)
+        static public List<Block> GatherBlocksZuck(string path)
         {
             List<Block> blocks = new List<Block>();
             using (StreamReader streamReader = new StreamReader(path))
@@ -172,7 +172,7 @@ namespace SDPreSubmissionNS
             }
             return blocks;
         }
-        private static List<Block> GatherBlocksKD(string path)
+        static public List<Block> GatherBlocksKD(string path)
         {
             List<Block> blocks = new List<Block>();
             using (StreamReader streamReader = new StreamReader(path))
@@ -209,7 +209,7 @@ namespace SDPreSubmissionNS
             }
             return blocks;
         }
-        private static List<Block> GatherBlocksP4HD(string path)
+        static public List<Block> GatherBlocksP4HD(string path)
         {
             List<Block> blocks = new List<Block>();
             using (StreamReader streamReader = new StreamReader(path))
@@ -290,7 +290,7 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Done gathering blocks.");
             return blocks;
         }
-        private static List<Block> GatherBlocksW23(string path)
+        static public List<Block> GatherBlocksW23(string path)
         {
             List<Block> blocks = new List<Block>();
             using (StreamReader streamReader = new StreamReader(path))
@@ -349,7 +349,7 @@ namespace SDPreSubmissionNS
             }
             return blocks;
         }
-        private static List<Block> GatherBlocksMcLaughlin(string path)
+        static public List<Block> GatherBlocksMcLaughlin(string path)
         {
             List<Block> blocks = new List<Block>();
             using (StreamReader streamReader = new StreamReader(path))
