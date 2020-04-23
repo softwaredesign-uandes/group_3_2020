@@ -18,7 +18,7 @@ namespace BlocksTests
         public void GatherBlocksDefaultTest()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksDefaultTestFile.blocks";
-            Block block1 = new Block 
+            Block block1 = new Block
             {
                 id = 1,
                 x = 13,
@@ -90,6 +90,50 @@ namespace BlocksTests
                 Assert.Fail("block1 is different than the estimated block.");
             }
             if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) || !blocks[1].type.Equals(block2.type) || !blocks[1].grade.Equals(block2.grade) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].min_caf.Equals(block2.min_caf) || !blocks[1].value_extracc.Equals(block2.value_extracc) || !blocks[1].value_proc.Equals(block2.value_proc) || !blocks[1].apriori_process.Equals(block2.apriori_process))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
+
+        //Method Tested: GatherBlocksZuck
+        //Context: Passing a file containing:
+        //8 0 32 28 20122.8000000000 0 5528.2500000000 0
+        //9 0 33 28 20122.8000000000 0 5528.2500000000 0
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksZuckTest()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksZuckTestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 8,
+                x = 0,
+                y = 32,
+                z = 28,
+                cost = 20122.8000000000,
+                value = 0,
+                rock_tonnes = 5528.2500000000,
+                ore_tonnes = 0,
+            };
+            Block block2 = new Block
+            {
+                id = 9,
+                x = 0,
+                y = 33,
+                z = 28,
+                cost = 20122.8000000000,
+                value = 0,
+                rock_tonnes = 5528.2500000000,
+                ore_tonnes = 0,
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksZuck(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z) || !blocks[0].cost.Equals(block1.cost) || !blocks[0].value.Equals(block1.value) || !blocks[0].rock_tonnes.Equals(block1.rock_tonnes) || !blocks[0].ore_tonnes.Equals(block1.ore_tonnes))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) || !blocks[1].cost.Equals(block2.cost) || !blocks[1].value.Equals(block2.value) || !blocks[1].rock_tonnes.Equals(block2.rock_tonnes) || !blocks[1].ore_tonnes.Equals(block2.ore_tonnes))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }
