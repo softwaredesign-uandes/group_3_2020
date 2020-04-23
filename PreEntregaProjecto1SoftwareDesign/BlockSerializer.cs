@@ -32,7 +32,7 @@ namespace SDPreSubmissionNS
             }
             else
             {
-                Console.WriteLine($"File not found in {path}");
+                Console.WriteLine($"File not found");
                 return null;
             }
 
