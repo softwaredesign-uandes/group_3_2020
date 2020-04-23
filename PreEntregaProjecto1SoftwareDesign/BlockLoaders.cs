@@ -131,6 +131,7 @@ namespace SDPreSubmissionNS
                         value = value,
                         rock_tonnes = rock_tonnes,
                         ore_tonnes = ore_tonnes,
+                        tonn = rock_tonnes + ore_tonnes,
 
                     };
                     blocks.Add(block);
