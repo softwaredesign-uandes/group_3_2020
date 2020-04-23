@@ -87,8 +87,9 @@ namespace SDPreSubmissionNS
         {
             if (tonn!=null)
             {
-                var prop = this.GetType().GetProperty(mineral);
-                return prop.GetValue(this, null) * 100 / tonn;
+                Type type = this.GetType();
+                var propertyInfo = type.GetProperty(mineral);
+                return Convert.ToDouble(propertyInfo.GetValue(this, null));
             }
             else return 0;
         }
