@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SDPreSubmissionNS
 {
@@ -14,6 +15,11 @@ namespace SDPreSubmissionNS
         {
             this.name = name;
             this.blocks = blocks;
+        }
+
+        public Block GetBlock(int x, int y, int z)
+        {
+            return blocks.Where(i => i.x == x).Where(i => i.y == y).First(i => i.z == z);
         }
 
         public int GetNumberOfBlocks()
