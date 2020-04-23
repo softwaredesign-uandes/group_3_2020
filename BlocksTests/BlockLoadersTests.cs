@@ -154,8 +154,8 @@ namespace BlocksTests
                 x = 15,
                 y = 1,
                 z = 18,
-                blockvalue = 16380,
-                tonn = -12285,
+                blockvalue = -12285,
+                tonn = 16380,
                 destination = 2,
                 cu = 0,
                 porc_profit = 0
@@ -166,8 +166,8 @@ namespace BlocksTests
                 x = 16,
                 y = 1,
                 z = 18,
-                blockvalue = 16380,
-                tonn = -12285,
+                blockvalue = -12285,
+                tonn = 16380,
                 destination = 2,
                 cu = 0,
                 porc_profit = 0
@@ -236,6 +236,52 @@ namespace BlocksTests
             if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
                 || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].destination.Equals(block2.destination) ||
                 !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].ag.Equals(block2.ag))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
+
+        //Method Tested: GatherBlocksMarvin
+        //Context: Passing a file containing:
+        //26 0 1 12 61200.012 0 0 -4
+        //27 0 1 13 54720.242 0 0 -4
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksMarvinTest()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMarvinTestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 26,
+                x = 0,
+                y = 1,
+                z = 12,
+                tonn = 61200.012,
+                au = 0,
+                cu = 0,
+                porc_profit = -4,
+            };
+            Block block2 = new Block
+            {
+                id = 27,
+                x = 0,
+                y = 1,
+                z = 13,
+                tonn = 54720.242,
+                au = 0,
+                cu = 0,
+                porc_profit = -4,
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksMarvin(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+                || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].au.Equals(block1.au) || !blocks[0].porc_profit.Equals(block1.porc_profit) || !blocks[0].cu.Equals(block1.cu))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) 
+                || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].porc_profit.Equals(block2.porc_profit))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }

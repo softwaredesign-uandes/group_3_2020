@@ -187,8 +187,8 @@ namespace SDPreSubmissionNS
                     int x = int.Parse(cubeData[1]);
                     int y = int.Parse(cubeData[2]);
                     int z = int.Parse(cubeData[3]);
-                    double ton = double.Parse(cubeData[5]);
-                    double blockvalue = double.Parse(cubeData[4]);
+                    double ton = double.Parse(cubeData[4]);
+                    double blockvalue = double.Parse(cubeData[5]);
                     double destination = double.Parse(cubeData[6]);
                     double cu = double.Parse(cubeData[7]);
                     double processProfit = double.Parse(cubeData[8]);
@@ -282,8 +282,6 @@ namespace SDPreSubmissionNS
                         cu = cu,
                         porc_profit = porc_profit,
                     };
-                    blocks.Add(block);
-
                     blocks.Add(block);
 
                 }
