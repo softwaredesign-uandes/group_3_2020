@@ -27,9 +27,9 @@ namespace SDPreSubmissionNS
 
         #region newman1
         //id x y z type grade tonns min_caf value_extracc value_proc apriori_process
-        public string type { get; set; }
+        public string? type { get; set; }
         public double? grade { get; set; }
-        //public double? tonns { get; set; } usar tonn de Marvin
+        //public double tonns { get; set; } usar tonn de Marvin
         public double? min_caf { get; set; }
         public double? value_extracc { get; set; }
         public double? value_proc { get; set; }
@@ -57,7 +57,9 @@ namespace SDPreSubmissionNS
         public double? phase { get; set; }
         public double? AuRec { get; set; }
         public double? AuFA { get; set; }
+
         //public double? tons { get; set; } Usar "tonns" de marvin
+
         public double? co3 { get; set; }
         public double? orgc { get; set; }
         public double? sulf { get; set; }
