@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace SDPreSubmissionNS
@@ -26,9 +27,9 @@ namespace SDPreSubmissionNS
 
         #region newman1
         //id x y z type grade tonns min_caf value_extracc value_proc apriori_process
-        public string? type { get; set; }
+        public string type { get; set; }
         public double? grade { get; set; }
-        //public double tonns { get; set; } usar tonn de Marvin
+        //public double? tonns { get; set; } usar tonn de Marvin
         public double? min_caf { get; set; }
         public double? value_extracc { get; set; }
         public double? value_proc { get; set; }
@@ -56,7 +57,7 @@ namespace SDPreSubmissionNS
         public double? phase { get; set; }
         public double? AuRec { get; set; }
         public double? AuFA { get; set; }
-        //public double tons { get; set; } Usar "tonns" de marvin
+        //public double? tons { get; set; } Usar "tonns" de marvin
         public double? co3 { get; set; }
         public double? orgc { get; set; }
         public double? sulf { get; set; }
@@ -66,7 +67,7 @@ namespace SDPreSubmissionNS
         public double? Tvalue { get; set; }
         public double? Bvalue { get; set; }
         public double? rc_Stockpile { get; set; }
-        public double? rc_RockChar { get; set; }
+        public string rc_RockChar { get; set; }
 
         #endregion
 
@@ -75,22 +76,15 @@ namespace SDPreSubmissionNS
         //todo está antes
         #endregion
 
+        #region Kd
+        //<id> <x> <y> <z> <tonn> <blockvalue> <destination> <CU %> <process_profit>
+        #endregion
+
         public Block() { }
 
         public double? GetMassInKg()
         {
-            if (tonn!=null) return tonn * 1000;
-            else return 0;
-        }
-
-        public double? GetGrade(string mineral)
-        {
-            if (tonn!=null)
-            {
-                Type type = this.GetType();
-                var propertyInfo = type.GetProperty(mineral);
-                return Convert.ToDouble(propertyInfo.GetValue(this, null));
-            }
+            if (this.tonn == null) return tonn * 1000;
             else return 0;
         }
     }
