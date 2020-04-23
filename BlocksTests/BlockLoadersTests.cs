@@ -138,5 +138,55 @@ namespace BlocksTests
                 Assert.Fail("block2 is different that the estimated block");
             }
         }
+
+        //Method Tested: GatherBlocksKD
+        //Context: Passing a file containing:
+        //6 15 1 18 16380 -12285 2 0 0
+        //7 16 1 18 16380 -12285 2 0 0
+        //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
+        [TestMethod]
+        public void GatherBlocksKDTest()
+        {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksKDTestFile.blocks";
+            Block block1 = new Block
+            {
+                id = 6,
+                x = 15,
+                y = 1,
+                z = 18,
+                blockvalue = 16380,
+                tonn = -12285,
+                destination = 2,
+                cu = 0,
+                porc_profit = 0
+            };
+            Block block2 = new Block
+            {
+                id = 7,
+                x = 16,
+                y = 1,
+                z = 18,
+                blockvalue = 16380,
+                tonn = -12285,
+                destination = 2,
+                cu = 0,
+                porc_profit = 0
+            };
+            List<Block> blocks = BlockLoaders.GatherBlocksKD(path);
+
+            //Assert if the two Blocks are Equal
+            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+                || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].destination.Equals(block1.destination) ||
+                !blocks[0].cu.Equals(block1.cu) || !blocks[0].porc_profit.Equals(block1.porc_profit))
+            {
+                Assert.Fail("block1 is different than the estimated block.");
+            }
+            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+                || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].destination.Equals(block2.destination) ||
+                !blocks[1].cu.Equals(block2.cu) || !blocks[1].porc_profit.Equals(block2.porc_profit))
+            {
+                Assert.Fail("block2 is different that the estimated block");
+            }
+        }
     }
 }

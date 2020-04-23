@@ -202,6 +202,7 @@ namespace SDPreSubmissionNS
                         blockvalue = blockvalue,
                         tonn = ton,
                         destination = destination,
+                        cu = cu,
                         porc_profit = processProfit,
                     };
                     blocks.Add(block);
