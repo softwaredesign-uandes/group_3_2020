@@ -227,7 +227,7 @@ namespace SDPreSubmissionNS
                     if (block.Pcost != 0) { strToPrint += " Pcost:" + block.Pcost.ToString(); }
                     if (block.phase != 0) { strToPrint += " phase:" + block.phase.ToString(); }
                     if (block.porc_profit != 0) { strToPrint += " porc_profit:" + block.porc_profit.ToString(); }
-                    if (block.rc_RockChar != 0) { strToPrint += " rc_RockChar:" + block.rc_RockChar.ToString(); }
+                    if (block.rc_RockChar != "") { strToPrint += " rc_RockChar:" + block.rc_RockChar.ToString(); }
                     if (block.rc_Stockpile != 0) { strToPrint += " rc_Stockpile:" + block.rc_Stockpile.ToString(); }
                     if (block.rock_tonnes != 0) { strToPrint += " rock_tonnes:" + block.rock_tonnes.ToString(); }
                     if (block.sulf != 0) { strToPrint += " sulf:" + block.sulf.ToString(); }
