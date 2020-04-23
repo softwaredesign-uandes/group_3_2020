@@ -79,13 +79,13 @@ namespace SDPreSubmissionNS
 
         public int GetMassInKg()
         {
-            if (!tonn.IsNullOrEmpty()) return tonn * 1000;
+            if (tonn!=null) return tonn * 1000;
             else return 0;
         }
 
         public int GetGrade(string mineral)
         {
-            if (!tonn.IsNullOrEmpty())
+            if (tonn!=null)
             {
                 PropertyInfo propertyInfo = Block.GetProperty(mineral);
                 propertyInfo.GetValue(this, null) * 100 / tonn;
