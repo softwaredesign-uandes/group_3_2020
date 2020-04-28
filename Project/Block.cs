@@ -8,7 +8,6 @@ namespace SDPreSubmissionNS
     [Serializable]
     public class Block
     {
-        public BlockModel block_model;
 
         public int id { get; set; }
 
@@ -20,7 +19,7 @@ namespace SDPreSubmissionNS
 
         public Dictionary<string, string> other_attributes;
 
-        public Block(int id, int x, int y, int z, List<string> attributes_values)
+        public Block(int id, int x, int y, int z, List<string> attributes_values, BlockModel block_model)
         {
             this.id = id;
             this.x = x;
