@@ -24,79 +24,9 @@ namespace SDPreSubmissionNS
             attributes.Add("y");
             attributes.Add("z");
             attributes.Add("id");
-            if (name == "newman1.blocks")
-            {
-                attributes.Add("type");
-                attributes.Add("grade");
-                attributes.Add("tonns");
-                attributes.Add("tons");
-                attributes.Add("tonn");
-                attributes.Add("min_caf");
-                attributes.Add("value_extracc");
-                attributes.Add("value_proc");
-                attributes.Add("apiori_process");
-            }
-            else if (name == "zuck_small.blocks" || name == "zuck_medium.blocks" || name == "zuck_large.blocks")
-            {
-                attributes.Add("cost");
-                attributes.Add("value");
-                attributes.Add("rock_tonnes");
-                attributes.Add("ore_tonnes");
-            }
-            else if (name == "kd.blocks")
-            {
-                attributes.Add("tonns");
-                attributes.Add("tonn");
-                attributes.Add("blockvalue");
-                attributes.Add("destination");
-                attributes.Add("CU");
-                attributes.Add("process_profit");
-            }
-            else if (name == "p4hd.blocks")
-            {
-                attributes.Add("tonn");
-                attributes.Add("tonns");
-                attributes.Add("blockvalue");
-                attributes.Add("destination");
-                attributes.Add("au");
-                attributes.Add("ag");
-                attributes.Add("Cu");
-            }
-            else if (name == "marvin.blocks")
-            {
-                attributes.Add("tonn");
-                attributes.Add("tonns");
-                attributes.Add("au");
-                attributes.Add("cu");
-                attributes.Add("proc_profit");
-            }
-            else if (name == "w23.blocks")
-            {
-                attributes.Add("dest");
-                attributes.Add("destination");
-                attributes.Add("phase");
-                attributes.Add("AuRec");
-                attributes.Add("AuFA");
-                attributes.Add("tons");
-                attributes.Add("co3");
-                attributes.Add("orgc");
-                attributes.Add("sulf");
-                attributes.Add("Mcost");
-                attributes.Add("Pcost");
-                attributes.Add("Tcost");
-                attributes.Add("Tvalue");
-                attributes.Add("Bvalue");
-                attributes.Add("rc_Stockpile");
-                attributes.Add("rc_RockChar");
-            }
-            else if (name == "mclaughlin_limit.blocks" || name == "mclaughlin.blocks")
-            {
-                attributes.Add("blockvalue");
-                attributes.Add("ton");
-                attributes.Add("destination");
-                attributes.Add("Au");
-                attributes.Add("tonn");
-                attributes.Add("tonns");
+            Block block = blocks.FirstOrDefault(); //We get the first block to get the dictionary for the other variables
+            foreach (KeyValuePair<string, double> attribute in block.other_attributes) {
+                attributes.Add(attribute.Key);
             }
             return attributes;
         }
