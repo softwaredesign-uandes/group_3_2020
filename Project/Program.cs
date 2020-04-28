@@ -348,8 +348,13 @@ namespace SDPreSubmissionNS
                 }
                 else
                 {
-                    List<Block> blocks = BlockLoaders.GatherBlocks(path);
-                    BlockModel blockModel = new BlockModel(blocks, file.Name);
+                    Console.WriteLine("Please enter the attributes of a block:");
+                    string attributesString = Console.ReadLine();
+                    string[] attributesSplit = attributesString.Trim(' ').Split(' ');
+                    attributesSplit = attributesSplit.Skip(4);
+
+                    BlockModel blockModel = new BlockModel(blocks, file.Name, attributesSplit);
+                    List<Block> blocks = BlockLoaders.GatherBlocks(path, blockModel);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 
                     string yesOrNo = "";

@@ -12,10 +12,11 @@ namespace SDPreSubmissionNS
         public List<string> other_attributes_names;
         public List<Block> blocks { get; set; }
 
-        public BlockModel(List<Block> blocks, string name)
+        public BlockModel(List<Block> blocks, string name, List<string> other_attributes_names)
         {
             this.name = name;
             this.blocks = blocks;
+            this.other_attributes_names = other_attributes_names;
         }
 
         public List<string> GetPossibleAtrributes()
