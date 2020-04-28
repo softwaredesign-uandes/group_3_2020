@@ -9,6 +9,7 @@ namespace SDPreSubmissionNS
     public class BlockModel
     {
         public string name;
+        public List<string> other_attributes_names;
         public List<Block> blocks { get; set; }
 
         public BlockModel(List<Block> blocks, string name)
@@ -24,9 +25,9 @@ namespace SDPreSubmissionNS
             attributes.Add("y");
             attributes.Add("z");
             attributes.Add("id");
-            Block block = blocks.FirstOrDefault(); //We get the first block to get the dictionary for the other variables
-            foreach (KeyValuePair<string, double> attribute in block.other_attributes) {
-                attributes.Add(attribute.Key);
+            foreach (string attribute_name in other_attributes_names)
+            {
+                attributes.Add(attribute_name);
             }
             return attributes;
         }
