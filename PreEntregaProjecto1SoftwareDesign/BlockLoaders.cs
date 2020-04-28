@@ -24,9 +24,9 @@ namespace SDPreSubmissionNS
                         int x = int.Parse(cubeData[1]);
                         int y = int.Parse(cubeData[2]);
                         int z = int.Parse(cubeData[3]);
-                        List<string> otherAttributes;
-                        for (int i = 4; i < cubeData.Count; i++) {
-                            otherAttributes.Add(string.Parse(cubeData[i]));
+                        List<string> otherAttributes = new List<string>();
+                        for (int i = 4; i < cubeData.Length; i++) {
+                            otherAttributes.Add(cubeData[i]);
                         }
 
                         Block block = new Block(id, x, y, z, otherAttributes, blockModel);
