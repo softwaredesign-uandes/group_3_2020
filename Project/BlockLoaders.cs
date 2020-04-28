@@ -8,9 +8,8 @@ namespace SDPreSubmissionNS
 {
     class BlockLoaders
     {
-        public BlockModel blockModel;
 
-        static public List<Block> GatherBlocks(string path)
+        static public List<Block> GatherBlocks(string path, BlockModel blockModel)
         {
 
             if (File.Exists(path))
