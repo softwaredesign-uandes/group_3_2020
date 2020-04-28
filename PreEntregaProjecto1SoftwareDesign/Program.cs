@@ -208,37 +208,6 @@ namespace SDPreSubmissionNS
                     strToPrint += "x:" + block.x;
                     strToPrint += " y:" + block.y;
                     strToPrint += " z:" + block.z;
-                    if (block.ag != 0) { strToPrint += " Ag:" + block.ag.ToString(); }
-                    if (block.apriori_process != 0) { strToPrint += " apriori_process:" + block.apriori_process.ToString(); }
-                    if (block.au != 0) { strToPrint += " Au:" + block.au.ToString(); }
-                    if (block.AuFA != 0) { strToPrint += " AuFA:" + block.AuFA.ToString(); }
-                    if (block.AuRec != 0) { strToPrint += " AuRec:" + block.AuRec.ToString(); }
-                    if (block.blockvalue != 0) { strToPrint += " blockvalue:" + block.blockvalue.ToString(); }
-                    if (block.Bvalue != 0) { strToPrint += " Bvalue:" + block.Bvalue.ToString(); }
-                    if (block.co3 != 0) { strToPrint += " co3:" + block.co3.ToString(); }
-                    if (block.cost != 0) { strToPrint += " cost:" + block.cost.ToString(); }
-                    if (block.cu != 0) { strToPrint += " cu:" + block.cu.ToString(); }
-                    if (block.destination != 0) { strToPrint += " destination:" + block.destination.ToString(); }
-                    if (block.grade != 0) { strToPrint += " grade:" + block.grade.ToString(); }
-                    if (block.Mcost != 0) { strToPrint += " Mcost:" + block.Mcost.ToString(); }
-                    if (block.min_caf != 0) { strToPrint += " min_caf:" + block.min_caf.ToString(); }
-                    if (block.ore_tonnes != 0) { strToPrint += " ore_tonnes:" + block.ore_tonnes.ToString(); }
-                    if (block.orgc != 0) { strToPrint += " orgc:" + block.orgc.ToString(); }
-                    if (block.Pcost != 0) { strToPrint += " Pcost:" + block.Pcost.ToString(); }
-                    if (block.phase != 0) { strToPrint += " phase:" + block.phase.ToString(); }
-                    if (block.porc_profit != 0) { strToPrint += " porc_profit:" + block.porc_profit.ToString(); }
-                    if (block.rc_RockChar != "") { strToPrint += " rc_RockChar:" + block.rc_RockChar.ToString(); }
-                    if (block.rc_Stockpile != 0) { strToPrint += " rc_Stockpile:" + block.rc_Stockpile.ToString(); }
-                    if (block.rock_tonnes != 0) { strToPrint += " rock_tonnes:" + block.rock_tonnes.ToString(); }
-                    if (block.sulf != 0) { strToPrint += " sulf:" + block.sulf.ToString(); }
-                    if (block.Tcost != 0) { strToPrint += " Tcost:" + block.Tcost.ToString(); }
-                    if (block.tonn != 0) { strToPrint += " tonn:" + block.tonn.ToString(); }
-                    if (block.Tvalue != 0) { strToPrint += " Tvalue:" + block.Tvalue.ToString(); }
-                    if (block.type == "") { strToPrint += " type:" + block.type.ToString(); }
-                    if (block.value != 0) { strToPrint += " value:" + block.value.ToString(); }
-                    if (block.value_extracc != 0) { strToPrint += " value_extracc:" + block.value_extracc.ToString(); }
-                    if (block.value_proc != 0) { strToPrint += " value_proc:" + block.value_proc.ToString(); }
-
                     Console.WriteLine(strToPrint);
                 }
                 else
@@ -348,13 +317,13 @@ namespace SDPreSubmissionNS
                 }
                 else
                 {
-                    Console.WriteLine("Please enter the attributes of a block:");
+                    Console.WriteLine("Please enter the attribute names of a block in order:");
                     string attributesString = Console.ReadLine();
-                    string[] attributesSplit = attributesString.Trim(' ').Split(' ');
-                    attributesSplit = attributesSplit.Skip(4);
+                    List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
 
-                    BlockModel blockModel = new BlockModel(blocks, file.Name, attributesSplit);
+                    BlockModel blockModel = new BlockModel(file.Name, attributesSplit);
                     List<Block> blocks = BlockLoaders.GatherBlocks(path, blockModel);
+                    blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 
                     string yesOrNo = "";
@@ -463,8 +432,7 @@ namespace SDPreSubmissionNS
                 Block block = blocks.Find(i => i.id == intid);
                 if (block != null)
                 {
-                    Console.Write($"ID: {block.id}, x:{block.x}, y:{block.y}, z:{block.z}, tonn:{block.tonn}, " +
-                    $"au:{block.au}, cu:{block.cu}, proc_profit:{block.porc_profit} \n");
+                    Console.Write($"ID: {block.id}, x:{block.x}, y:{block.y}, z:{block.z} \n");
                 }
                 else
                 {

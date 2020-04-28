@@ -17,7 +17,7 @@ namespace SDPreSubmissionNS
 
         public int z { get; set; }
 
-        public Dictionary<string, string> other_attributes;
+        public Dictionary<string, string> other_attributes = new Dictionary<string, string>();
 
         public Block(int id, int x, int y, int z, List<string> attributes_values, BlockModel block_model)
         {
@@ -33,8 +33,7 @@ namespace SDPreSubmissionNS
 
         public double? GetMassInKg()
         {
-            if (this.tonn == null) return tonn * 1000;
-            else return 0;
+            return 0;
         }
     }
 }
