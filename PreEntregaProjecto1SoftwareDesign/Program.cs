@@ -344,7 +344,7 @@ namespace SDPreSubmissionNS
                     List<string> categorical_att = new List<string>();
                     foreach (string attribute in attributesSplit)
                     {
-                        string[]att = attribute.Split(":");
+                        string[] att = attribute.Split(":");
                         if (att.Length <= 1) continue;
                         if (att[1].Equals("cont")) continuous_att.Add(att[0]);
                         else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);

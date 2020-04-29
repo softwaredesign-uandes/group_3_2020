@@ -43,6 +43,14 @@ namespace SDPreSubmissionNS
                 CategoricalAttributes.Add(blockModel.CategoricalAttributesNames[i], categoricalAtt[i]);
             }
         }
+        public Block(int id, int x, int y, int z, double weight)
+        {
+            Id = id;
+            X = x;
+            Y = y;
+            Z = z;
+            Weight = weight;
+        }
 
         public double? GetMassInKg()
         {
