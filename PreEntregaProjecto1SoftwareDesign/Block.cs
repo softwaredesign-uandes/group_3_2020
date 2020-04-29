@@ -16,34 +16,37 @@ namespace SDPreSubmissionNS
 
         public int Z { get; set; }
 
-        public Dictionary<string, int> ContinuousAttributes = new Dictionary<string, int>();
+        public double Weight { get; set; }
 
-        public Dictionary<string, int> MassProportionalAttributes = new Dictionary<string, int>();
+        public Dictionary<string, double> ContinuousAttributes = new Dictionary<string, double>();
 
-        public Dictionary<string, int> CategoricalAttributes = new Dictionary<string, int>();
+        public Dictionary<string, double> MassProportionalAttributes = new Dictionary<string, double>();
 
-        public Block(int id, int x, int y, int z,
-            List<int> continuousAtt, List<int> massProportionalAtt, List<int> categoricalAtt, BlockModel blockModel)
+        public Dictionary<string, double> CategoricalAttributes = new Dictionary<string, double>();
+        
+        public Block(int id, int x, int y, int z, double weight,
+            List<double> continuousAtt, List<double> massProportionalAtt, List<double> categoricalAtt, BlockModel blockModel)
         {
             Id = id;
             X = x;
             Y = y;
             Z = z;
+            Weight = weight;
             for (var i = 0; i < continuousAtt.Count; i++)
             {
                 ContinuousAttributes.Add(blockModel.ContinuousAttributesNames[i], continuousAtt[i]);
             }
             for (var i = 0; i < massProportionalAtt.Count; i++) {
-                MassProportionalAttributes.Add(blockModel.ContinuousAttributesNames[i], massProportionalAtt[i]);
+                MassProportionalAttributes.Add(blockModel.MassProportionalAttributesNames[i], massProportionalAtt[i]);
             }
             for (var i = 0; i < categoricalAtt.Count; i++) {
-                CategoricalAttributes.Add(blockModel.ContinuousAttributesNames[i], categoricalAtt[i]);
+                CategoricalAttributes.Add(blockModel.CategoricalAttributesNames[i], categoricalAtt[i]);
             }
         }
 
         public double? GetMassInKg()
         {
-            return ContinuousAttributes["tonn"]*1000;
+            return Weight*1000;
         }
     }
 }

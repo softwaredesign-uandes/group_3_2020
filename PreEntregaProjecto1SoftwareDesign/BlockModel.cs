@@ -35,6 +35,7 @@ namespace SDPreSubmissionNS
             attributes.Add("y");
             attributes.Add("z");
             attributes.Add("id");
+            attributes.Add("Weight");
             foreach (string attribute_name in ContinuousAttributesNames)
             {
                 attributes.Add(attribute_name);

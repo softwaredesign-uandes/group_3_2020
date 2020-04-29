@@ -205,9 +205,23 @@ namespace SDPreSubmissionNS
                     Console.WriteLine("variables at 0 will not be printed");
                     string strToPrint = "";
                     strToPrint += "id:" + block.Id;
-                    strToPrint += "x:" + block.X;
+                    strToPrint += " x:" + block.X;
                     strToPrint += " y:" + block.Y;
                     strToPrint += " z:" + block.Z;
+                    strToPrint += " weight:" + block.Weight;
+                    foreach (KeyValuePair<string, double> entry in block.CategoricalAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
+                    foreach (KeyValuePair<string, double> entry in block.ContinuousAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
+                    foreach (KeyValuePair<string, double> entry in block.MassProportionalAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
+
                     Console.WriteLine(strToPrint);
                 }
                 else
@@ -318,6 +332,7 @@ namespace SDPreSubmissionNS
                 else
                 {
                     Console.WriteLine("Please enter the attribute names of a block in order." +
+                                      "\nIf an attribute is the weight of the block, write it followed by ':weight'." +
                                       "\nIf an attribute is continuous, write it followed by ':cont'." +
                                       "\nIf an attribute is mass proportional, write it followed by ':prop'." +
                                       "\nIf an attribute is categorical, write it followed by ':cat'." +

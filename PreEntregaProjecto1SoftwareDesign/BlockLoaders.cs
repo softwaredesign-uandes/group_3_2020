@@ -21,29 +21,31 @@ namespace SDPreSubmissionNS
                     int x = 0;
                     int y = 0;
                     int z = 0;
-                    List<int> contAttributes = new List<int>();
-                    List<int> massPropAttributes = new List<int>();
-                    List<int> catAttributes = new List<int>();
+                    double weight = 0;
+                    List<double> contAttributes = new List<double>();
+                    List<double> massPropAttributes = new List<double>();
+                    List<double> catAttributes = new List<double>();
 
                     for (int i = 0; i < all_attributes.Count; i++)
                     {
                         string[] att = all_attributes[i].Split(":");
                         if (att.Length>1)
                         {
-                            if (att[1].Equals("cont")) contAttributes.Add(int.Parse(cubeData[i]));
-                            if (att[1].Equals("mass")) massPropAttributes.Add(int.Parse(cubeData[i]));
-                            if (att[1].Equals("cat")) catAttributes.Add(int.Parse(cubeData[i]));
+                            if (att[1].Equals("cont")) contAttributes.Add(double.Parse(cubeData[i]));
+                            if (att[1].Equals("prop")) massPropAttributes.Add(double.Parse(cubeData[i]));
+                            if (att[1].Equals("cat")) catAttributes.Add(double.Parse(cubeData[i]));
+                            if (att[1].Equals("weight")) weight = double.Parse(cubeData[i]);
                         }
                         else
                         {
-                            if (att.Equals("id")) id = int.Parse(cubeData[i]);
-                            if (att.Equals("x")) x = int.Parse(cubeData[i]);
-                            if (att.Equals("y")) y = int.Parse(cubeData[i]);
-                            if (att.Equals("z")) z = int.Parse(cubeData[i]);
+                            if (att[0].Equals("id")) id = int.Parse(cubeData[i]);
+                            if (att[0].Equals("x")) x = int.Parse(cubeData[i]);
+                            if (att[0].Equals("y")) y = int.Parse(cubeData[i]);
+                            if (att[0].Equals("z")) z = int.Parse(cubeData[i]);
                         }
                     }
 
-                    var block = new Block(id, x, y, z,
+                    var block = new Block(id, x, y, z, weight,
                         contAttributes,massPropAttributes,catAttributes, blockModel);
                     blocks.Add(block);
                 }
