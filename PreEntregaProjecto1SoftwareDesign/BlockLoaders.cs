@@ -18,6 +18,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                     int x = 0;
                     int y = 0;
                     int z = 0;
+                    int weight = 0;
                     List<int> contAttributes = new List<int>();
                     List<int> massPropAttributes = new List<int>();
                     List<int> catAttributes = new List<int>();
@@ -30,6 +31,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                             if (att[1].Equals("cont")) contAttributes.Add(int.Parse(cubeData[i]));
                             if (att[1].Equals("mass")) massPropAttributes.Add(int.Parse(cubeData[i]));
                             if (att[1].Equals("cat")) catAttributes.Add(int.Parse(cubeData[i]));
+                            if (att[1].Equals("weight")) weight = int.Parse(cubeData[i]);
                         }
                         else
                         {
@@ -40,7 +42,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                         }
                     }
 
-                    var block = new Block(id, x, y, z,
+                    var block = new Block(id, x, y, z, weight,
                         contAttributes,massPropAttributes,catAttributes, blockModel);
                     blocks.Add(block);
                 }
