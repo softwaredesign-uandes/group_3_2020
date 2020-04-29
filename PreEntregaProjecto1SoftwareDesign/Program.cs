@@ -316,6 +316,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                 else
                 {
                     Console.WriteLine("Please enter the attribute names of a block in order." +
+                                      "\nIf an attribute is the weight of the block, write it followed by ':weight'." +
                                       "\nIf an attribute is continuous, write it followed by ':cont'." +
                                       "\nIf an attribute is mass proportional, write it followed by ':prop'." +
                                       "\nIf an attribute is categorical, write it followed by ':cat'." +

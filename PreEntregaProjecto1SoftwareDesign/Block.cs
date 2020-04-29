@@ -15,19 +15,22 @@ namespace PreEntregaProjecto1SoftwareDesign
 
         public int Z { get; set; }
 
+        public double Weight { get; set; }
+
         public Dictionary<string, int> ContinuousAttributes = new Dictionary<string, int>();
 
         public Dictionary<string, int> MassProportionalAttributes = new Dictionary<string, int>();
 
         public Dictionary<string, int> CategoricalAttributes = new Dictionary<string, int>();
 
-        public Block(int id, int x, int y, int z,
+        public Block(int id, int x, int y, int z, double weight,
             List<int> continuousAtt, List<int> massProportionalAtt, List<int> categoricalAtt, BlockModel blockModel)
         {
             Id = id;
             X = x;
             Y = y;
             Z = z;
+            Weight = weight;
             for (var i = 0; i < continuousAtt.Count; i++)
             {
                 ContinuousAttributes.Add(blockModel.ContinuousAttributesNames[i], continuousAtt[i]);
@@ -42,7 +45,7 @@ namespace PreEntregaProjecto1SoftwareDesign
 
         public double? GetMassInKg()
         {
-            return ContinuousAttributes["tonn"]*1000;
+            return Weight*1000;
         }
     }
 }
