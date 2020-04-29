@@ -35,7 +35,7 @@ namespace SDPreSubmissionNS
                     Console.WriteLine($"Block Models loaded:");
                     foreach (BlockModel blockModel in blockModels)
                     {
-                        Console.WriteLine(blockModel.name);
+                        Console.WriteLine(blockModel.Name);
                     }
                 }
                 Console.WriteLine("Welcome, please select an option: ");
@@ -132,10 +132,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 Console.WriteLine(bModel.GetNumberOfBlocks().ToString());
@@ -152,10 +152,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 int x = 0;
@@ -191,7 +191,7 @@ namespace SDPreSubmissionNS
                 Block block = bModel.GetBlock(x, y, z);
 
                 List<string> possibleAttributes = new List<string>();
-                possibleAttributes = bModel.GetPossibleAtrributes();
+                possibleAttributes = bModel.GetPossibleAttributes();
                 bool attrAprooved = false;
                 foreach (string str in possibleAttributes)
                 {
@@ -204,10 +204,10 @@ namespace SDPreSubmissionNS
                 {
                     Console.WriteLine("variables at 0 will not be printed");
                     string strToPrint = "";
-                    strToPrint += "id:" + block.id;
-                    strToPrint += "x:" + block.x;
-                    strToPrint += " y:" + block.y;
-                    strToPrint += " z:" + block.z;
+                    strToPrint += "id:" + block.Id;
+                    strToPrint += "x:" + block.X;
+                    strToPrint += " y:" + block.Y;
+                    strToPrint += " z:" + block.Z;
                     Console.WriteLine(strToPrint);
                 }
                 else
@@ -230,10 +230,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 int x = 0;
@@ -317,20 +317,27 @@ namespace SDPreSubmissionNS
                 }
                 else
                 {
-                    Console.WriteLine("Please enter the attribute names of a block in order." + 
-                                      "\nIf an attribute is the weight of the block enter it followed by ':weight'"+
-                                      "\nExample: id x y z tonn:weight cu au");
+                    Console.WriteLine("Please enter the attribute names of a block in order." +
+                                      "\nIf an attribute is continuous, write it followed by ':cont'." +
+                                      "\nIf an attribute is mass proportional, write it followed by ':prop'." +
+                                      "\nIf an attribute is categorical, write it followed by ':cat'." +
+                                      "\nExample: id x y z tonn:cont cu:prop au:prop other:cat");
                     string attributesString = Console.ReadLine();
                     List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
-                    bool has_mass = false;
+                    List<string> continuous_att = new List<string>();
+                    List<string> mass_proportional_att = new List<string>();
+                    List<string> categorical_att = new List<string>();
                     foreach (string attribute in attributesSplit)
                     {
                         string[]att = attribute.Split(":");
-                        if (att.Length > 1) has_mass = true;
+                        if (att.Length <= 1) continue;
+                        if (att[1].Equals("cont")) continuous_att.Add(att[0]);
+                        else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);
+                        else if (att[1].Equals("cat")) categorical_att.Add(att[0]);
                     }
 
-                    BlockModel blockModel = new BlockModel(file.Name, attributesSplit);
-                    List<Block> blocks = BlockLoaders.GatherBlocks(path, blockModel, has_mass);
+                    BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
+                    List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
                     blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 
@@ -368,7 +375,7 @@ namespace SDPreSubmissionNS
             BlockModel blockModel = BlockSerializer.DeserializeBlockModel("Models\\" + newPath + ".grupo3");
             if (blockModel != null)
             {
-                if (blockModels.Find(i => i.name == newPath) != null)
+                if (blockModels.Find(i => i.Name == newPath) != null)
                 {
                     Console.WriteLine("Block model already Loaded");
                 }
@@ -388,10 +395,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Select Block data to Unload: ");
             foreach (BlockModel blockModel1 in blockModels)
             {
-                Console.WriteLine(blockModel1.name);
+                Console.WriteLine(blockModel1.Name);
             }
             string newPath = Console.ReadLine();
-            BlockModel blockModel = blockModels.Find(i => i.name == newPath);
+            BlockModel blockModel = blockModels.Find(i => i.Name == newPath);
             if (blockModel != null)
             {
                 blockModels.Remove(blockModel);
@@ -437,10 +444,10 @@ namespace SDPreSubmissionNS
             int intid = -1;
             if (int.TryParse(stringId, out intid))
             {
-                Block block = blocks.Find(i => i.id == intid);
+                Block block = blocks.Find(i => i.Id == intid);
                 if (block != null)
                 {
-                    Console.Write($"ID: {block.id}, x:{block.x}, y:{block.y}, z:{block.z} \n");
+                    Console.Write($"ID: {block.Id}, x:{block.X}, y:{block.Y}, z:{block.Z} \n");
                 }
                 else
                 {

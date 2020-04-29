@@ -8,42 +8,58 @@ namespace SDPreSubmissionNS
     [Serializable]
     public class BlockModel
     {
-        public string name;
-        public List<string> other_attributes_names;
-        public List<Block> blocks { get; set; }
+        public string Name;
+        public List<string> ContinuousAttributesNames;
+        public List<string> MassProportionalAttributesNames;
+        public List<string> CategoricalAttributesNames;
+        public List<Block> Blocks { get; set; }
 
-        public BlockModel(string name, List<string> other_attributes_names)
+        public BlockModel(string name, List<string> continuousAttributesNames,
+            List<string> massProportionalAttributesNames, List<string> categoricalAttributesNames)
         {
-            this.name = name;
-            this.other_attributes_names = other_attributes_names;
+            Name = name;
+            ContinuousAttributesNames = continuousAttributesNames;
+            MassProportionalAttributesNames = massProportionalAttributesNames;
+            CategoricalAttributesNames = categoricalAttributesNames;
         }
 
         public void SetBlocks(List<Block> blocks)
         {
-            this.blocks = blocks;
+            Blocks = blocks;
         }
 
-        public List<string> GetPossibleAtrributes()
+        public List<string> GetPossibleAttributes()
         {
             List<string> attributes = new List<string>();
             attributes.Add("x");
             attributes.Add("y");
             attributes.Add("z");
             attributes.Add("id");
-            foreach (string attribute_name in other_attributes_names)
+            foreach (string attribute_name in ContinuousAttributesNames)
             {
+                attributes.Add(attribute_name);
+            }
+            foreach (string attribute_name in MassProportionalAttributesNames) {
+                attributes.Add(attribute_name);
+            }
+            foreach (string attribute_name in CategoricalAttributesNames) {
                 attributes.Add(attribute_name);
             }
             return attributes;
         }
         public Block GetBlock(int x, int y, int z)
         {
-            return blocks.Where(i => i.x == x).Where(i => i.y == y).FirstOrDefault(i => i.z == z);
+            return Blocks.Where(i => i.X == x).Where(i => i.Y == y).FirstOrDefault(i => i.Z == z);
         }
 
         public int GetNumberOfBlocks()
         {
-            return blocks.Count;
+            return Blocks.Count;
+        }
+
+        public void Reblock(int rx, int ry, int rz)
+        {
+
         }
     }
 }
