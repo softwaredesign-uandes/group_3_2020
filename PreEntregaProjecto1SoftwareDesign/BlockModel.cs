@@ -45,5 +45,10 @@ namespace SDPreSubmissionNS
         {
             return blocks.Count;
         }
+
+        public void Reblock(int rx, int ry, int rz)
+        {
+
+        }
     }
 }
