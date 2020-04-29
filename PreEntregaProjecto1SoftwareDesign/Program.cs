@@ -317,12 +317,20 @@ namespace SDPreSubmissionNS
                 }
                 else
                 {
-                    Console.WriteLine("Please enter the attribute names of a block in order:");
+                    Console.WriteLine("Please enter the attribute names of a block in order." + 
+                                      "\nIf an attribute is the weight of the block enter it followed by ':weight'"+
+                                      "\nExample: id x y z tonn:weight cu au");
                     string attributesString = Console.ReadLine();
                     List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
+                    bool has_mass = false;
+                    foreach (string attribute in attributesSplit)
+                    {
+                        string[]att = attribute.Split(":");
+                        if (att.Length > 1) has_mass = true;
+                    }
 
                     BlockModel blockModel = new BlockModel(file.Name, attributesSplit);
-                    List<Block> blocks = BlockLoaders.GatherBlocks(path, blockModel);
+                    List<Block> blocks = BlockLoaders.GatherBlocks(path, blockModel, has_mass);
                     blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 
