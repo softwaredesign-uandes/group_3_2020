@@ -1,46 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using SDPreSubmissionNS;
 
-namespace SDPreSubmissionNS
+namespace PreEntregaProjecto1SoftwareDesign
 {
-    class BlockLoaders
+    internal class BlockLoaders
     {
 
-        static public List<Block> GatherBlocks(string path, BlockModel blockModel, bool has_mass)
+        public static List<Block> GatherBlocks(string path, List<string> all_attributes, BlockModel blockModel)
         {
+            var blocks = new List<Block>();
+            if (!File.Exists(path)) return blocks;
+            using (var streamReader = new StreamReader(path)) {
+                string line;
+                while ((line = streamReader.ReadLine()) != null) {
+                    var cubeData = line.Trim(' ').Split(' ');
+                    int id = 0;
+                    int x = 0;
+                    int y = 0;
+                    int z = 0;
+                    List<int> contAttributes = new List<int>();
+                    List<int> massPropAttributes = new List<int>();
+                    List<int> catAttributes = new List<int>();
 
-            if (File.Exists(path))
-            {
-                List<Block> blocks = new List<Block>();
-
-                using (StreamReader streamReader = new StreamReader(path)) {
-                    string line;
-                    while ((line = streamReader.ReadLine()) != null) {
-                        string[] cubeData = line.Trim(' ').Split(' ');
-                        int id = int.Parse(cubeData[0]);
-                        int x = int.Parse(cubeData[1]);
-                        int y = int.Parse(cubeData[2]);
-                        int z = int.Parse(cubeData[3]);
-                        int weight = 0;
-                        if (has_mass) weight = int.Parse(cubeData[4]);
-                        List<string> otherAttributes = new List<string>();
-                        for (int i = 4; i < cubeData.Length; i++) {
-                            otherAttributes.Add(cubeData[i]);
+                    for (int i = 0; i < all_attributes.Count; i++)
+                    {
+                        string[] att = all_attributes[i].Split(":");
+                        if (att.Length>1)
+                        {
+                            if (att[1].Equals("cont")) contAttributes.Add(int.Parse(cubeData[i]));
+                            if (att[1].Equals("mass")) massPropAttributes.Add(int.Parse(cubeData[i]));
+                            if (att[1].Equals("cat")) catAttributes.Add(int.Parse(cubeData[i]));
                         }
-
-                        Block block = new Block(id, x, y, z, weight, otherAttributes, blockModel);
-                        blocks.Add(block);
+                        else
+                        {
+                            if (att.Equals("id")) id = int.Parse(cubeData[i]);
+                            if (att.Equals("x")) x = int.Parse(cubeData[i]);
+                            if (att.Equals("y")) y = int.Parse(cubeData[i]);
+                            if (att.Equals("z")) z = int.Parse(cubeData[i]);
+                        }
                     }
+
+                    var block = new Block(id, x, y, z,
+                        contAttributes,massPropAttributes,catAttributes, blockModel);
+                    blocks.Add(block);
                 }
-                return blocks;
             }
-            else
-            {
-                return new List<Block>();
-            }
+            return blocks;
         }
     }
 }
