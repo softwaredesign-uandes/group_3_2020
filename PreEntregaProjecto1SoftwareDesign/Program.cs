@@ -275,7 +275,67 @@ namespace PreEntregaProjecto1SoftwareDesign
         //TODO: Falta implementar
         private static void ReportGradePercentageOfMinerals()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels)
+            {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null)
+            {
+                int x = 0;
+                int y = 0;
+                int z = 0;
+
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x))
+                {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y))
+                {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z))
+                {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Mineral Name");
+                string attribute = Console.ReadLine();
+                Block block = bModel.GetBlock(x, y, z);
+
+                if (block.MassProportionalAttributes.ContainsKey(attribute))
+                {
+                    string strToPrint = "";
+                    foreach (var attr in block.MassProportionalAttributes)
+                    {
+                        strToPrint += attr.Key + ":" + attr.Value + " ";
+                    }
+                    Console.WriteLine(strToPrint);
+                }
+                else
+                {
+                    Console.WriteLine("Mineral not found");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
         }
         private static void ReportMassInKilograms()
         {
