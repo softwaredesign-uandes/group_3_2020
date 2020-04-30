@@ -23,6 +23,11 @@ namespace SDPreSubmissionNS
             CategoricalAttributesNames = categoricalAttributesNames;
         }
 
+        public BlockModel(string name)
+        {
+            Name = name;
+        }
+
         public void SetBlocks(List<Block> blocks)
         {
             Blocks = blocks;
