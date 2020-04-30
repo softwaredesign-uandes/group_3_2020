@@ -22,10 +22,18 @@ namespace SDPreSubmissionNS
 
         public Dictionary<string, double> MassProportionalAttributes = new Dictionary<string, double>();
 
-        public Dictionary<string, double> CategoricalAttributes = new Dictionary<string, double>();
+        public Dictionary<string, string> CategoricalAttributes = new Dictionary<string, string>();
+
+        public Block(int id, int x, int y, int z)
+        {
+            Id = id;
+            X = x;
+            Y = y;
+            Z = z;
+        }
         
         public Block(int id, int x, int y, int z, double weight,
-            List<double> continuousAtt, List<double> massProportionalAtt, List<double> categoricalAtt, BlockModel blockModel)
+            List<double> continuousAtt, List<double> massProportionalAtt, List<string> categoricalAtt, BlockModel blockModel)
         {
             Id = id;
             X = x;

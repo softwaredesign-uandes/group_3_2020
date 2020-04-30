@@ -44,8 +44,9 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("3. UnLoad a Block Model.");
                 Console.WriteLine("4. Delete a Saved Block Model");
                 Console.WriteLine("5. Reports");
-                Console.WriteLine("6. Help");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("6. Reblock Model.");
+                Console.WriteLine("7. Help");
+                Console.WriteLine("8. Exit");
                 option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
@@ -77,9 +78,13 @@ namespace SDPreSubmissionNS
                 }
                 else if (option.Equals("6"))
                 {
-                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                    Reblock();
                 }
                 else if (option.Equals("7"))
+                {
+                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                }
+                else if (option.Equals("8"))
                 {
                     menu = false;
                 }
@@ -88,6 +93,47 @@ namespace SDPreSubmissionNS
             Console.ReadLine();
         }
 
+        private static void Reblock()
+        {
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels) {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null) {
+                int x = 0;
+                int y = 0;
+                int z = 0;
+
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x)) {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y)) {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z)) {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                bModel.Reblock(x,y,z);
+            }
+            else {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
+        }
         private static void ReportsMenu()
         {
             bool menu = true;
@@ -209,7 +255,8 @@ namespace SDPreSubmissionNS
                     strToPrint += " y:" + block.Y;
                     strToPrint += " z:" + block.Z;
                     strToPrint += " weight:" + block.Weight;
-                    foreach (KeyValuePair<string, double> entry in block.CategoricalAttributes)
+
+                    foreach (KeyValuePair<string, string> entry in block.CategoricalAttributes)
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
@@ -231,13 +278,70 @@ namespace SDPreSubmissionNS
 
             }
         }
-
-        //TODO: Falta implementar
         private static void ReportGradePercentageOfMinerals()
         {
-            throw new NotImplementedException();
-        }
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels)
+            {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null)
+            {
+                int x = 0;
+                int y = 0;
+                int z = 0;
 
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x))
+                {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y))
+                {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z))
+                {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Mineral Name");
+                string attribute = Console.ReadLine();
+                Block block = bModel.GetBlock(x, y, z);
+
+                if (block.MassProportionalAttributes.ContainsKey(attribute))
+                {
+                    string strToPrint = "";
+                    foreach (var attr in block.MassProportionalAttributes)
+                    {
+                        strToPrint += attr.Key + ":" + attr.Value + " ";
+                    }
+                    Console.WriteLine(strToPrint);
+                }
+                else
+                {
+                    Console.WriteLine("Mineral not found");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
+        }
         private static void ReportMassInKilograms()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
@@ -343,8 +447,8 @@ namespace SDPreSubmissionNS
                     List<string> mass_proportional_att = new List<string>();
                     List<string> categorical_att = new List<string>();
                     foreach (string attribute in attributesSplit)
-                    {
-                        string[] att = attribute.Split(":");
+                    { 
+                        string[]att = attribute.Split(":");
                         if (att.Length <= 1) continue;
                         if (att[1].Equals("cont")) continuous_att.Add(att[0]);
                         else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);
