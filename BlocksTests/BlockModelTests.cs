@@ -31,8 +31,8 @@ namespace BlocksTests
 
         //Method Tested: GetPossibleAttributes
         //Context: Passing 2 Blocks with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=50, cattest2=30]
-        //id=2, x=12, y=12, z=12, weight=2000, [contest1=400, contest2=500], [mptest1=50, mptest2=60], [cattest1=10, cattest2=15]
+        //id=1, x=10, y=10, z=10, weight=1000, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //id=2, x=12, y=12, z=12, weight=2000, [contest1=400, contest2=500], [mptest1=50, mptest2=60], [cattest1=vbm, cattest2=jkl]
         //and a BlockModel with name "Block Model"
         //Expectation: Should return [id, x, y, z, weight, contest1, contest2, mptest1, mptest2, cattest1, cattest2]
         [TestMethod]
@@ -43,10 +43,10 @@ namespace BlocksTests
             List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
             List<double> cons_v1 = new List<double>(new double[] {200, 100 });
             List<double> mps_v1 = new List<double>(new double[] {10, 20 });
-            List<double> cats_v1 = new List<double>(new double[] {50, 30 });
+            List<string> cats_v1 = new List<string>(new string[] {"asd", "def" });
             List<double> cons_v2 = new List<double>(new double[] {400, 500 });
             List<double> mps_v2 = new List<double>(new double[] {50, 60 });
-            List<double> cats_v2 = new List<double>(new double[] {10, 15 });
+            List<string> cats_v2 = new List<string>(new string[] {"vbm", "jkl" });
 
             BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
             Block block1 = new Block(1, 10, 10, 10, 1000, cons_v1, mps_v1, cats_v1, blockModel);
