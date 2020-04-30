@@ -126,14 +126,14 @@ namespace PreEntregaProjecto1SoftwareDesign
                                 }
                             }
                         }
-                        foreach (var nuevoBloqueMassProportionalAttribute in nuevoBloque.MassProportionalAttributes)
+                        List<string> keysNuevoBloque = new List<string>(nuevoBloque.MassProportionalAttributes.Keys);
+                        foreach (string keyNuevoBloqueMassProportionalAttribute in keysNuevoBloque)
                         {
                             if (nuevoBloque.Weight != 0)
                             {
-                                nuevoBloque.MassProportionalAttributes[nuevoBloqueMassProportionalAttribute.Key] /=
+                                nuevoBloque.MassProportionalAttributes[keyNuevoBloqueMassProportionalAttribute] /=
                                     nuevoBloque.Weight;
                             }
-
                         }
 
                         foreach (var listOfCategoricalAttribute in listsOfCategoricalAttributes)
