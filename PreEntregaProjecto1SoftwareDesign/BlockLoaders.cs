@@ -21,7 +21,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                     double weight = 0;
                     List<double> contAttributes = new List<double>();
                     List<double> massPropAttributes = new List<double>();
-                    List<double> catAttributes = new List<double>();
+                    List<string> catAttributes = new List<string>();
 
                     for (int i = 0; i < all_attributes.Count; i++)
                     {
@@ -30,7 +30,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                         {
                             if (att[1].Equals("cont")) contAttributes.Add(double.Parse(cubeData[i]));
                             if (att[1].Equals("prop")) massPropAttributes.Add(double.Parse(cubeData[i]));
-                            if (att[1].Equals("cat")) catAttributes.Add(double.Parse(cubeData[i]));
+                            if (att[1].Equals("cat")) catAttributes.Add(cubeData[i]);
                             if (att[1].Equals("weight")) weight = double.Parse(cubeData[i]);
                         }
                         else

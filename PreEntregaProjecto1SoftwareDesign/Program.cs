@@ -42,8 +42,9 @@ namespace PreEntregaProjecto1SoftwareDesign
                 Console.WriteLine("3. UnLoad a Block Model.");
                 Console.WriteLine("4. Delete a Saved Block Model");
                 Console.WriteLine("5. Reports");
-                Console.WriteLine("6. Help");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("6. Reblock Model.");
+                Console.WriteLine("7. Help");
+                Console.WriteLine("8. Exit");
                 option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
@@ -75,9 +76,13 @@ namespace PreEntregaProjecto1SoftwareDesign
                 }
                 else if (option.Equals("6"))
                 {
-                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                    Reblock();
                 }
                 else if (option.Equals("7"))
+                {
+                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                }
+                else if (option.Equals("8"))
                 {
                     menu = false;
                 }
@@ -85,7 +90,47 @@ namespace PreEntregaProjecto1SoftwareDesign
             Console.WriteLine("Bye bye");
             Console.ReadLine();
         }
+        private static void Reblock()
+        {
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels) {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null) {
+                int x = 0;
+                int y = 0;
+                int z = 0;
 
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x)) {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y)) {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z)) {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                bModel.Reblock(x,y,z);
+            }
+            else {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
+        }
         private static void ReportsMenu()
         {
             bool menu = true;
@@ -123,7 +168,6 @@ namespace PreEntregaProjecto1SoftwareDesign
 
             }
         }
-
         private static void ReportGetNumberBlocks()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
@@ -143,7 +187,6 @@ namespace PreEntregaProjecto1SoftwareDesign
                 Console.WriteLine("No Loaded Block Model has that name");
             }
         }
-
         private static void ReportDisplayAttriburesOfOneBlock()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
@@ -207,7 +250,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                     strToPrint += " y:" + block.Y;
                     strToPrint += " z:" + block.Z;
                     strToPrint += " weight:" + block.Weight;
-                    foreach (KeyValuePair<string, double> entry in block.CategoricalAttributes)
+                    foreach (KeyValuePair<string, string> entry in block.CategoricalAttributes)
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
@@ -229,13 +272,11 @@ namespace PreEntregaProjecto1SoftwareDesign
 
             }
         }
-
         //TODO: Falta implementar
         private static void ReportGradePercentageOfMinerals()
         {
             throw new NotImplementedException();
         }
-
         private static void ReportMassInKilograms()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
