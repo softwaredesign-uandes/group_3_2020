@@ -69,13 +69,13 @@ namespace PreEntregaProjecto1SoftwareDesign
             int[] maximos = GetMaxCoordinates();
             int newId = 0;
             int newIndexX = 0;
-            int newIndexY = 0;
-            int newIndexZ = 0;
-            for (int indexGroupX = 0; indexGroupX < maximos[0]; indexGroupX += rx)
+            for (int indexGroupX = 0; indexGroupX <= maximos[0]; indexGroupX += rx)
             {
-                for (int indexGroupY = 0; indexGroupY < maximos[1]; indexGroupY += ry)
+                int newIndexY = 0;
+                for (int indexGroupY = 0; indexGroupY <= maximos[1]; indexGroupY += ry)
                 {
-                    for (int indexGroupZ = 0; indexGroupZ < maximos[2]; indexGroupZ += rz)
+                    int newIndexZ = 0;
+                    for (int indexGroupZ = 0; indexGroupZ <= maximos[2]; indexGroupZ += rz)
                     {
                         Block nuevoBloque = new Block(newId,newIndexX,newIndexY,newIndexZ);
                         foreach (var continuousAttributesName in ContinuousAttributesNames) {
@@ -93,7 +93,7 @@ namespace PreEntregaProjecto1SoftwareDesign
                         {
                             for (int indexY = indexGroupY; indexY < indexGroupY + ry; indexY++) 
                             {
-                                for (int indexZ = indexGroupZ; indexZ < indexGroupZ + rx; indexZ++)
+                                for (int indexZ = indexGroupZ; indexZ < indexGroupZ + rz; indexZ++)
                                 {
                                     Block evaluatedBlock = GetBlock(indexX, indexY, indexZ);
                                     if (evaluatedBlock == null)
