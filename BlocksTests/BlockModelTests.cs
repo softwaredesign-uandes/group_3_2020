@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using SDPreSubmissionNS;
 using System.Linq;
+using Microsoft.VisualBasic;
 
 namespace BlocksTests
 {
@@ -214,6 +215,38 @@ namespace BlocksTests
             if (blockModel.Blocks[0].X != 0 || blockModel.Blocks[0].Y != 0 || blockModel.Blocks[0].Z != 0)
             {
                 Assert.Fail("final blocks coordinates are misplaced.");
+            }
+        }
+        [TestMethod]
+        public void ReblockTestCategories()
+        {
+            List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
+            List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
+            List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
+            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
+            List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
+            List<string> cats_v2 = new List<string>(new string[] { "asd", "fda" });
+            BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
+            Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block2 = new Block(1, 1, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block3 = new Block(2, 0, 1, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block4 = new Block(3, 0, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block5 = new Block(4, 1, 1, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
+            Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
+            Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
+            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            blockModel.SetBlocks(blocks);
+            blockModel.Reblock(2, 2, 2);
+            string expectedCategory = "def";
+            foreach (Block block in blockModel.Blocks)
+            {
+                if (block.CategoricalAttributes["cattest2"] != expectedCategory)
+                {
+                    Assert.Fail("final blocks coordinates are misplaced.");
+                }
+                
             }
         }
 

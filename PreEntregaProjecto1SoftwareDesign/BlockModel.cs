@@ -64,7 +64,7 @@ namespace SDPreSubmissionNS
             return Blocks.Count;
         }
 
-        public int[] GetMaxCoordinates()
+        private int[] GetMaxCoordinates()
         {
             return new[] {Blocks.Max(block => block.X), Blocks.Max(block => block.Y) , Blocks.Max(block => block.Z) };
         }
