@@ -82,6 +82,19 @@ namespace BlocksTests
             blockModel.SetBlocks(blocks);
             Assert.AreEqual(block1, blockModel.GetBlock(10, 10, 10));
         }
+        [TestMethod]
+        public void FailGetBlockTest()
+        {
+            Block block1 = new Block(1, 10, 10, 10, 1000);
+            Block block2 = new Block(2, 12, 12, 12, 2000);
+            List<Block> blocks = new List<Block>();
+            blocks.Add(block1);
+            blocks.Add(block2);
+            BlockModel blockModel = new BlockModel("Block Model");
+            blockModel.SetBlocks(blocks);
+            Block failTestBlock = blockModel.GetBlock(0, 0, 0);
+            Assert.AreEqual(failTestBlock, null);
+        }
 
         //Method Tested: GetNumberOfBlocks
         //Context: Passing 2 Blocks with attributes:
