@@ -257,9 +257,40 @@ namespace BlocksTests
             {
                 if (block.CategoricalAttributes["cattest2"] != expectedCategory)
                 {
-                    Assert.Fail("final blocks coordinates are misplaced.");
+                    Assert.Fail("Final block category is wrong.");
                 }
                 
+            }
+        }
+        [TestMethod]
+        public void ReblockTestMassProportional()
+        {
+            List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
+            List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
+            List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
+            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
+            List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
+            List<double> mps_v2 = new List<double>(new double[] { 100, 50 });
+            BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
+            Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block2 = new Block(1, 1, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block3 = new Block(2, 0, 1, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block4 = new Block(3, 0, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block5 = new Block(4, 1, 1, 0, 100, cons_v1, mps_v2, cats_v1, blockModel);
+            Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
+            Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
+            Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
+            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            blockModel.SetBlocks(blocks);
+            blockModel.Reblock(2, 2, 2);
+            double expectedValue = 55;
+            foreach (Block block in blockModel.Blocks)
+            {
+                if (block.MassProportionalAttributes["mptest1"] != expectedValue)
+                {
+                    Assert.Fail("Final block does not have proportional mass attribute.");
+                }
             }
         }
 
