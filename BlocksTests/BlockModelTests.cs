@@ -468,6 +468,73 @@ namespace BlocksTests
             }
         }
 
+        public void ReblockTestYCoordinate()
+        {
+            List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
+            List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
+            List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
+            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
+            List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
+            BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
+            Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block2 = new Block(1, 0, 1, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block3 = new Block(2, 0, 2, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block4 = new Block(3, 0, 3, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block5 = new Block(3, 0, 4, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            List<Block> blocks = new List<Block>(new Block[] {
+                block1, block2, block3, block4, block5});
+            blockModel.SetBlocks(blocks);
+            var max_y = blockModel.GetMaxCoordinates()[1];
+            blockModel.Reblock(2, 2, 2);
+            if(!(blockModel.GetMaxCoordinates()[1] == max_y / 2 || blockModel.GetMaxCoordinates()[1] == (max_y / 2)+1)) Assert.Fail("max Y coordinate bigger than expected.");
+
+        }
+
+        public void ReblockTestXCoordinate() {
+            List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
+            List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
+            List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
+            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
+            List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
+            BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
+            Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block2 = new Block(1, 1, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block3 = new Block(2, 2, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block4 = new Block(3, 3, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block5 = new Block(3, 4, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            List<Block> blocks = new List<Block>(new Block[] {
+                block1, block2, block3, block4, block5});
+            blockModel.SetBlocks(blocks);
+            var max_x = blockModel.GetMaxCoordinates()[0];
+            blockModel.Reblock(2, 2, 2);
+            if (!(blockModel.GetMaxCoordinates()[0] == max_x / 2 || blockModel.GetMaxCoordinates()[0] == (max_x / 2) + 1)) Assert.Fail("max X coordinate bigger than expected.");
+
+        }
+
+        public void ReblockTestZCoordinate() {
+            List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
+            List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
+            List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
+            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
+            List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
+            BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
+            Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block2 = new Block(1, 0, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block3 = new Block(2, 0, 0, 2, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block4 = new Block(3, 0, 0, 3, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            Block block5 = new Block(3, 0, 0, 4, 100, cons_v1, mps_v1, cats_v1, blockModel);
+            List<Block> blocks = new List<Block>(new Block[] {
+                block1, block2, block3, block4, block5});
+            blockModel.SetBlocks(blocks);
+            var max_z = blockModel.GetMaxCoordinates()[2];
+            blockModel.Reblock(2, 2, 2);
+            if (!(blockModel.GetMaxCoordinates()[2] == max_z / 2 || blockModel.GetMaxCoordinates()[2] == (max_z / 2) + 1)) Assert.Fail("max Z coordinate bigger than expected.");
+
+        }
+
         //Method for comparing equality between two lists
         //Source: https://answers.unity.com/questions/1307074/how-do-i-compare-two-lists-for-equality-not-caring.html
         public static bool CompareLists<T>(List<T> aListA, List<T> aListB)
