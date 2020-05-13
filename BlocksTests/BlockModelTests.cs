@@ -268,10 +268,10 @@ namespace BlocksTests
             List<string> cons = new List<string>(new string[] { "contest1", "contest2" });
             List<string> mps = new List<string>(new string[] { "mptest1", "mptest2" });
             List<string> cats = new List<string>(new string[] { "cattest1", "cattest2" });
-            List<double> cons_v1 = new List<double>(new double[] { 200, 100 });
+            List<double> cons_v1 = new List<double>(new double[] { 100, 100 });
             List<double> mps_v1 = new List<double>(new double[] { 10, 20 });
             List<string> cats_v1 = new List<string>(new string[] { "asd", "def" });
-            List<double> mps_v2 = new List<double>(new double[] { 100, 50 });
+            List<double> mps_v2 = new List<double>(new double[] { 100, 100 });
             BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
             Block block1 = new Block(0, 0, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block2 = new Block(1, 1, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
@@ -285,9 +285,10 @@ namespace BlocksTests
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             double expectedValue = 55;
+            double expectedValue2 = 60;
             foreach (Block block in blockModel.Blocks)
             {
-                if (block.MassProportionalAttributes["mptest1"] != expectedValue)
+                if (block.MassProportionalAttributes["mptest1"] != expectedValue && block.MassProportionalAttributes["mptest2"] != expectedValue2)
                 {
                     Assert.Fail("Final block does not have proportional mass attribute.");
                 }
