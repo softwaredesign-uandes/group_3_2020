@@ -254,17 +254,17 @@ namespace SDPreSubmissionNS
                     strToPrint += " x:" + block.X;
                     strToPrint += " y:" + block.Y;
                     strToPrint += " z:" + block.Z;
-                    strToPrint += " weight:" + block.Weight;
+                    strToPrint += " weight:" + block.Type.Weight;
 
-                    foreach (KeyValuePair<string, string> entry in block.CategoricalAttributes)
+                    foreach (KeyValuePair<string, string> entry in block.Type.CategoricalAttributes)
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
-                    foreach (KeyValuePair<string, double> entry in block.ContinuousAttributes)
+                    foreach (KeyValuePair<string, double> entry in block.Type.ContinuousAttributes)
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
-                    foreach (KeyValuePair<string, double> entry in block.MassProportionalAttributes)
+                    foreach (KeyValuePair<string, double> entry in block.Type.MassProportionalAttributes)
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
@@ -322,10 +322,10 @@ namespace SDPreSubmissionNS
                 string attribute = Console.ReadLine();
                 Block block = bModel.GetBlock(x, y, z);
 
-                if (block.MassProportionalAttributes.ContainsKey(attribute))
+                if (block.Type.MassProportionalAttributes.ContainsKey(attribute))
                 {
                     string strToPrint = "";
-                    foreach (var attr in block.MassProportionalAttributes)
+                    foreach (var attr in block.Type.MassProportionalAttributes)
                     {
                         strToPrint += attr.Key + ":" + attr.Value + " ";
                     }

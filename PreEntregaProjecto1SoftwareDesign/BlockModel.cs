@@ -83,12 +83,12 @@ namespace SDPreSubmissionNS
                     int newIndexZ = 0;
                     for (int indexGroupZ = 0; indexGroupZ <= maximos[2]; indexGroupZ += rz)
                     {
-                        Block nuevoBloque = new Block(newId,newIndexX,newIndexY,newIndexZ);
+                        BlockType blockType = new BlockType(0,new Dictionary<string, double>(), new Dictionary<string, double>(), new Dictionary<string, string>());
                         foreach (var continuousAttributesName in ContinuousAttributesNames) {
-                            nuevoBloque.ContinuousAttributes.Add(continuousAttributesName, 0);
+                            blockType.ContinuousAttributes.Add(continuousAttributesName, 0);
                         }
                         foreach (var massProportionalAttributesName in MassProportionalAttributesNames) {
-                            nuevoBloque.MassProportionalAttributes.Add(massProportionalAttributesName, 0);
+                            blockType.MassProportionalAttributes.Add(massProportionalAttributesName, 0);
                         }
                         newId++;
                         Dictionary<string,List<string>> listsOfCategoricalAttributes = new Dictionary<string, List<string>>();
@@ -104,41 +104,41 @@ namespace SDPreSubmissionNS
                                     Block evaluatedBlock = GetBlock(indexX, indexY, indexZ);
                                     if (evaluatedBlock == null)
                                     {
-                                        evaluatedBlock = new Block(0, indexX, indexY, indexZ);
-                                        evaluatedBlock.Weight = 0;
+                                        BlockType evaluatedBlockType = new BlockType(0, new Dictionary<string, double>(), new Dictionary<string, double>(), new Dictionary<string, string>());
                                         foreach (var continuousAttributesName in ContinuousAttributesNames)
                                         {
-                                            evaluatedBlock.ContinuousAttributes.Add(continuousAttributesName,0);
+                                            evaluatedBlockType.ContinuousAttributes.Add(continuousAttributesName,0);
                                         }
                                         foreach (var massProportionalAttributesName in MassProportionalAttributesNames) 
                                         {
-                                            evaluatedBlock.MassProportionalAttributes.Add(massProportionalAttributesName, 0);
+                                            evaluatedBlockType.MassProportionalAttributes.Add(massProportionalAttributesName, 0);
                                         }
+                                        evaluatedBlock = new Block(0, indexX, indexY, indexZ, evaluatedBlockType);
                                     }
-                                    nuevoBloque.Weight += evaluatedBlock.Weight;
-                                    foreach (var continuousAttribute in evaluatedBlock.ContinuousAttributes)
+                                    blockType.Weight += evaluatedBlock.Type.Weight;
+                                    foreach (var continuousAttribute in evaluatedBlock.Type.ContinuousAttributes)
                                     {
-                                        nuevoBloque.ContinuousAttributes[continuousAttribute.Key] += continuousAttribute.Value;
+                                        blockType.ContinuousAttributes[continuousAttribute.Key] += continuousAttribute.Value;
                                     }
-                                    foreach (var massProportionalAttribute in evaluatedBlock.MassProportionalAttributes)
+                                    foreach (var massProportionalAttribute in evaluatedBlock.Type.MassProportionalAttributes)
                                     {
-                                        nuevoBloque.MassProportionalAttributes[massProportionalAttribute.Key] +=
-                                            massProportionalAttribute.Value * evaluatedBlock.Weight;
+                                        blockType.MassProportionalAttributes[massProportionalAttribute.Key] +=
+                                            massProportionalAttribute.Value * evaluatedBlock.Type.Weight;
                                     }
-                                    foreach (var categoricalAttribute in evaluatedBlock.CategoricalAttributes)
+                                    foreach (var categoricalAttribute in evaluatedBlock.Type.CategoricalAttributes)
                                     {
                                         listsOfCategoricalAttributes[categoricalAttribute.Key].Add(categoricalAttribute.Value);
                                     }
                                 }
                             }
                         }
-                        List<string> keysNuevoBloque = new List<string>(nuevoBloque.MassProportionalAttributes.Keys);
+                        List<string> keysNuevoBloque = new List<string>(blockType.MassProportionalAttributes.Keys);
                         foreach (string keyNuevoBloqueMassProportionalAttribute in keysNuevoBloque)
                         {
-                            if (nuevoBloque.Weight != 0)
+                            if (blockType.Weight != 0)
                             {
-                                nuevoBloque.MassProportionalAttributes[keyNuevoBloqueMassProportionalAttribute] /=
-                                    nuevoBloque.Weight;
+                                blockType.MassProportionalAttributes[keyNuevoBloqueMassProportionalAttribute] /=
+                                    blockType.Weight;
                             }
                         }
 
@@ -146,12 +146,13 @@ namespace SDPreSubmissionNS
                         {
                             if (listOfCategoricalAttribute.Value.Count != 0)
                             {
-                                nuevoBloque.CategoricalAttributes[listOfCategoricalAttribute.Key] =
+                                blockType.CategoricalAttributes[listOfCategoricalAttribute.Key] =
                                     listOfCategoricalAttribute.Value.GroupBy(i => i).OrderByDescending(grp => grp.Count())
                                         .Select(grp => grp.Key).First();
                             }
                         }
-                        newBlocks.Add(nuevoBloque);
+                        Block newBlock = new Block(0, newIndexX, newIndexY, newIndexZ, blockType);
+                        newBlocks.Add(newBlock);
                         newIndexZ++;
                     }
 
