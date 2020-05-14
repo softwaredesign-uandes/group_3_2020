@@ -4,20 +4,23 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SDPreSubmissionNS
 {
-    public class Program
+    public class Program:ISubscriber
     {
         static private string path;
         static private string option;
         static private List<BlockModel> blockModels;
+        private static Program mainProgram;
 
         static void Main(string[] args)
         {
+            mainProgram = new Program();
             blockModels = new List<BlockModel>();
             CreateModelsFolder();
-            LoadAllModels();
+            mainProgram.LoadAllModels();
             MainMenu();
         }
         static void MainMenu()
@@ -50,11 +53,11 @@ namespace SDPreSubmissionNS
                 option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
-                    SaveModel();
+                    mainProgram.SaveModel();
                 }
                 else if (option.Equals("2"))
                 {
-                    LoadModel();
+                    mainProgram.LoadModel();
                 }
                 else if (option.Equals("3"))
                 {
@@ -397,7 +400,7 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("No Loaded Block Model has that name");
             }
         }
-        private static void LoadAllModels()
+        private void LoadAllModels()
         {
             DirectoryInfo directoryInfo = new DirectoryInfo("Models\\");
             List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
@@ -415,6 +418,7 @@ namespace SDPreSubmissionNS
                             BlockModel blockModel = BlockSerializer.DeserializeBlockModel(fileInfo.FullName);
                             if (blockModel != null)
                             {
+                                blockModel.Subscribe(this);
                                 blockModels.Add(blockModel);
                             }
                         }
@@ -422,7 +426,7 @@ namespace SDPreSubmissionNS
                 }
             }
         }
-        private static void SaveModel()
+        private void SaveModel()
         {
             Console.WriteLine("Please enter the path of your Block Model file:");
             path = Console.ReadLine();
@@ -460,6 +464,8 @@ namespace SDPreSubmissionNS
                     blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 
+                    blockModel.Subscribe(this);
+
                     string yesOrNo = "";
                     while (!yesOrNo.Equals("yes") && !yesOrNo.Equals("no") && !yesOrNo.Equals("y") && !yesOrNo.Equals("n"))
                     {
@@ -477,7 +483,7 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("File not found");
             }
         }
-        private static void LoadModel()
+        private void LoadModel()
         {
             Console.WriteLine("Please enter the name of the file you want to load:");
             DirectoryInfo directoryInfo = new DirectoryInfo("Models\\");
@@ -492,6 +498,7 @@ namespace SDPreSubmissionNS
             }
             string newPath = Console.ReadLine();
             BlockModel blockModel = BlockSerializer.DeserializeBlockModel("Models\\" + newPath + ".grupo3");
+            blockModel.Subscribe(this);
             if (blockModel != null)
             {
                 if (blockModels.Find(i => i.Name == newPath) != null)
@@ -579,5 +586,9 @@ namespace SDPreSubmissionNS
             }
         }
 
+        public void Update(string data)
+        {
+            Console.WriteLine(data);
+        }
     }
 }
