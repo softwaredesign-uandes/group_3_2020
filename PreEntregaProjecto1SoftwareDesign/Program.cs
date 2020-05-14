@@ -234,7 +234,7 @@ namespace SDPreSubmissionNS
 
                 Console.WriteLine("Insert Attribute Name");
                 string attribute = Console.ReadLine();
-                Block block = bModel.GetBlock(x, y, z);
+                IComponent block = bModel.GetBlock(x, y, z);
 
                 List<string> possibleAttributes = new List<string>();
                 possibleAttributes = bModel.GetPossibleAttributes();
@@ -254,17 +254,17 @@ namespace SDPreSubmissionNS
                     strToPrint += " x:" + block.X;
                     strToPrint += " y:" + block.Y;
                     strToPrint += " z:" + block.Z;
-                    strToPrint += " weight:" + block.Weight;
+                    strToPrint += " weight:" + block.GetWeight();
 
-                    foreach (KeyValuePair<string, string> entry in block.CategoricalAttributes)
+                    foreach (KeyValuePair<string, string> entry in block.GetCategoricalAtt())
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
-                    foreach (KeyValuePair<string, double> entry in block.ContinuousAttributes)
+                    foreach (KeyValuePair<string, double> entry in block.GetContinuousAtt())
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
-                    foreach (KeyValuePair<string, double> entry in block.MassProportionalAttributes)
+                    foreach (KeyValuePair<string, double> entry in block.GetProportionalAtt())
                     {
                         strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
                     }
@@ -320,12 +320,12 @@ namespace SDPreSubmissionNS
 
                 Console.WriteLine("Insert Mineral Name");
                 string attribute = Console.ReadLine();
-                Block block = bModel.GetBlock(x, y, z);
+                IComponent block = bModel.GetBlock(x, y, z);
 
-                if (block.MassProportionalAttributes.ContainsKey(attribute))
+                if (block.GetProportionalAtt().ContainsKey(attribute))
                 {
                     string strToPrint = "";
-                    foreach (var attr in block.MassProportionalAttributes)
+                    foreach (var attr in block.GetProportionalAtt())
                     {
                         strToPrint += attr.Key + ":" + attr.Value + " ";
                     }
@@ -382,10 +382,10 @@ namespace SDPreSubmissionNS
                     strz = Console.ReadLine();
                 }
 
-                Block block = bModel.GetBlock(x, y, z);
+                IComponent block = bModel.GetBlock(x, y, z);
                 if (block != null)
                 {
-                    Console.WriteLine(block.GetMassInKg().ToString());
+                    Console.WriteLine(block.GetWeight().ToString());
                 }
                 else
                 {
@@ -456,7 +456,7 @@ namespace SDPreSubmissionNS
                     }
 
                     BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
-                    List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
+                    List<IComponent> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
                     blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
 

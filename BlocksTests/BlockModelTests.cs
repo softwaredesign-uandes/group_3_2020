@@ -22,7 +22,7 @@ namespace BlocksTests
         {
             Block block1 = new Block(1, 10, 10, 10, 1000);
             Block block2 = new Block(2, 12, 12, 12, 2000);
-            List<Block> blocks = new List<Block>();
+            List<IComponent> blocks = new List<IComponent>();
             blocks.Add(block1);
             blocks.Add(block2);
             BlockModel blockModel = new BlockModel("Block Model");
@@ -52,7 +52,7 @@ namespace BlocksTests
             BlockModel blockModel = new BlockModel("Block Model", cons, mps, cats);
             Block block1 = new Block(1, 10, 10, 10, 1000, cons_v1, mps_v1, cats_v1, blockModel);
             Block block2 = new Block(2, 12, 12, 12, 2000, cons_v2, mps_v2, cats_v2, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2 });
             blockModel.SetBlocks(blocks);
             List<string> givenValues = blockModel.GetPossibleAttributes();
             List<string> expected = new List<string>(new string[] { "id", "x", "y", "z", "Weight", "contest1", "mptest1", "cattest1", "contest2", "mptest2", "cattest2" });
@@ -75,7 +75,7 @@ namespace BlocksTests
         {
             Block block1 = new Block(1, 10, 10, 10, 1000);
             Block block2 = new Block(2, 12, 12, 12, 2000);
-            List<Block> blocks = new List<Block>();
+            List<IComponent> blocks = new List<IComponent>();
             blocks.Add(block1);
             blocks.Add(block2);
             BlockModel blockModel = new BlockModel("Block Model");
@@ -87,12 +87,12 @@ namespace BlocksTests
         {
             Block block1 = new Block(1, 10, 10, 10, 1000);
             Block block2 = new Block(2, 12, 12, 12, 2000);
-            List<Block> blocks = new List<Block>();
+            List<IComponent> blocks = new List<IComponent>();
             blocks.Add(block1);
             blocks.Add(block2);
             BlockModel blockModel = new BlockModel("Block Model");
             blockModel.SetBlocks(blocks);
-            Block failTestBlock = blockModel.GetBlock(0, 0, 0);
+            IComponent failTestBlock = blockModel.GetBlock(0, 0, 0);
             Assert.AreEqual(failTestBlock, null);
         }
 
@@ -107,7 +107,7 @@ namespace BlocksTests
         {
             Block block1 = new Block(1, 10, 10, 10, 1000);
             Block block2 = new Block(2, 12, 12, 12, 2000);
-            List<Block> blocks = new List<Block>();
+            List<IComponent> blocks = new List<IComponent>();
             blocks.Add(block1);
             blocks.Add(block2);
             BlockModel blockModel = new BlockModel("Block Model");
@@ -145,7 +145,7 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             Assert.AreEqual(1, blockModel.Blocks.Count);
@@ -181,13 +181,13 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             double sumOfWeights = 0;
-            foreach (Block block in blockModel.Blocks)
+            foreach (IComponent block in blockModel.Blocks)
             {
-                sumOfWeights += block.Weight;
+                sumOfWeights += block.GetWeight();
             }
             Assert.AreEqual(800, sumOfWeights);
         }
@@ -222,7 +222,7 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             if (blockModel.Blocks[0].X != 0 || blockModel.Blocks[0].Y != 0 || blockModel.Blocks[0].Z != 0)
@@ -249,13 +249,13 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v1, cats_v2, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             string expectedCategory = "def";
-            foreach (Block block in blockModel.Blocks)
+            foreach (IComponent block in blockModel.Blocks)
             {
-                if (block.CategoricalAttributes["cattest2"] != expectedCategory)
+                if (block.GetCategoricalAtt()["cattest2"] != expectedCategory)
                 {
                     Assert.Fail("Final block category is wrong.");
                 }
@@ -281,13 +281,13 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 100, cons_v1, mps_v2, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             double expectedValue = 55;
-            foreach (Block block in blockModel.Blocks)
+            foreach (IComponent block in blockModel.Blocks)
             {
-                if (block.MassProportionalAttributes["mptest1"] != expectedValue)
+                if (block.GetProportionalAtt()["mptest1"] != expectedValue)
                 {
                     Assert.Fail("Final block does not have proportional mass attribute.");
                 }
@@ -331,11 +331,11 @@ namespace BlocksTests
             Block block6 = new Block(5, 1, 0, 1, 600, cons_v1, mps_v6, cats_v1, blockModel);
             Block block7 = new Block(6, 0, 1, 1, 700, cons_v1, mps_v7, cats_v1, blockModel);
             Block block8 = new Block(7, 1, 1, 1, 800, cons_v1, mps_v8, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
+            List<IComponent> blocks = new List<IComponent>(new Block[] { block1, block2, block3, block4, block5, block6, block7, block8 });
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(2, 2, 2);
             double expectedValue = 204000 / 3600;
-            double substraction = expectedValue - blockModel.Blocks[0].MassProportionalAttributes["mptest1"];
+            double substraction = expectedValue - blockModel.Blocks[0].GetProportionalAtt()["mptest1"];
             if (substraction > 1 || substraction < -1)
             {
                 Assert.Fail("The mass proportion values on the new BlockModel are off, after Reblock.");
@@ -399,7 +399,7 @@ namespace BlocksTests
             Block block20 = new Block(19, 2, 2, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block21 = new Block(20, 1, 1, 2, 100, cons_v1, mps_v1, cats_v1, blockModel);
             
-            List<Block> blocks = new List<Block>(new Block[] { 
+            List<IComponent> blocks = new List<IComponent>(new Block[] { 
                 block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13,
             block14, block15, block16, block17, block18, block19, block20, block21});
             blockModel.SetBlocks(blocks);
@@ -464,15 +464,15 @@ namespace BlocksTests
             Block block20 = new Block(19, 2, 2, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block21 = new Block(20, 1, 1, 2, 100, cons_v1, mps_v1, cats_v1, blockModel);
 
-            List<Block> blocks = new List<Block>(new Block[] {
+            List<IComponent> blocks = new List<IComponent>(new Block[] {
                 block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13,
             block14, block15, block16, block17, block18, block19, block20, block21});
             blockModel.SetBlocks(blocks);
             blockModel.Reblock(3, 3, 3);
             double sumOfWeights = 0;
-            foreach (Block block in blockModel.Blocks)
+            foreach (IComponent block in blockModel.Blocks)
             {
-                sumOfWeights += block.Weight;
+                sumOfWeights += block.GetWeight();
             }
             Assert.AreEqual(2100, sumOfWeights);
         }
@@ -534,7 +534,7 @@ namespace BlocksTests
             Block block20 = new Block(19, 2, 2, 1, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block21 = new Block(20, 1, 1, 2, 100, cons_v1, mps_v1, cats_v1, blockModel);
 
-            List<Block> blocks = new List<Block>(new Block[] {
+            List<IComponent> blocks = new List<IComponent>(new Block[] {
                 block1, block2, block3, block4, block5, block6, block7, block8, block9, block10, block11, block12, block13,
             block14, block15, block16, block17, block18, block19, block20, block21});
             blockModel.SetBlocks(blocks);
@@ -559,7 +559,7 @@ namespace BlocksTests
             Block block3 = new Block(2, 0, 2, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block4 = new Block(3, 0, 3, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block5 = new Block(3, 0, 4, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] {
+            List<IComponent> blocks = new List<IComponent>(new Block[] {
                 block1, block2, block3, block4, block5});
             blockModel.SetBlocks(blocks);
             var max_y = blockModel.GetMaxCoordinates()[1];
@@ -581,7 +581,7 @@ namespace BlocksTests
             Block block3 = new Block(2, 2, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block4 = new Block(3, 3, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block5 = new Block(3, 4, 0, 0, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] {
+            List<IComponent> blocks = new List<IComponent>(new Block[] {
                 block1, block2, block3, block4, block5});
             blockModel.SetBlocks(blocks);
             var max_x = blockModel.GetMaxCoordinates()[0];
@@ -603,7 +603,7 @@ namespace BlocksTests
             Block block3 = new Block(2, 0, 0, 2, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block4 = new Block(3, 0, 0, 3, 100, cons_v1, mps_v1, cats_v1, blockModel);
             Block block5 = new Block(3, 0, 0, 4, 100, cons_v1, mps_v1, cats_v1, blockModel);
-            List<Block> blocks = new List<Block>(new Block[] {
+            List<IComponent> blocks = new List<IComponent>(new Block[] {
                 block1, block2, block3, block4, block5});
             blockModel.SetBlocks(blocks);
             var max_z = blockModel.GetMaxCoordinates()[2];

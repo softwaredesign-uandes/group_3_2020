@@ -9,9 +9,9 @@ namespace SDPreSubmissionNS
     internal class BlockLoaders
     {
 
-        public static List<Block> GatherBlocks(string path, List<string> all_attributes, BlockModel blockModel)
+        public static List<IComponent> GatherBlocks(string path, List<string> all_attributes, BlockModel blockModel)
         {
-            var blocks = new List<Block>();
+            var blocks = new List<IComponent>();
             if (!File.Exists(path)) return blocks;
             using (var streamReader = new StreamReader(path)) {
                 string line;

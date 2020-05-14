@@ -6,7 +6,7 @@ using System.Text;
 namespace SDPreSubmissionNS
 {
     [Serializable]
-    public class Block
+    public class Block:IComponent
     {
         public int Id { get; set; }
 
@@ -63,6 +63,26 @@ namespace SDPreSubmissionNS
         public double? GetMassInKg()
         {
             return Weight*1000;
+        }
+
+        public double GetWeight()
+        {
+            return Weight;
+        }
+
+        public Dictionary<string, double> GetContinuousAtt()
+        {
+            return ContinuousAttributes;
+        }
+
+        public Dictionary<string, double> GetProportionalAtt()
+        {
+            return MassProportionalAttributes;
+        }
+
+        public Dictionary<string, string> GetCategoricalAtt()
+        {
+            return CategoricalAttributes;
         }
     }
 }
