@@ -7,7 +7,7 @@ using System.Xml.XPath;
 namespace SDPreSubmissionNS
 {
     [Serializable]
-    public class BlockModel
+    public class BlockModel:Publisher
     {
         public string Name;
         public List<string> ContinuousAttributesNames;
@@ -73,6 +73,8 @@ namespace SDPreSubmissionNS
         {
             List<Block> newBlocks = new List<Block>();
             int[] maximos = GetMaxCoordinates();
+            int num_blocks = GetNumberOfBlocks();
+            int progress = 1;
             int newId = 0;
             int newIndexX = 0;
             for (int indexGroupX = 0; indexGroupX <= maximos[0]; indexGroupX += rx)
@@ -114,6 +116,11 @@ namespace SDPreSubmissionNS
                                         {
                                             evaluatedBlock.MassProportionalAttributes.Add(massProportionalAttributesName, 0);
                                         }
+                                    }
+                                    else
+                                    {
+                                        Notify($"Progress: {progress} of {num_blocks}" );
+                                        progress++;
                                     }
                                     nuevoBloque.Weight += evaluatedBlock.Weight;
                                     foreach (var continuousAttribute in evaluatedBlock.ContinuousAttributes)
