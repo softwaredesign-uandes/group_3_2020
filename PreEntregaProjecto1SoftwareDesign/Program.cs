@@ -4,22 +4,25 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace SDPreSubmissionNS
 {
-    public class Program
+    public class Program:ISubscriber
     {
         static private string path;
         static private string option;
         static private List<Block> blocks;
         static private string newFileName;
         static private List<BlockModel> blockModels;
+        private static Program mainProgram;
 
         static void Main(string[] args)
         {
+            mainProgram = new Program();
             blockModels = new List<BlockModel>();
             CreateModelsFolder();
-            LoadAllModels();
+            mainProgram.LoadAllModels();
             MainMenu();
         }
         static void MainMenu()
@@ -37,7 +40,7 @@ namespace SDPreSubmissionNS
                     Console.WriteLine($"Block Models loaded:");
                     foreach (BlockModel blockModel in blockModels)
                     {
-                        Console.WriteLine(blockModel.name);
+                        Console.WriteLine(blockModel.Name);
                     }
                 }
                 Console.WriteLine("Welcome, please select an option: ");
@@ -46,16 +49,17 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("3. UnLoad a Block Model.");
                 Console.WriteLine("4. Delete a Saved Block Model");
                 Console.WriteLine("5. Reports");
-                Console.WriteLine("6. Help");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("6. Reblock Model.");
+                Console.WriteLine("7. Help");
+                Console.WriteLine("8. Exit");
                 option = Console.ReadLine();
                 if (option.Equals("1"))
                 {
-                    SaveModel();
+                    mainProgram.SaveModel();
                 }
                 else if (option.Equals("2"))
                 {
-                    LoadModel();
+                    mainProgram.LoadModel();
                 }
                 else if (option.Equals("3"))
                 {
@@ -79,9 +83,13 @@ namespace SDPreSubmissionNS
                 }
                 else if (option.Equals("6"))
                 {
-                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                    Reblock();
                 }
                 else if (option.Equals("7"))
+                {
+                    Console.WriteLine("First save a model from a .Blocks file, then load it though the program to be able to access it!");
+                }
+                else if (option.Equals("8"))
                 {
                     menu = false;
                 }
@@ -90,6 +98,47 @@ namespace SDPreSubmissionNS
             Console.ReadLine();
         }
 
+        private static void Reblock()
+        {
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels) {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null) {
+                int x = 0;
+                int y = 0;
+                int z = 0;
+
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x)) {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y)) {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z)) {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                bModel.Reblock(x,y,z);
+            }
+            else {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
+        }
         private static void ReportsMenu()
         {
             bool menu = true;
@@ -134,10 +183,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 Console.WriteLine(bModel.GetNumberOfBlocks().ToString());
@@ -154,10 +203,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 int x = 0;
@@ -193,7 +242,7 @@ namespace SDPreSubmissionNS
                 Block block = bModel.GetBlock(x, y, z);
 
                 List<string> possibleAttributes = new List<string>();
-                possibleAttributes = bModel.GetPossibleAtrributes();
+                possibleAttributes = bModel.GetPossibleAttributes();
                 bool attrAprooved = false;
                 foreach (string str in possibleAttributes)
                 {
@@ -206,40 +255,24 @@ namespace SDPreSubmissionNS
                 {
                     Console.WriteLine("variables at 0 will not be printed");
                     string strToPrint = "";
-                    strToPrint += "id:" + block.id;
-                    strToPrint += "x:" + block.x;
-                    strToPrint += " y:" + block.y;
-                    strToPrint += " z:" + block.z;
-                    if (block.ag != 0) { strToPrint += " Ag:" + block.ag.ToString(); }
-                    if (block.apriori_process != 0) { strToPrint += " apriori_process:" + block.apriori_process.ToString(); }
-                    if (block.au != 0) { strToPrint += " Au:" + block.au.ToString(); }
-                    if (block.AuFA != 0) { strToPrint += " AuFA:" + block.AuFA.ToString(); }
-                    if (block.AuRec != 0) { strToPrint += " AuRec:" + block.AuRec.ToString(); }
-                    if (block.blockvalue != 0) { strToPrint += " blockvalue:" + block.blockvalue.ToString(); }
-                    if (block.Bvalue != 0) { strToPrint += " Bvalue:" + block.Bvalue.ToString(); }
-                    if (block.co3 != 0) { strToPrint += " co3:" + block.co3.ToString(); }
-                    if (block.cost != 0) { strToPrint += " cost:" + block.cost.ToString(); }
-                    if (block.cu != 0) { strToPrint += " cu:" + block.cu.ToString(); }
-                    if (block.destination != 0) { strToPrint += " destination:" + block.destination.ToString(); }
-                    if (block.grade != 0) { strToPrint += " grade:" + block.grade.ToString(); }
-                    if (block.Mcost != 0) { strToPrint += " Mcost:" + block.Mcost.ToString(); }
-                    if (block.min_caf != 0) { strToPrint += " min_caf:" + block.min_caf.ToString(); }
-                    if (block.ore_tonnes != 0) { strToPrint += " ore_tonnes:" + block.ore_tonnes.ToString(); }
-                    if (block.orgc != 0) { strToPrint += " orgc:" + block.orgc.ToString(); }
-                    if (block.Pcost != 0) { strToPrint += " Pcost:" + block.Pcost.ToString(); }
-                    if (block.phase != 0) { strToPrint += " phase:" + block.phase.ToString(); }
-                    if (block.porc_profit != 0) { strToPrint += " porc_profit:" + block.porc_profit.ToString(); }
-                    if (block.rc_RockChar != "") { strToPrint += " rc_RockChar:" + block.rc_RockChar.ToString(); }
-                    if (block.rc_Stockpile != 0) { strToPrint += " rc_Stockpile:" + block.rc_Stockpile.ToString(); }
-                    if (block.rock_tonnes != 0) { strToPrint += " rock_tonnes:" + block.rock_tonnes.ToString(); }
-                    if (block.sulf != 0) { strToPrint += " sulf:" + block.sulf.ToString(); }
-                    if (block.Tcost != 0) { strToPrint += " Tcost:" + block.Tcost.ToString(); }
-                    if (block.tonn != 0) { strToPrint += " tonn:" + block.tonn.ToString(); }
-                    if (block.Tvalue != 0) { strToPrint += " Tvalue:" + block.Tvalue.ToString(); }
-                    if (block.type == "") { strToPrint += " type:" + block.type.ToString(); }
-                    if (block.value != 0) { strToPrint += " value:" + block.value.ToString(); }
-                    if (block.value_extracc != 0) { strToPrint += " value_extracc:" + block.value_extracc.ToString(); }
-                    if (block.value_proc != 0) { strToPrint += " value_proc:" + block.value_proc.ToString(); }
+                    strToPrint += "id:" + block.Id;
+                    strToPrint += " x:" + block.X;
+                    strToPrint += " y:" + block.Y;
+                    strToPrint += " z:" + block.Z;
+                    strToPrint += " weight:" + block.Weight;
+
+                    foreach (KeyValuePair<string, string> entry in block.CategoricalAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
+                    foreach (KeyValuePair<string, double> entry in block.ContinuousAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
+                    foreach (KeyValuePair<string, double> entry in block.MassProportionalAttributes)
+                    {
+                        strToPrint += " " + entry.Key + ":" + entry.Value.ToString();
+                    }
 
                     Console.WriteLine(strToPrint);
                 }
@@ -250,23 +283,80 @@ namespace SDPreSubmissionNS
 
             }
         }
-
-        //TODO: Falta implementar
         private static void ReportGradePercentageOfMinerals()
         {
-            throw new NotImplementedException();
-        }
+            Console.WriteLine("Choose one of the loaded Block Models");
+            Console.WriteLine($"Block Models loaded:");
+            foreach (BlockModel blockModel in blockModels)
+            {
+                Console.WriteLine(blockModel.Name);
+            }
+            string choosenBlockModel = Console.ReadLine();
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
+            if (bModel != null)
+            {
+                int x = 0;
+                int y = 0;
+                int z = 0;
 
+                Console.WriteLine("Insert X coordinate");
+                string strx = Console.ReadLine();
+                while (!int.TryParse(strx, out x))
+                {
+                    Console.WriteLine("invalid X coordinate, enter it again please");
+                    strx = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Y coordinate");
+                string stry = Console.ReadLine();
+                while (!int.TryParse(stry, out y))
+                {
+                    Console.WriteLine("invalid Y coordinate, enter it again please");
+                    stry = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Z coordinate");
+                string strz = Console.ReadLine();
+                while (!int.TryParse(strz, out z))
+                {
+                    Console.WriteLine("invalid Z coordinate, enter it again please");
+                    strz = Console.ReadLine();
+                }
+
+                Console.WriteLine("Insert Mineral Name");
+                string attribute = Console.ReadLine();
+                Block block = bModel.GetBlock(x, y, z);
+
+                if (block.MassProportionalAttributes.ContainsKey(attribute))
+                {
+                    string strToPrint = "";
+                    foreach (var attr in block.MassProportionalAttributes)
+                    {
+                        strToPrint += attr.Key + ":" + attr.Value + " ";
+                    }
+                    Console.WriteLine(strToPrint);
+                }
+                else
+                {
+                    Console.WriteLine("Mineral not found");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("No Loaded Block Model has that name");
+            }
+        }
         private static void ReportMassInKilograms()
         {
             Console.WriteLine("Choose one of the loaded Block Models");
             Console.WriteLine($"Block Models loaded:");
             foreach (BlockModel blockModel in blockModels)
             {
-                Console.WriteLine(blockModel.name);
+                Console.WriteLine(blockModel.Name);
             }
             string choosenBlockModel = Console.ReadLine();
-            BlockModel bModel = blockModels.Find(i => i.name == choosenBlockModel);
+            BlockModel bModel = blockModels.Find(i => i.Name == choosenBlockModel);
             if (bModel != null)
             {
                 int x = 0;
@@ -312,7 +402,7 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("No Loaded Block Model has that name");
             }
         }
-        private static void LoadAllModels()
+        private void LoadAllModels()
         {
             DirectoryInfo directoryInfo = new DirectoryInfo("Models\\");
             List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
@@ -330,6 +420,7 @@ namespace SDPreSubmissionNS
                             BlockModel blockModel = BlockSerializer.DeserializeBlockModel(fileInfo.FullName);
                             if (blockModel != null)
                             {
+                                blockModel.Subscribe(this);
                                 blockModels.Add(blockModel);
                             }
                         }
@@ -337,7 +428,7 @@ namespace SDPreSubmissionNS
                 }
             }
         }
-        private static void SaveModel()
+        private void SaveModel()
         {
             Console.WriteLine("Please enter the path of your Block Model file:");
             path = Console.ReadLine();
@@ -350,9 +441,32 @@ namespace SDPreSubmissionNS
                 }
                 else
                 {
-                    List<Block> blocks = BlockLoaders.GatherBlocks(path);
-                    BlockModel blockModel = new BlockModel(blocks, file.Name);
+                    Console.WriteLine("Please enter the attribute names of a block in order." +
+                                      "\nIf an attribute is the weight of the block, write it followed by ':weight'." +
+                                      "\nIf an attribute is continuous, write it followed by ':cont'." +
+                                      "\nIf an attribute is mass proportional, write it followed by ':prop'." +
+                                      "\nIf an attribute is categorical, write it followed by ':cat'." +
+                                      "\nExample: id x y z tonn:cont cu:prop au:prop other:cat");
+                    string attributesString = Console.ReadLine();
+                    List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
+                    List<string> continuous_att = new List<string>();
+                    List<string> mass_proportional_att = new List<string>();
+                    List<string> categorical_att = new List<string>();
+                    foreach (string attribute in attributesSplit)
+                    { 
+                        string[]att = attribute.Split(":");
+                        if (att.Length <= 1) continue;
+                        if (att[1].Equals("cont")) continuous_att.Add(att[0]);
+                        else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);
+                        else if (att[1].Equals("cat")) categorical_att.Add(att[0]);
+                    }
+
+                    BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
+                    List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
+                    blockModel.SetBlocks(blocks);
                     BlockSerializer.SerializeBlockModel("Models\\" + file.Name + ".grupo3", blockModel);
+
+                    blockModel.Subscribe(this);
 
                     string yesOrNo = "";
                     while (!yesOrNo.Equals("yes") && !yesOrNo.Equals("no") && !yesOrNo.Equals("y") && !yesOrNo.Equals("n"))
@@ -371,7 +485,7 @@ namespace SDPreSubmissionNS
                 Console.WriteLine("File not found");
             }
         }
-        private static void LoadModel()
+        private void LoadModel()
         {
             Console.WriteLine("Please enter the name of the file you want to load:");
             DirectoryInfo directoryInfo = new DirectoryInfo("Models\\");
@@ -386,9 +500,10 @@ namespace SDPreSubmissionNS
             }
             string newPath = Console.ReadLine();
             BlockModel blockModel = BlockSerializer.DeserializeBlockModel("Models\\" + newPath + ".grupo3");
+            blockModel.Subscribe(this);
             if (blockModel != null)
             {
-                if (blockModels.Find(i => i.name == newPath) != null)
+                if (blockModels.Find(i => i.Name == newPath) != null)
                 {
                     Console.WriteLine("Block model already Loaded");
                 }
@@ -408,10 +523,10 @@ namespace SDPreSubmissionNS
             Console.WriteLine("Select Block data to Unload: ");
             foreach (BlockModel blockModel1 in blockModels)
             {
-                Console.WriteLine(blockModel1.name);
+                Console.WriteLine(blockModel1.Name);
             }
             string newPath = Console.ReadLine();
-            BlockModel blockModel = blockModels.Find(i => i.name == newPath);
+            BlockModel blockModel = blockModels.Find(i => i.Name == newPath);
             if (blockModel != null)
             {
                 blockModels.Remove(blockModel);
@@ -457,11 +572,10 @@ namespace SDPreSubmissionNS
             int intid = -1;
             if (int.TryParse(stringId, out intid))
             {
-                Block block = blocks.Find(i => i.id == intid);
+                Block block = blocks.Find(i => i.Id == intid);
                 if (block != null)
                 {
-                    Console.Write($"ID: {block.id}, x:{block.x}, y:{block.y}, z:{block.z}, tonn:{block.tonn}, " +
-                    $"au:{block.au}, cu:{block.cu}, proc_profit:{block.porc_profit} \n");
+                    Console.Write($"ID: {block.Id}, x:{block.X}, y:{block.Y}, z:{block.Z} \n");
                 }
                 else
                 {
@@ -474,5 +588,9 @@ namespace SDPreSubmissionNS
             }
         }
 
+        public void Update(string data)
+        {
+            Console.WriteLine(data);
+        }
     }
 }
