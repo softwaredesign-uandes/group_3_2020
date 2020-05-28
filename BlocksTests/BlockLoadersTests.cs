@@ -20,26 +20,26 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksDefaultTestFile.blocks";
             Block block1 = new Block
             {
-                id = 1,
-                x = 13,
-                y = 17,
-                z = 10
+                Id = 1,
+                X = 13,
+                Y = 17,
+                Z = 10
             };
             Block block2 = new Block
             {
-                id = 2,
-                x = 22,
-                y = 30,
-                z = 50
+                Id = 2,
+                X = 22,
+                Y = 30,
+                Z = 50
             };
             List<Block> blocks = BlockLoaders.GatherBlocksDefault(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z))
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z))
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }
@@ -56,10 +56,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksNewManTestFile.blocks";
             Block block1 = new Block
             {
-                id = 1,
-                x = 1,
-                y = 1,
-                z = 15,
+                Id = 1,
+                X = 1,
+                Y = 1,
+                Z = 15,
                 type = "FROR",
                 grade = 1.375353107,
                 tonn = 5664,
@@ -70,10 +70,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 2,
-                x = 1,
-                y = 1,
-                z = 16,
+                Id = 2,
+                X = 1,
+                Y = 1,
+                Z = 16,
                 type = "OXOR",
                 grade = 0.913001543,
                 tonn = 5184,
@@ -85,11 +85,11 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksNewMan(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z) || !blocks[0].type.Equals(block1.type) || !blocks[0].grade.Equals(block1.grade) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].min_caf.Equals(block1.min_caf) || !blocks[0].value_extracc.Equals(block1.value_extracc) || !blocks[0].value_proc.Equals(block1.value_proc) || !blocks[0].apriori_process.Equals(block1.apriori_process))
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z) || !blocks[0].type.Equals(block1.type) || !blocks[0].grade.Equals(block1.grade) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].min_caf.Equals(block1.min_caf) || !blocks[0].value_extracc.Equals(block1.value_extracc) || !blocks[0].value_proc.Equals(block1.value_proc) || !blocks[0].apriori_process.Equals(block1.apriori_process))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) || !blocks[1].type.Equals(block2.type) || !blocks[1].grade.Equals(block2.grade) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].min_caf.Equals(block2.min_caf) || !blocks[1].value_extracc.Equals(block2.value_extracc) || !blocks[1].value_proc.Equals(block2.value_proc) || !blocks[1].apriori_process.Equals(block2.apriori_process))
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z) || !blocks[1].type.Equals(block2.type) || !blocks[1].grade.Equals(block2.grade) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].min_caf.Equals(block2.min_caf) || !blocks[1].value_extracc.Equals(block2.value_extracc) || !blocks[1].value_proc.Equals(block2.value_proc) || !blocks[1].apriori_process.Equals(block2.apriori_process))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }
@@ -106,10 +106,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksZuckTestFile.blocks";
             Block block1 = new Block
             {
-                id = 8,
-                x = 0,
-                y = 32,
-                z = 28,
+                Id = 8,
+                X = 0,
+                Y = 32,
+                Z = 28,
                 cost = 20122.8000000000,
                 value = 0,
                 rock_tonnes = 5528.2500000000,
@@ -117,10 +117,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 9,
-                x = 0,
-                y = 33,
-                z = 28,
+                Id = 9,
+                X = 0,
+                Y = 33,
+                Z = 28,
                 cost = 20122.8000000000,
                 value = 0,
                 rock_tonnes = 5528.2500000000,
@@ -129,11 +129,11 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksZuck(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z) || !blocks[0].cost.Equals(block1.cost) || !blocks[0].value.Equals(block1.value) || !blocks[0].rock_tonnes.Equals(block1.rock_tonnes) || !blocks[0].ore_tonnes.Equals(block1.ore_tonnes))
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z) || !blocks[0].cost.Equals(block1.cost) || !blocks[0].value.Equals(block1.value) || !blocks[0].rock_tonnes.Equals(block1.rock_tonnes) || !blocks[0].ore_tonnes.Equals(block1.ore_tonnes))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z) || !blocks[1].cost.Equals(block2.cost) || !blocks[1].value.Equals(block2.value) || !blocks[1].rock_tonnes.Equals(block2.rock_tonnes) || !blocks[1].ore_tonnes.Equals(block2.ore_tonnes))
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z) || !blocks[1].cost.Equals(block2.cost) || !blocks[1].value.Equals(block2.value) || !blocks[1].rock_tonnes.Equals(block2.rock_tonnes) || !blocks[1].ore_tonnes.Equals(block2.ore_tonnes))
             {
                 Assert.Fail("block2 is different that the estimated block");
             }
@@ -150,10 +150,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksKDTestFile.blocks";
             Block block1 = new Block
             {
-                id = 6,
-                x = 15,
-                y = 1,
-                z = 18,
+                Id = 6,
+                X = 15,
+                Y = 1,
+                Z = 18,
                 blockvalue = -12285,
                 tonn = 16380,
                 destination = 2,
@@ -162,10 +162,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 7,
-                x = 16,
-                y = 1,
-                z = 18,
+                Id = 7,
+                X = 16,
+                Y = 1,
+                Z = 18,
                 blockvalue = -12285,
                 tonn = 16380,
                 destination = 2,
@@ -175,13 +175,13 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksKD(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z)
                 || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].destination.Equals(block1.destination) ||
                 !blocks[0].cu.Equals(block1.cu) || !blocks[0].porc_profit.Equals(block1.porc_profit))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z)
                 || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].destination.Equals(block2.destination) ||
                 !blocks[1].cu.Equals(block2.cu) || !blocks[1].porc_profit.Equals(block2.porc_profit))
             {
@@ -200,10 +200,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksP4HDTestFile.blocks";
             Block block1 = new Block
             {
-                id = 14,
-                x = 59,
-                y = 13,
-                z = 64,
+                Id = 14,
+                X = 59,
+                Y = 13,
+                Z = 64,
                 tonn = 3120,
                 blockvalue = -5116,
                 destination = 2,
@@ -213,10 +213,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 15,
-                x = 60,
-                y = 13,
-                z = 64,
+                Id = 15,
+                X = 60,
+                Y = 13,
+                Z = 64,
                 tonn = 3120,
                 blockvalue = -5116,
                 destination = 2,
@@ -227,13 +227,13 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksP4HD(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z)
                 || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].destination.Equals(block1.destination) ||
                 !blocks[0].au.Equals(block1.au) || !blocks[0].ag.Equals(block1.ag) || !blocks[0].cu.Equals(block1.cu))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z)
                 || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].destination.Equals(block2.destination) ||
                 !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].ag.Equals(block2.ag))
             {
@@ -252,10 +252,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMarvinTestFile.blocks";
             Block block1 = new Block
             {
-                id = 26,
-                x = 0,
-                y = 1,
-                z = 12,
+                Id = 26,
+                X = 0,
+                Y = 1,
+                Z = 12,
                 tonn = 61200.012,
                 au = 0,
                 cu = 0,
@@ -263,10 +263,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 27,
-                x = 0,
-                y = 1,
-                z = 13,
+                Id = 27,
+                X = 0,
+                Y = 1,
+                Z = 13,
                 tonn = 54720.242,
                 au = 0,
                 cu = 0,
@@ -275,12 +275,12 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksMarvin(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z)
                 || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].au.Equals(block1.au) || !blocks[0].porc_profit.Equals(block1.porc_profit) || !blocks[0].cu.Equals(block1.cu))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z)
                 || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].cu.Equals(block2.cu) || !blocks[1].au.Equals(block2.au) || !blocks[1].porc_profit.Equals(block2.porc_profit))
             {
                 Assert.Fail("block2 is different that the estimated block");
@@ -298,10 +298,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksW23TestFile.blocks";
             Block block1 = new Block
             {
-                id = 16,
-                x = 27,
-                y = 18,
-                z = 37,
+                Id = 16,
+                X = 27,
+                Y = 18,
+                Z = 37,
                 destination = 1,
                 phase = 2,
                 AuRec = 0.37,
@@ -320,10 +320,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 17,
-                x = 27,
-                y = 19,
-                z = 37,
+                Id = 17,
+                X = 27,
+                Y = 19,
+                Z = 37,
                 destination = 1,
                 phase = 2,
                 AuRec = 0.43,
@@ -343,7 +343,7 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksW23(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z)
                 || !blocks[0].destination.Equals(block1.destination) || !blocks[0].phase.Equals(block1.phase) || !blocks[0].AuRec.Equals(block1.AuRec)
                 || !blocks[0].AuFA.Equals(block1.AuFA) || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].co3.Equals(block1.co3)
                 || !blocks[0].orgc.Equals(block1.orgc) || !blocks[0].sulf.Equals(block1.sulf) || !blocks[0].Mcost.Equals(block1.Mcost)
@@ -352,7 +352,7 @@ namespace BlocksTests
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z)
                 || !blocks[1].destination.Equals(block2.destination) || !blocks[1].phase.Equals(block2.phase) || !blocks[1].AuRec.Equals(block2.AuRec)
                 || !blocks[1].AuFA.Equals(block2.AuFA) || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].co3.Equals(block2.co3)
                 || !blocks[1].orgc.Equals(block2.orgc) || !blocks[1].sulf.Equals(block2.sulf) || !blocks[1].Mcost.Equals(block2.Mcost)
@@ -374,10 +374,10 @@ namespace BlocksTests
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMcLaughlinTestFile.blocks";
             Block block1 = new Block
             {
-                id = 84,
-                x = 50,
-                y = 267,
-                z = 66,
+                Id = 84,
+                X = 50,
+                Y = 267,
+                Z = 66,
                 blockvalue = -468,
                 tonn = 354.17,
                 destination = 0,
@@ -385,10 +385,10 @@ namespace BlocksTests
             };
             Block block2 = new Block
             {
-                id = 85,
-                x = 51,
-                y = 267,
-                z = 66,
+                Id = 85,
+                X = 51,
+                Y = 267,
+                Z = 66,
                 blockvalue = -357,
                 tonn = 270.83,
                 destination = 0,
@@ -397,12 +397,12 @@ namespace BlocksTests
             List<Block> blocks = BlockLoaders.GatherBlocksMcLaughlin(path);
 
             //Assert if the two Blocks are Equal
-            if (!blocks[0].id.Equals(block1.id) || !blocks[0].x.Equals(block1.x) || !blocks[0].y.Equals(block1.y) || !blocks[0].z.Equals(block1.z)
+            if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z)
                 || !blocks[0].tonn.Equals(block1.tonn) || !blocks[0].au.Equals(block1.au) || !blocks[0].blockvalue.Equals(block1.blockvalue) || !blocks[0].destination.Equals(block1.destination))
             {
                 Assert.Fail("block1 is different than the estimated block.");
             }
-            if (!blocks[1].id.Equals(block2.id) || !blocks[1].x.Equals(block2.x) || !blocks[1].y.Equals(block2.y) || !blocks[1].z.Equals(block2.z)
+            if (!blocks[1].Id.Equals(block2.Id) || !blocks[1].X.Equals(block2.X) || !blocks[1].Y.Equals(block2.Y) || !blocks[1].Z.Equals(block2.Z)
                 || !blocks[1].tonn.Equals(block2.tonn) || !blocks[1].blockvalue.Equals(block2.blockvalue) || !blocks[1].au.Equals(block2.au) || !blocks[1].destination.Equals(block2.destination))
             {
                 Assert.Fail("block2 is different that the estimated block");

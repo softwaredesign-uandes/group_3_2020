@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using SDPreSubmissionNS;
@@ -31,10 +32,10 @@ namespace SDPreSubmissionNS
                         string[] att = all_attributes[i].Split(":");
                         if (att.Length>1)
                         {
-                            if (att[1].Equals("cont")) contAttributes.Add(double.Parse(cubeData[i].Replace('.', ',')));
-                            if (att[1].Equals("prop")) massPropAttributes.Add(double.Parse(cubeData[i].Replace('.', ',')));
+                            if (att[1].Equals("cont")) contAttributes.Add(double.Parse(cubeData[i], CultureInfo.InvariantCulture));
+                            if (att[1].Equals("prop")) massPropAttributes.Add(double.Parse(cubeData[i], CultureInfo.InvariantCulture));
                             if (att[1].Equals("cat")) catAttributes.Add(cubeData[i]);
-                            if (att[1].Equals("weight")) weight = double.Parse(cubeData[i].Replace('.', ','));
+                            if (att[1].Equals("weight")) weight = double.Parse(cubeData[i], CultureInfo.InvariantCulture);
                         }
                         else
                         {
