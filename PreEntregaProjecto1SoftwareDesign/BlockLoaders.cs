@@ -7,7 +7,7 @@ using SDPreSubmissionNS;
 
 namespace SDPreSubmissionNS
 {
-    internal class BlockLoaders
+    public class BlockLoaders
     {
 
         public static List<Block> GatherBlocks(string path, List<string> all_attributes, BlockModel blockModel)

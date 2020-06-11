@@ -55,7 +55,7 @@ namespace BlocksTests
             List<Block> blocks = new List<Block>(new Block[] { block1, block2 });
             blockModel.SetBlocks(blocks);
             List<string> givenValues = blockModel.GetPossibleAttributes();
-            List<string> expected = new List<string>(new string[] { "Id", "X", "Y", "Z", "Weight", "contest1", "mptest1", "cattest1", "contest2", "mptest2", "cattest2" });
+            List<string> expected = new List<string>(new string[] { "id", "x", "y", "z", "Weight", "contest1", "mptest1", "cattest1", "contest2", "mptest2", "cattest2" });
 
             if (!CompareLists<string>(expected, givenValues) || expected.Count() != givenValues.Count())
             {
