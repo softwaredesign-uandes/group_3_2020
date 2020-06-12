@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SDPreSubmissionNS
 {
-    class BlockSerializer
+    public class BlockSerializer
     {
         static public void SerializeBlockModel(string path, BlockModel blockModel)
         {
@@ -37,6 +37,5 @@ namespace SDPreSubmissionNS
             }
 
         }
-
     }
 }

@@ -13,8 +13,8 @@ namespace BlocksTests
     {
         //Method Tested: SetBlocks
         //Context: Passing 2 Blocks with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000
-        //id=2, x=12, y=12, z=12, weight=2000
+        //Id=1, X=10, Y=10, Z=10, weight=1000
+        //Id=2, X=12, Y=12, Z=12, weight=2000
         //and a BlockModel with name "Block Model"
         //Expectation: Should return a list of blocks equal to the Blocks attribute of BlockModel
         [TestMethod]
@@ -32,10 +32,10 @@ namespace BlocksTests
 
         //Method Tested: GetPossibleAttributes
         //Context: Passing 2 Blocks with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=12, y=12, z=12, weight=2000, [contest1=400, contest2=500], [mptest1=50, mptest2=60], [cattest1=vbm, cattest2=jkl]
+        //Id=1, X=10, Y=10, Z=10, weight=1000, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=12, Y=12, Z=12, weight=2000, [contest1=400, contest2=500], [mptest1=50, mptest2=60], [cattest1=vbm, cattest2=jkl]
         //and a BlockModel with name "Block Model"
-        //Expectation: Should return [id, x, y, z, weight, contest1, contest2, mptest1, mptest2, cattest1, cattest2]
+        //Expectation: Should return [Id, X, Y, Z, weight, contest1, contest2, mptest1, mptest2, cattest1, cattest2]
         [TestMethod]
         public void GetPossibleAttributesTest()
         {
@@ -65,10 +65,10 @@ namespace BlocksTests
 
         //Method Tested: GetBlock
         //Context: Passing 2 Blocks with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000
-        //id=2, x=12, y=12, z=12, weight=2000
+        //Id=1, X=10, Y=10, Z=10, weight=1000
+        //Id=2, X=12, Y=12, Z=12, weight=2000
         //and a BlockModel with name "Block Model" and both Blocks in it
-        //passing coordinates x=10, y=10, z=10
+        //passing coordinates X=10, Y=10, Z=10
         //Expectation: Should return block1
         [TestMethod]
         public void GetBlockTest()
@@ -98,8 +98,8 @@ namespace BlocksTests
 
         //Method Tested: GetNumberOfBlocks
         //Context: Passing 2 Blocks with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000
-        //id=2, x=12, y=12, z=12, weight=2000
+        //Id=1, X=10, Y=10, Z=10, weight=1000
+        //Id=2, X=12, Y=12, Z=12, weight=2000
         //and a BlockModel with name "Block Model"
         //Expectation: Should return the amount of blocks of BlockModel, 2
         [TestMethod]
@@ -118,14 +118,14 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=2, ry=2, rz=2
         //Passing a BlockModel that has 8 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
         //Expectation: Should return the amount of blocks of the reblocked BlockModel = 1
         [TestMethod]
         public void ReblockTestNumberOfBlocks()
@@ -154,14 +154,14 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=2, ry=2, rz=2
         //Passing a BlockModel that has 8 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
         //Expectation: Should return 800 as the total weight of the block, in tonnes.
         [TestMethod]
         public void ReblockTestTotalWeight()
@@ -195,15 +195,15 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=2, ry=2, rz=2
         //Passing a BlockModel that has 8 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //Expectation: Should return a list of blocks with one block with coordinates x=0, y=0, z=0.
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Expectation: Should return a list of blocks with one block with coordinates X=0, Y=0, Z=0.
         [TestMethod]
         public void ReblockTestPosition()
         {
@@ -298,15 +298,15 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=2, ry=2, rz=2
         //Passing a BlockModel that has 8 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=200, [contest1=200, contest2=100], [mptest1=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=300, [contest1=200, contest2=100], [mptest1=30], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=400, [contest1=200, contest2=100], [mptest1=40], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=500, [contest1=200, contest2=100], [mptest1=50], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=600, [contest1=200, contest2=100], [mptest1=60], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=700, [contest1=200, contest2=100], [mptest1=70], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=800, [contest1=200, contest2=100], [mptest1=80], [cattest1=asd, cattest2=def]
-        //Expectation: Should return a list of blocks with one block with coordinates x=0, y=0, z=0.
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=200, [contest1=200, contest2=100], [mptest1=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=300, [contest1=200, contest2=100], [mptest1=30], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=400, [contest1=200, contest2=100], [mptest1=40], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=500, [contest1=200, contest2=100], [mptest1=50], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=600, [contest1=200, contest2=100], [mptest1=60], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=700, [contest1=200, contest2=100], [mptest1=70], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=800, [contest1=200, contest2=100], [mptest1=80], [cattest1=asd, cattest2=def]
+        //Expectation: Should return a list of blocks with one block with coordinates X=0, Y=0, Z=0.
         [TestMethod]
         public void ReblockTestProportion()
         {
@@ -346,27 +346,27 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=3, ry=3, rz=3
         //Passing a BlockModel that has 21 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=8, x=2, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=9, x=0, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=10, x=0, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=11, x=2, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=12, x=2, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=13, x=0, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=14, x=2, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=15, x=1, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=16, x=2, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=17, x=2, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=18, x=1, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=19, x=1, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=20, x=2, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=8, X=2, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=9, X=0, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=10, X=0, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=11, X=2, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=12, X=2, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=13, X=0, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=14, X=2, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=15, X=1, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=16, X=2, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=17, X=2, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=18, X=1, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=19, X=1, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=20, X=2, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
         //Expectation: Should return the amount of blocks of the reblocked BlockModel = 1
         [TestMethod]
         public void ReblockTestNumberOfBlocks2()
@@ -411,27 +411,27 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=3, ry=3, rz=3
         //Passing a BlockModel that has 21 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=8, x=2, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=9, x=0, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=10, x=0, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=11, x=2, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=12, x=2, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=13, x=0, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=14, x=2, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=15, x=1, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=16, x=2, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=17, x=2, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=18, x=1, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=19, x=1, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=20, x=2, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=8, X=2, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=9, X=0, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=10, X=0, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=11, X=2, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=12, X=2, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=13, X=0, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=14, X=2, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=15, X=1, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=16, X=2, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=17, X=2, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=18, X=1, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=19, X=1, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=20, X=2, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
         //Expectation: Should return 2100 as the total weight of the block, in tonnes.
         [TestMethod]
         public void ReblockTestTotalWeight2()
@@ -481,28 +481,28 @@ namespace BlocksTests
         //Method Tested: Reblock
         //Context: Passing the variables rx=3, ry=3, rz=3
         //Passing a BlockModel that has 21 Blocks with attributes:
-        //id=0, x=0, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=1, x=1, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=2, x=0, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=3, x=0, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=4, x=1, y=1, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=5, x=1, y=0, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=6, x=0, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=7, x=1, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=8, x=2, y=0, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=9, x=0, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=10, x=0, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=11, x=2, y=2, z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=12, x=2, y=0, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=13, x=0, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=14, x=2, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=15, x=1, y=2, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=16, x=2, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=17, x=2, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=18, x=1, y=1, z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=19, x=1, y=2, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //id=20, x=2, y=1, z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
-        //Expectation: Should return a list of blocks with one block with coordinates x=0, y=0, z=0.
+        //Id=0, X=0, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=1, X=1, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=2, X=0, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=3, X=0, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=4, X=1, Y=1, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=5, X=1, Y=0, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=6, X=0, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=7, X=1, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=8, X=2, Y=0, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=9, X=0, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=10, X=0, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=11, X=2, Y=2, Z=0, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=12, X=2, Y=0, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=13, X=0, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=14, X=2, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=15, X=1, Y=2, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=16, X=2, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=17, X=2, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=18, X=1, Y=1, Z=2, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=19, X=1, Y=2, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Id=20, X=2, Y=1, Z=1, weight=100, [contest1=200, contest2=100], [mptest1=10, mptest2=20], [cattest1=asd, cattest2=def]
+        //Expectation: Should return a list of blocks with one block with coordinates X=0, Y=0, Z=0.
         [TestMethod]
         public void ReblockTestTotalPosition2()
         {

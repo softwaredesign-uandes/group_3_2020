@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreEntregaProjecto1SoftwareDesign", "PreEntregaProjecto1SoftwareDesign\PreEntregaProjecto1SoftwareDesign.csproj", "{38256490-3D1C-4765-AFB0-918136123A70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlocksTests", "BlocksTests\BlocksTests.csproj", "{3E97BA37-8118-42E8-A0BB-AA061F87429B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlocksTests", "BlocksTests\BlocksTests.csproj", "{3E97BA37-8118-42E8-A0BB-AA061F87429B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WAPI", "WAPI\WAPI.csproj", "{A7D89A78-3D01-43C6-B9A5-D900A0B7B2F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{3E97BA37-8118-42E8-A0BB-AA061F87429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E97BA37-8118-42E8-A0BB-AA061F87429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E97BA37-8118-42E8-A0BB-AA061F87429B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D89A78-3D01-43C6-B9A5-D900A0B7B2F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D89A78-3D01-43C6-B9A5-D900A0B7B2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D89A78-3D01-43C6-B9A5-D900A0B7B2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D89A78-3D01-43C6-B9A5-D900A0B7B2F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
