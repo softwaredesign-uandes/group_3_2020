@@ -65,12 +65,11 @@ namespace BlocksTests
             }
             BlockModel testBlockModel = new BlockModel("Test", continuous_att, mass_proportional_att, categorical_att);
 
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksDefaultTestFile.blocks";
+            string path = "GatherBlocksDefaultTestFile.blocks";
             Block block1 = new Block(1, 13, 17, 10);
             Block block2 = new Block(2, 22, 30, 50);
 
             List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, testBlockModel);
-            Console.WriteLine(blocks);
             //Assert if the two Blocks are Equal
             if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z))
             {
@@ -90,7 +89,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksNewManTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksNewManTestFile.blocks";
+            string path = "GatherBlocksNewManTestFile.blocks";
             string attributesString = "id x y z type:cat grade:prop tonns:weight min_caf:cont value_extracc:cont value_proc:cont apriori_process:cat";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -137,7 +136,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksZuckTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksZuckTestFile.blocks";
+            string path = "GatherBlocksZuckTestFile.blocks";
             string attributesString = "id x y z cost:cont value:cont rock_tonnes:cont ore_tonnes:cont";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -188,7 +187,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksKDTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksKDTestFile.blocks";
+            string path = "GatherBlocksKDTestFile.blocks";
             string attributesString = "id x y z tonn:weight blockvalue:cont destination:cat CU:prop process_profit:prop";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -237,7 +236,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksP4HDTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksP4HDTestFile.blocks";
+            string path = "GatherBlocksP4HDTestFile.blocks";
             string attributesString = "id x y z tonn:weight blockvalue:cont destination:cat Au:prop Ag:prop Cu:prop";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -283,7 +282,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksMarvinTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMarvinTestFile.blocks";
+            string path = "GatherBlocksMarvinTestFile.blocks";
             string attributesString = "id x y z tonn:weight au:prop cu:prop proc_profit:cont";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -329,7 +328,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksW23Test()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksW23TestFile.blocks";
+            string path = "GatherBlocksW23TestFile.blocks";
             string attributesString = "id x y z dest:cat phase:cat AuRec:prop AuFA:prop tons:weight co3:prop orgc:prop sulf:prop Mcost:cont Pcost:cont Tcost:cont Tvalue:cont Bvalue:cont rc_Stockpile:cat rc_RockChar:cat";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
@@ -376,7 +375,7 @@ namespace BlocksTests
         [TestMethod]
         public void GatherBlocksMcLaughlinTest()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BlockLoaderTestsFiles\GatherBlocksMcLaughlinTestFile.blocks";
+            string path = "GatherBlocksMcLaughlinTestFile.blocks";
             string attributesString = "id x y z blockvalue:cont ton:weight destination:cat Au:prop";
             List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
             List<string> continuous_att = new List<string>();
