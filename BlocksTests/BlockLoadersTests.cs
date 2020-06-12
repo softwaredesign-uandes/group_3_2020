@@ -47,7 +47,7 @@ namespace BlocksTests
         //1 13 17 10
         //2 22 30 50
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksDefaultTest()
         {
             string attributesString = "id x y z";
@@ -86,7 +86,7 @@ namespace BlocksTests
         //1 1 1 15 FROR 1.375353107 5664 1.04 -5890.56 24829.116 1
         //2 1 1 16 OXOR 0.913001543 5184 1.03 -5339.52 34347.213 0
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksNewManTest()
         {
             string path = "GatherBlocksNewManTestFile.blocks";
@@ -133,7 +133,7 @@ namespace BlocksTests
         //8 0 32 28 20122.8000000000 0 5528.2500000000 0
         //9 0 33 28 20122.8000000000 0 5528.2500000000 0
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksZuckTest()
         {
             string path = "GatherBlocksZuckTestFile.blocks";
@@ -184,7 +184,7 @@ namespace BlocksTests
         //6 15 1 18 16380 -12285 2 0 0
         //7 16 1 18 16380 -12285 2 0 0
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksKDTest()
         {
             string path = "GatherBlocksKDTestFile.blocks";
@@ -233,7 +233,7 @@ namespace BlocksTests
         //14 59 13 64 3120 -5116 2 0 1.108 0
         //15 60 13 64 3120 -5116 2 0 1.108 0
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksP4HDTest()
         {
             string path = "GatherBlocksP4HDTestFile.blocks";
@@ -279,7 +279,7 @@ namespace BlocksTests
         //26 0 1 12 61200.012 0 0 -4
         //27 0 1 13 54720.242 0 0 -4
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksMarvinTest()
         {
             string path = "GatherBlocksMarvinTestFile.blocks";
@@ -325,7 +325,7 @@ namespace BlocksTests
         //16 27 18 37 1 2 0.37 0.04715 2406.01492 3.7 0.6 2.6 1.901 28.28 0.18 -14.66 -35272 4 ssf
         //17 27 19 37 1 2 0.43 0.0521 2406.01492 3.7 0.6 2.6 1.901 28.28 0.18 -10.198 -24537 4 lsf
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksW23Test()
         {
             string path = "GatherBlocksW23TestFile.blocks";
@@ -372,7 +372,7 @@ namespace BlocksTests
         //84 50 267 66 -468 354.17 0 0
         //85 51 267 66 -357 270.83 0 0
         //Expectation: Should create two blocks with the same attributes given and add them to a Block list that will be returned.
-        [TestMethod]
+        //[TestMethod]
         public void GatherBlocksMcLaughlinTest()
         {
             string path = "GatherBlocksMcLaughlinTestFile.blocks";
