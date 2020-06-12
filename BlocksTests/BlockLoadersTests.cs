@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SDPreSubmissionNS;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -69,7 +70,7 @@ namespace BlocksTests
             Block block2 = new Block(2, 22, 30, 50);
 
             List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, testBlockModel);
-
+            Console.WriteLine(blocks);
             //Assert if the two Blocks are Equal
             if (!blocks[0].Id.Equals(block1.Id) || !blocks[0].X.Equals(block1.X) || !blocks[0].Y.Equals(block1.Y) || !blocks[0].Z.Equals(block1.Z))
             {
