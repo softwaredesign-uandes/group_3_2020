@@ -32,7 +32,6 @@ namespace WAPI.Controllers
                 }
             }
 
-
             string jsonA = JsonConvert.SerializeObject(dics);
             return jsonA;
         }
