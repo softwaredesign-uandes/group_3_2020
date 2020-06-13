@@ -16,15 +16,18 @@ namespace WAPI.Models
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
             List<BlockModel> blockModels = new List<BlockModel>();
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
-            List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
-            if (fileInfos.Count > 0)
+            if (File.Exists("*.grupo3"))
             {
-                foreach (FileInfo fileInfo in fileInfos)
+                List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
+                if (fileInfos.Count > 0)
                 {
-                    BlockModel blockModel = BlockSerializer.DeserializeBlockModel(fileInfo.FullName);
-                    if (blockModel != null)
+                    foreach (FileInfo fileInfo in fileInfos)
                     {
-                        blockModels.Add(blockModel);
+                        BlockModel blockModel = BlockSerializer.DeserializeBlockModel(fileInfo.FullName);
+                        if (blockModel != null)
+                        {
+                            blockModels.Add(blockModel);
+                        }
                     }
                 }
             }
