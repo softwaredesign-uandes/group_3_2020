@@ -16,6 +16,10 @@ namespace WAPI.Models
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
             List<BlockModel> blockModels = new List<BlockModel>();
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
             List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
             if (fileInfos.Count > 0)
             {
