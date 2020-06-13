@@ -8,6 +8,8 @@ using SDPreSubmissionNS;
 using WAPI.Models;
 using Newtonsoft.Json;
 using System.Net;
+using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.Mvc;
 
 namespace WAPI.Controllers
 {
@@ -17,10 +19,16 @@ namespace WAPI.Controllers
     [ApiController]
     public class BlockModelController : ControllerBase
     {
+        private readonly IFeatureManager _featureManager;
+        public BlockModelController(IFeatureManager featureManager)
+        {
+            _featureManager = featureManager;
+        }
         public string Get()
         {
+            bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
             List<BlockModel> blockModels = BlockModelContext.LoadAllModels();
-            List < Dictionary<string, string> > dics = new List<Dictionary<string, string>>();
+            List<Dictionary<string, string>> dics = new List<Dictionary<string, string>>();
 
             if (blockModels.Count != 0)
             {
@@ -31,9 +39,17 @@ namespace WAPI.Controllers
                     dics.Add(dic);
                 }
             }
-
-
-            string jsonA = JsonConvert.SerializeObject(dics);
+            string jsonA = "";
+            if (flagRestfulResponse)
+            {
+                Dictionary<string, List<Dictionary<string, string>>> prefix = new Dictionary<string, List<Dictionary<string, string>>>();
+                prefix.Add("block_models", dics);
+                jsonA = JsonConvert.SerializeObject(prefix);
+            }
+            else
+            {
+                jsonA = JsonConvert.SerializeObject(dics);
+            }
             return jsonA;
         }
 
@@ -41,7 +57,8 @@ namespace WAPI.Controllers
         public string Get(string name)
         {
 
-            List<BlockModel> blockModels = BlockModelContext.LoadAllModels();
+            bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
+            List <BlockModel> blockModels = BlockModelContext.LoadAllModels();
             BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
             List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
             foreach (Block block in blockModel.Blocks)
@@ -66,8 +83,23 @@ namespace WAPI.Controllers
                 }
                 dics.Add(dic);
             }
-            string json = JsonConvert.SerializeObject(dics);
+            string json = "";
+            if (flagRestfulResponse)
+            {
+                Dictionary<string, List<Dictionary<string, dynamic>>> prefix = new Dictionary<string, List<Dictionary<string, dynamic>>>();
+                prefix.Add("blocks", dics);
+                Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>> preprefix = new Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>>();
+                preprefix.Add("block_model", prefix);
+                json = JsonConvert.SerializeObject(preprefix);
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(dics);
+            }
+            
             return json;
         }
+
+
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using WAPI.Models;
 using SDPreSubmissionNS;
+using Microsoft.FeatureManagement;
 
 namespace WAPI
 {
@@ -31,6 +32,8 @@ namespace WAPI
             services.AddDbContext<BlockModelContext>(opt =>
                opt.UseInMemoryDatabase("BlockModel"));
             services.AddControllers();
+
+            services.AddFeatureManagement();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +54,7 @@ namespace WAPI
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
