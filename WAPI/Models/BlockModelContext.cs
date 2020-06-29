@@ -73,6 +73,7 @@ namespace WAPI.Models
                     BlockSerializer.SerializeBlockModel(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
                         @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3", blockModel);
                 }
+
             }
         }
 
