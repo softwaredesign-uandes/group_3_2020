@@ -494,3 +494,10 @@ C:\Users\ignap\Desktop\Submision3 fkn kill me\group_3_2020\WAPI\bin\Debug\netcor
 C:\Users\ignap\Desktop\Submision3 fkn kill me\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.csproj.CoreCompileInputs.cache
 C:\Users\ignap\Desktop\Submision3 fkn kill me\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ignap\Desktop\Submision3 fkn kill me\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Azure.Core.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Azure.Data.AppConfiguration.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Microsoft.FeatureManagement.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\Microsoft.FeatureManagement.AspNetCore.dll
+C:\Users\gus19\Desktop\Uandes\13 Semestre\Software Design\Proyecto\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cs

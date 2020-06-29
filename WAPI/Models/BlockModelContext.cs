@@ -10,7 +10,22 @@ namespace WAPI.Models
 {
     public class BlockModelContext : DbContext
     {
-        
+        static public List<string> LoadAllBlockModelNames() {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
+            List<string> blockModelsNames = new List<string>();
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+            List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
+            if (fileInfos.Count > 0) {
+                foreach (FileInfo fileInfo in fileInfos) {
+                    blockModelsNames.Add(fileInfo.Name.Remove(fileInfo.Name.Length-fileInfo.Extension.Length));
+                }
+            }
+            return blockModelsNames;
+        }
+
         static public List<BlockModel> LoadAllModels()
         {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
@@ -58,6 +73,10 @@ namespace WAPI.Models
                         @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3", blockModel);
                 }
             }
+        }
+
+        static public void Reblock(string name, int x, int y, int z) {
+
         }
 
         public BlockModelContext(DbContextOptions<BlockModelContext> options)

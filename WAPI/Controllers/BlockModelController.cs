@@ -27,15 +27,15 @@ namespace WAPI.Controllers
         public string Get()
         {
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
-            List<BlockModel> blockModels = BlockModelContext.LoadAllModels();
+            List<string> blockModelsNames = BlockModelContext.LoadAllBlockModelNames();
             List<Dictionary<string, string>> dics = new List<Dictionary<string, string>>();
 
-            if (blockModels.Count != 0)
+            if (blockModelsNames.Count != 0)
             {
-                foreach (BlockModel blockModel in blockModels)
+                foreach (string blockModelName in blockModelsNames)
                 {
                     Dictionary<string, string> dic = new Dictionary<string, string>();
-                    dic.Add("name", blockModel.Name);
+                    dic.Add("name", blockModelName);
                     dics.Add(dic);
                 }
             }
@@ -102,6 +102,10 @@ namespace WAPI.Controllers
         [HttpPost("new")]
         public void Post(string path, string attributesString) {
             BlockModelContext.SaveModel(path, attributesString);
+        }
+        [HttpPost("{name}/reblock")]
+        public void Post(string name, int rx, int ry, int rz) {
+            List<string> blockModelsNames = new List<string>();
         }
 
     }
