@@ -6,7 +6,8 @@ name: Build and deploy ASP.Net Core app to Azure Web App - wapi-blockmodels
 on:
   push:
     branches:
-      - Submission3
+      - Master
+      - Submision4
 
 jobs:
   build-and-deploy:
