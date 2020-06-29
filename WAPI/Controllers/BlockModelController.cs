@@ -100,12 +100,17 @@ namespace WAPI.Controllers
             return json;
         }
         [HttpPost("new")]
-        public void Post(string path, string attributesString) {
-            BlockModelContext.SaveModel(path, attributesString);
+        public string Post(string path, string attributesString) {
+            BlockModelContext.SaveNewModel(path, attributesString);
+            return "wapi mapi";
         }
         [HttpPost("{name}/reblock")]
-        public void Post(string name, int rx, int ry, int rz) {
-            List<string> blockModelsNames = new List<string>();
+        public string Post(string name, string rx, string ry, string rz) {
+            int x = int.Parse(rx);
+            int y = int.Parse(ry);
+            int z = int.Parse(rz);
+            BlockModelContext.Reblock(name, x, y, z);
+            return "wapi mapi";
         }
 
     }

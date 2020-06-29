@@ -50,10 +50,11 @@ namespace WAPI.Models
             return blockModels;
         }
 
-        static public void SaveModel(string path, string attributesString) {
+        static public void SaveNewModel(string path, string attributesString) {
             if (File.Exists(path)) {
                 FileInfo file = new FileInfo(path);
-                if (!File.Exists("Models\\" + file.Name + ".grupo3")) {
+                if (!File.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                        @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3")) {
                     List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
                     List<string> continuous_att = new List<string>();
                     List<string> mass_proportional_att = new List<string>();
@@ -75,8 +76,28 @@ namespace WAPI.Models
             }
         }
 
-        static public void Reblock(string name, int x, int y, int z) {
+        static public void UpdateModel(BlockModel blockModel) {
+            if (File.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                         @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + blockModel.Name + ".grupo3")) {
+                File.Delete(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                         @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + blockModel.Name + ".grupo3");
+                BlockSerializer.SerializeBlockModel(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                        @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + blockModel.Name + ".grupo3", blockModel);
+            }
+        }
 
+        static public void Reblock(string name, int x, int y, int z) {
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" +
+                    name + ".grupo3";
+            if (File.Exists(path)) {
+                FileInfo file = new FileInfo(path);
+                if (!File.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                        @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3")) {
+                    BlockModel blockModel = BlockSerializer.DeserializeBlockModel(file.FullName);
+                    blockModel.Reblock(x, y, z);
+                    UpdateModel(blockModel);
+                }
+            }
         }
 
         public BlockModelContext(DbContextOptions<BlockModelContext> options)
