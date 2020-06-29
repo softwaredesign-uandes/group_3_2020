@@ -35,6 +35,31 @@ namespace WAPI.Models
             return blockModels;
         }
 
+        static public void SaveModel(string path, string attributesString) {
+            if (File.Exists(path)) {
+                FileInfo file = new FileInfo(path);
+                if (!File.Exists("Models\\" + file.Name + ".grupo3")) {
+                    List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
+                    List<string> continuous_att = new List<string>();
+                    List<string> mass_proportional_att = new List<string>();
+                    List<string> categorical_att = new List<string>();
+                    foreach (string attribute in attributesSplit) {
+                        string[] att = attribute.Split(":");
+                        if (att.Length <= 1) continue;
+                        if (att[1].Equals("cont")) continuous_att.Add(att[0]);
+                        else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);
+                        else if (att[1].Equals("cat")) categorical_att.Add(att[0]);
+                    }
+
+                    BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
+                    List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
+                    blockModel.SetBlocks(blocks);
+                    BlockSerializer.SerializeBlockModel(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
+                        @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3", blockModel);
+                }
+            }
+        }
+
         public BlockModelContext(DbContextOptions<BlockModelContext> options)
             : base(options)
         {

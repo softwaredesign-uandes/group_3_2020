@@ -99,7 +99,10 @@ namespace WAPI.Controllers
             
             return json;
         }
-
+        [HttpPost("new")]
+        public void Post(string path, string attributesString) {
+            BlockModelContext.SaveModel(path, attributesString);
+        }
 
     }
 }
