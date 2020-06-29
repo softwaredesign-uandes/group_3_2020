@@ -5,6 +5,7 @@
 /.vs
 /TestResults
 /PreEntregaProjecto1SoftwareDesign/bin
+!/PreEntregaProjecto1SoftwareDesign/bin/Debug/nercoreapp3.1/Models
 /PreEntregaProjecto1SoftwareDesign/obj
 /BlocksTests/bin
 /BlocksTests/obj

@@ -11,7 +11,7 @@ namespace BlocksTests
     {
         //Method Tested: GetMassInKg
         //Context: Passing a Block with attributes:
-        //id=1, x=10, y=10, z=10, weight=1000
+        //Id=1, X=10, Y=10, Z=10, weight=1000
         //Expectation: Should return 1000000
         [TestMethod]
         public void GetMassInKgTest()

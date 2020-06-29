@@ -31,7 +31,15 @@ namespace SDPreSubmissionNS
             Y = y;
             Z = z;
         }
-        
+        public Block(int id, int x, int y, int z, double weight)
+        {
+            Id = id;
+            X = x;
+            Y = y;
+            Z = z;
+            Weight = weight;
+        }
+
         public Block(int id, int x, int y, int z, double weight,
             List<double> continuousAtt, List<double> massProportionalAtt, List<string> categoricalAtt, BlockModel blockModel)
         {
@@ -51,14 +59,7 @@ namespace SDPreSubmissionNS
                 CategoricalAttributes.Add(blockModel.CategoricalAttributesNames[i], categoricalAtt[i]);
             }
         }
-        public Block(int id, int x, int y, int z, double weight)
-        {
-            Id = id;
-            X = x;
-            Y = y;
-            Z = z;
-            Weight = weight;
-        }
+
 
         public double? GetMassInKg()
         {

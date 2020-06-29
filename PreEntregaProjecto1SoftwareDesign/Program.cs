@@ -12,8 +12,8 @@ namespace SDPreSubmissionNS
     {
         static private string path;
         static private string option;
-        static private List<Block> blocks;
-        static private string newFileName;
+        //static private List<Block> blocks;
+        //static private string newFileName;
         static private List<BlockModel> blockModels;
         private static Program mainProgram;
 
