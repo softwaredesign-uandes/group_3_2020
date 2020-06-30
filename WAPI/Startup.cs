@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using WAPI.Models;
 using SDPreSubmissionNS;
 using Microsoft.FeatureManagement;
+using Microsoft.AspNetCore.Http;
 
 namespace WAPI
 {
@@ -43,6 +44,10 @@ namespace WAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 
@@ -50,9 +55,15 @@ namespace WAPI
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.Run(async (context) => {
+                await context.Response.WriteAsync("Could Not Find Anything");
             });
 
         }
