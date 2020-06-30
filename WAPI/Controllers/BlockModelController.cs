@@ -146,7 +146,7 @@ namespace WAPI.Controllers
         public string Post([FromForm] FileUploadAPI objFile,[FromForm] string attributesString)
         {
             BlockModelContext.SaveNewModelTest(objFile, attributesString);
-            return "wapi mapi";
+            return "wapi mapi2";
         }
         [HttpPost("{name}/reblock")]
         public string Post(string name, string rx, string ry, string rz)
