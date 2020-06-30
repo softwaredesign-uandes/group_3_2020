@@ -34,31 +34,6 @@ namespace WAPI.Controllers
         {
             public IFormFile file { get; set; }
         }
-
-        //Ejemplo de funcion para subir archivos
-        [HttpPost("upload")]
-        public string Post([FromForm] FileUploadAPI objFile)
-        {
-            if (objFile.file.Length > 0)
-            {
-                if (!Directory.Exists(_environment.WebRootPath + "\\Upload\\"))
-                {
-                    Directory.CreateDirectory(_environment.WebRootPath + "\\Upload\\");
-                }
-                using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Upload\\" + objFile.file.FileName))
-                {
-                    objFile.file.CopyTo(fileStream);
-                    fileStream.Flush();
-                    return "\\Updload\\" + objFile.file.FileName;
-                }
-            }
-            else
-            {
-                return "Failed";
-            }
-        }
-
-
         public string Get()
         {
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
@@ -106,9 +81,8 @@ namespace WAPI.Controllers
         [HttpGet("{name}/blocks")]
         public string Get(string name)
         {
-
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
-            List<BlockModel> blockModels = BlockModelContext.LoadAllModels();
+            List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
             BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
             List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
             foreach (Block block in blockModel.Blocks)
@@ -149,12 +123,37 @@ namespace WAPI.Controllers
 
             return json;
         }
+
+
+        //Ejemplo de funcion para subir archivos
+        [HttpPost("upload")]
+        public string Post([FromForm] FileUploadAPI objFile)
+        {
+            if (objFile.file.Length > 0)
+            {
+                if (!Directory.Exists(_environment.WebRootPath + "\\Upload\\"))
+                {
+                    Directory.CreateDirectory(_environment.WebRootPath + "\\Upload\\");
+                }
+                using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Upload\\" + objFile.file.FileName))
+                {
+                    objFile.file.CopyTo(fileStream);
+                    fileStream.Flush();
+                    return "\\Updload\\" + objFile.file.FileName;
+                }
+            }
+            else
+            {
+                return "Failed";
+            }
+        }
+
         [HttpPost("new")]
         public string Post([FromForm] FileUploadAPI objFile,[FromForm] string attributesString)
         {
             try
             {
-                BlockModelContext.SaveNewModelTest(objFile, attributesString);
+                BlockModelContext.SaveNewModel(objFile, attributesString);
                 return "wapi mapi";
             }
             catch (Exception ex)
@@ -162,6 +161,7 @@ namespace WAPI.Controllers
                 return ex.Message.ToString();
             }
         }
+
         [HttpPost("{name}/reblock")]
         public string Post(string name, string rx, string ry, string rz)
         {
@@ -170,6 +170,20 @@ namespace WAPI.Controllers
             int z = int.Parse(rz);
             BlockModelContext.Reblock(name, x, y, z);
             return "wapi mapi";
+        }
+
+        [HttpDelete("{name}/delete")]
+        public string Delete(string name)
+        {
+            bool borro = BlockModelContext.DeleteFile(_environment, name);
+            if (borro)
+            {
+                return "wapi mafuckyou";
+            }
+            else
+            {
+                return "no se borro naaa";
+            }
         }
     }
 }
