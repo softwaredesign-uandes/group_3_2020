@@ -63,21 +63,20 @@ namespace WAPI.Models
 
         static public List<string> testGetFileNames(IWebHostEnvironment environment)
         {
-            string path = environment.WebRootPath + "\\Upload\\";
+            string path = environment.WebRootPath + "\\Upload\\"; 
             DirectoryInfo di = new DirectoryInfo(path);
             List<string> files = new List<string>();
             foreach (FileInfo file in di.GetFiles())
             {
                 files.Add(file.Name);
             }
-            int breakpoint = 0;
             return files;
         }
 
 
         static public List<string> LoadAllBlockModelNames(IWebHostEnvironment environment)
         {
-            string path = environment.WebRootPath + "\\Upload\\"; ;
+            string path = environment.WebRootPath + "\\Models\\";
             List<string> blockModelsNames = new List<string>();
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
             if (!Directory.Exists(path))

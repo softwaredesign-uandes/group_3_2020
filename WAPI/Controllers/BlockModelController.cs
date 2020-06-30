@@ -35,6 +35,7 @@ namespace WAPI.Controllers
             public IFormFile file { get; set; }
         }
 
+        //Ejemplo de funcion para subir archivos
         [HttpPost("upload")]
         public string Post([FromForm] FileUploadAPI objFile)
         {
@@ -145,8 +146,15 @@ namespace WAPI.Controllers
         [HttpPost("new")]
         public string Post([FromForm] FileUploadAPI objFile,[FromForm] string attributesString)
         {
-            BlockModelContext.SaveNewModelTest(objFile, attributesString);
-            return "wapi mapi2";
+            try
+            {
+                BlockModelContext.SaveNewModelTest(objFile, attributesString);
+                return "wapi mapi";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
         }
         [HttpPost("{name}/reblock")]
         public string Post(string name, string rx, string ry, string rz)
@@ -157,8 +165,5 @@ namespace WAPI.Controllers
             BlockModelContext.Reblock(name, x, y, z);
             return "wapi mapi";
         }
-
-
-
     }
 }
