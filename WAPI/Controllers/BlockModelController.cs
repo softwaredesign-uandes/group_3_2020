@@ -97,6 +97,12 @@ namespace WAPI.Controllers
             return json;
         }
 
+        [HttpGet("webrootpath")]
+        public string TestDos()
+        {
+            return _environment.WebRootPath;
+        }
+
         [HttpGet("{name}/blocks")]
         public string Get(string name)
         {
