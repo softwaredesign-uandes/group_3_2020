@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 using SDPreSubmissionNS;
 using WAPI.Models;
 using Newtonsoft.Json;
 using System.Net;
 using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.Mvc;
+using System.IO;
+using Azure.Core;
 
 namespace WAPI.Controllers
 {
@@ -20,10 +23,41 @@ namespace WAPI.Controllers
     public class BlockModelController : ControllerBase
     {
         private readonly IFeatureManager _featureManager;
-        public BlockModelController(IFeatureManager featureManager)
+        public static IWebHostEnvironment _environment;
+        public BlockModelController(IFeatureManager featureManager, IWebHostEnvironment environment)
         {
             _featureManager = featureManager;
+            _environment = environment;
         }
+
+        public class FileUploadAPI
+        {
+            public IFormFile file { get; set; }
+        }
+
+        [HttpPost("test")]
+        public string Post([FromForm]FileUploadAPI objFile)
+        {
+            if (objFile.file.Length > 0)
+            {
+                if (!Directory.Exists(_environment.WebRootPath + "\\Upload\\"))
+                {
+                    Directory.CreateDirectory(_environment.WebRootPath + "\\Upload\\");
+                }
+                using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Upload\\" + objFile.file.FileName))
+                {
+                    objFile.file.CopyTo(fileStream);
+                    fileStream.Flush();
+                    return "\\Updload\\" + objFile.file.FileName;
+                }
+            }
+            else
+            {
+                return "Failed";
+            }
+        }
+
+
         public string Get()
         {
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
@@ -112,6 +146,8 @@ namespace WAPI.Controllers
             BlockModelContext.Reblock(name, x, y, z);
             return "wapi mapi";
         }
+
+
 
     }
 }
