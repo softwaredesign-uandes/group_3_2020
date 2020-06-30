@@ -35,8 +35,8 @@ namespace WAPI.Controllers
             public IFormFile file { get; set; }
         }
 
-        [HttpPost("test")]
-        public string Post([FromForm]FileUploadAPI objFile)
+        [HttpPost("upload")]
+        public string Post([FromForm] FileUploadAPI objFile)
         {
             if (objFile.file.Length > 0)
             {
@@ -61,9 +61,9 @@ namespace WAPI.Controllers
         public string Get()
         {
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
-            List<string> blockModelsNames = BlockModelContext.LoadAllBlockModelNames();
+            List<string> blockModelsNames = BlockModelContext.LoadAllBlockModelNames(_environment);
             List<Dictionary<string, string>> dics = new List<Dictionary<string, string>>();
-            
+
             if (blockModelsNames.Count != 0)
             {
                 foreach (string blockModelName in blockModelsNames)
@@ -101,7 +101,7 @@ namespace WAPI.Controllers
         {
 
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
-            List <BlockModel> blockModels = BlockModelContext.LoadAllModels();
+            List<BlockModel> blockModels = BlockModelContext.LoadAllModels();
             BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
             List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
             foreach (Block block in blockModel.Blocks)
@@ -139,16 +139,18 @@ namespace WAPI.Controllers
             {
                 json = JsonConvert.SerializeObject(dics);
             }
-            
+
             return json;
         }
         [HttpPost("new")]
-        public string Post(string path, string attributesString) {
-            BlockModelContext.SaveNewModel(path, attributesString);
+        public string Post([FromForm] FileUploadAPI objFile,[FromForm] string attributesString)
+        {
+            BlockModelContext.SaveNewModelTest(objFile, attributesString);
             return "wapi mapi";
         }
         [HttpPost("{name}/reblock")]
-        public string Post(string name, string rx, string ry, string rz) {
+        public string Post(string name, string rx, string ry, string rz)
+        {
             int x = int.Parse(rx);
             int y = int.Parse(ry);
             int z = int.Parse(rz);

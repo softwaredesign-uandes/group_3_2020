@@ -10139,11 +10139,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\WAPI\\WAPI.csproj",
+      "projectUniqueName": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj",
       "projectName": "WAPI",
-      "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\WAPI\\WAPI.csproj",
+      "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj",
       "packagesPath": "C:\\Users\\ignap\\.nuget\\packages\\",
-      "outputPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\WAPI\\obj\\",
+      "outputPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10162,8 +10162,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
-              "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
+            "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
+              "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
             }
           }
         }

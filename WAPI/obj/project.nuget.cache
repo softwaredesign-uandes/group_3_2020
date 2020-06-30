@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+cOoGZhPQtoFhKO0lJ3Zoz883oKxo4Ane+T+wwD1T0eJk8emI75Wsn6o8fK3eHX3thWqXR0CmNeCeNTLmfO37w==",
+  "dgSpecHash": "Wp0C4C1DyQa0QEHFX9UveDmZ/RCzsqpm/dOiGlgWBw4qImhLHolQJycT/HWpXF3B5SSTLk59gqK+9Qhxd7Vb8A==",
   "success": true,
-  "projectFilePath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4\\group_3_2020\\WAPI\\WAPI.csproj",
+  "projectFilePath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ignap\\.nuget\\packages\\azure.core\\1.0.1\\azure.core.1.0.1.nupkg.sha512",
     "C:\\Users\\ignap\\.nuget\\packages\\azure.data.appconfiguration\\1.0.0\\azure.data.appconfiguration.1.0.0.nupkg.sha512",
