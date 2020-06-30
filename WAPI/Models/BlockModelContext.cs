@@ -3,13 +3,32 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SDPreSubmissionNS;
+using WAPI.Controllers;
 
 namespace WAPI.Models
 {
     public class BlockModelContext : DbContext
     {
+        public static IWebHostEnvironment _environment;
+
+        static public List<string> testGetFileNames(IWebHostEnvironment environment)
+        {
+            string path = environment.WebRootPath + "\\Upload\\";
+            DirectoryInfo di = new DirectoryInfo(path);
+            List<string> files = new List<string>();
+            foreach (FileInfo file in di.GetFiles())
+            {
+                files.Add(file.Name);
+            }
+            int breakpoint = 0;
+            return files;
+
+        }
+
         static public List<string> LoadAllBlockModelNames() {
             string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
             List<string> blockModelsNames = new List<string>();
@@ -101,10 +120,12 @@ namespace WAPI.Models
             }
         }
 
-        public BlockModelContext(DbContextOptions<BlockModelContext> options)
-            : base(options)
+        
+        public BlockModelContext(DbContextOptions<BlockModelContext> options) : base(options)
         {
         }
+        
+        
 
         public DbSet<BlockModel> BlockModels { get; set; }
     }

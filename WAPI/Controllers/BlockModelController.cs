@@ -63,7 +63,7 @@ namespace WAPI.Controllers
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
             List<string> blockModelsNames = BlockModelContext.LoadAllBlockModelNames();
             List<Dictionary<string, string>> dics = new List<Dictionary<string, string>>();
-
+            
             if (blockModelsNames.Count != 0)
             {
                 foreach (string blockModelName in blockModelsNames)
@@ -85,6 +85,15 @@ namespace WAPI.Controllers
                 jsonA = JsonConvert.SerializeObject(dics);
             }
             return jsonA;
+        }
+
+        [HttpGet("test")]
+        public string GetTest()
+        {
+            List<string> fileNames = BlockModelContext.testGetFileNames(_environment);
+            string json = "";
+            json = JsonConvert.SerializeObject(fileNames);
+            return json;
         }
 
         [HttpGet("{name}/blocks")]
