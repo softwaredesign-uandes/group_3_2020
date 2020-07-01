@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Xml.XPath;
+using PreEntregaProjecto1SoftwareDesign;
 
 namespace SDPreSubmissionNS
 {
@@ -71,6 +72,8 @@ namespace SDPreSubmissionNS
 
         public void Reblock(int rx, int ry, int rz)
         {
+            new Trace("block_model_reblocked", Name, false);
+
             List<Block> newBlocks = new List<Block>();
             int[] maximos = GetMaxCoordinates();
             int num_blocks = GetNumberOfBlocks();

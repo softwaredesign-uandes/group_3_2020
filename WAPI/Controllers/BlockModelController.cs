@@ -16,6 +16,7 @@ using Azure.Core;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Cors;
 using System.Web.Cors;
+using PreEntregaProjecto1SoftwareDesign;
 
 namespace WAPI.Controllers
 {
@@ -94,11 +95,13 @@ namespace WAPI.Controllers
         [HttpGet("{name}/blocks")]
         public string Get(string name)
         {
+
             try
             {
                 bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
                 List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
                 BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
+                new Trace("blocks_requested", name, false);
                 List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
                 foreach (Block block in blockModel.Blocks)
                 {
@@ -191,13 +194,13 @@ namespace WAPI.Controllers
                 }
                 else
                 {
-                    return "no se encontro precFile";
+                    return "precFile not found";
                 }
                 
             }
             else
             {
-                return "id Malo";
+                return "wrong id";
             }
             
         }
@@ -231,7 +234,7 @@ namespace WAPI.Controllers
             try
             {
                 BlockModelContext.SaveNewModel(objFile, attributesString);
-                return "wapi mapi";
+                return "Model Saved";
             }
             catch (Exception ex)
             {
@@ -246,7 +249,7 @@ namespace WAPI.Controllers
             int y = int.Parse(ry);
             int z = int.Parse(rz);
             BlockModelContext.Reblock(name, x, y, z);
-            return "wapi mapi";
+            return "reblocked";
         }
 
         [HttpPost("newprec")]
@@ -272,11 +275,11 @@ namespace WAPI.Controllers
             bool borro = BlockModelContext.DeleteFile(_environment, name);
             if (borro)
             {
-                return "wapi mafuckyou";
+                return "deleted";
             }
             else
             {
-                return "no se borro naaa";
+                return "nothing was deleted";
             }
         }
     }
