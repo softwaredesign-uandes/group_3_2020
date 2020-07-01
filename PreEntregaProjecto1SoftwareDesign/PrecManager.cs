@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace PreEntregaProjecto1SoftwareDesign
+namespace SDPreSubmissionNS
 {
-    class PrecManager
+    public class PrecManager
     {
 
         static public Dictionary<int,List<int>> GenerateDictionary(string filePath)
@@ -40,7 +40,6 @@ namespace PreEntregaProjecto1SoftwareDesign
 
             return diccionarioPrec;
         }
-
         static public List<int> ExtractBlock(int idBlock, Dictionary<int,List<int>> dic)
         {
             int x = 0;
