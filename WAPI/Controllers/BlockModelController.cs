@@ -15,6 +15,7 @@ using System.IO;
 using Azure.Core;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Cors;
+using PreEntregaProjecto1SoftwareDesign;
 
 namespace WAPI.Controllers
 {
@@ -88,6 +89,9 @@ namespace WAPI.Controllers
             bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
             List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
             BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
+
+            new Trace("blocks_requested", name, false);
+
             List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
             foreach (Block block in blockModel.Blocks)
             {
