@@ -9,3 +9,6 @@
 /PreEntregaProjecto1SoftwareDesign/obj
 /BlocksTests/bin
 /BlocksTests/obj
+!/BlocksTests/bin/Debug/netcoreapp3.1/Test Files
+/WAPI/bin
+/WAPI/obj
