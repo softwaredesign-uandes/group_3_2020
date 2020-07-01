@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj": {}
+    "F:\\Universidad\\Software Design\\group_3_2020\\WAPI\\WAPI.csproj": {}
   },
   "projects": {
-    "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
+    "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
+        "projectUniqueName": "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
         "projectName": "PreEntregaProjecto1SoftwareDesign",
-        "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
-        "packagesPath": "C:\\Users\\ignap\\.nuget\\packages\\",
-        "outputPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\obj\\",
+        "projectPath": "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj",
+        "packagesPath": "C:\\Users\\Barracius\\.nuget\\packages\\",
+        "outputPath": "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ignap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Barracius\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,20 +78,17 @@
         }
       }
     },
-    "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj": {
+    "F:\\Universidad\\Software Design\\group_3_2020\\WAPI\\WAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj",
+        "projectUniqueName": "F:\\Universidad\\Software Design\\group_3_2020\\WAPI\\WAPI.csproj",
         "projectName": "WAPI",
-        "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\WAPI.csproj",
-        "packagesPath": "C:\\Users\\ignap\\.nuget\\packages\\",
-        "outputPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\WAPI\\obj\\",
+        "projectPath": "F:\\Universidad\\Software Design\\group_3_2020\\WAPI\\WAPI.csproj",
+        "packagesPath": "C:\\Users\\Barracius\\.nuget\\packages\\",
+        "outputPath": "F:\\Universidad\\Software Design\\group_3_2020\\WAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ignap\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Barracius\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,8 +101,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
-                "projectPath": "C:\\Mis cosas\\_uandes\\2020-01\\Software Design\\Sub4-2\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
+              "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj": {
+                "projectPath": "F:\\Universidad\\Software Design\\group_3_2020\\PreEntregaProjecto1SoftwareDesign\\PreEntregaProjecto1SoftwareDesign.csproj"
               }
             }
           }

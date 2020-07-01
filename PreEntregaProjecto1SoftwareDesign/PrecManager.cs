@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace PreEntregaProjecto1SoftwareDesign
+namespace SDPreSubmissionNS
 {
-    class PrecManager
+    public class PrecManager
     {
 
         static public Dictionary<int,List<int>> GenerateDictionary(string filePath)
