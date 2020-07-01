@@ -13,6 +13,7 @@ using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using Azure.Core;
+using System.Web.Helpers;
 
 namespace WAPI.Controllers
 {
@@ -124,6 +125,31 @@ namespace WAPI.Controllers
             return json;
         }
 
+        [HttpGet("{name}/blocks/{index}/extract")]
+        public string Get(string name, string index)
+        {
+            int id;
+            if (int.TryParse(index, out id))
+            {
+                Dictionary<int, List<int>> precDictionary = BlockModelContext.GeneratePrecDict(name);
+                if (precDictionary.Count > 0)
+                {
+                    List<int> blocksToExtract = BlockModelContext.ExtractCubes(id, precDictionary);
+                    string elJsonDeRetorno = JsonConvert.SerializeObject(blocksToExtract);
+                    return elJsonDeRetorno;
+                }
+                else
+                {
+                    return "no se encontro precFile";
+                }
+                
+            }
+            else
+            {
+                return "id Malo";
+            }
+            
+        }
 
         //Ejemplo de funcion para subir archivos
         [HttpPost("upload")]
@@ -171,6 +197,22 @@ namespace WAPI.Controllers
             BlockModelContext.Reblock(name, x, y, z);
             return "wapi mapi";
         }
+
+        [HttpPost("newprec")]
+        public string PostPrec([FromForm] FileUploadAPI objFile)
+        {
+            try
+            {
+                BlockModelContext.SaveNewPrecFile(objFile);
+                return "prec file uploaded";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        
 
         [HttpDelete("{name}/delete")]
         public string Delete(string name)

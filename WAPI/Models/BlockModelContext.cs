@@ -22,7 +22,7 @@ namespace WAPI.Models
                 {
                     Directory.CreateDirectory(_environment.WebRootPath + "\\TempModelFiles\\");
                 }
-
+                
                 string filePath = _environment.WebRootPath + "\\TempModelFiles\\" + objFile.file.FileName;
 
                 if (File.Exists(filePath))
@@ -56,6 +56,28 @@ namespace WAPI.Models
                 string serializedFilePath = _environment.WebRootPath + "\\Models\\" + objFile.file.FileName + ".grupo3";
                 BlockSerializer.SerializeBlockModel(serializedFilePath, blockModel);
             }
+        }
+        static public void SaveNewPrecFile(FileUploadAPI objFile)
+        {
+            if (!Directory.Exists(_environment.WebRootPath + "\\PrecFiles\\"))
+            {
+                Directory.CreateDirectory(_environment.WebRootPath + "\\PrecFiles\\");
+            }
+
+            string filePath = _environment.WebRootPath + "\\PrecFiles\\" + objFile.file.FileName;
+
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            using (FileStream fileStream = System.IO.File.Create(filePath))
+            {
+                objFile.file.CopyTo(fileStream);
+                fileStream.Flush();
+            }
+            
+
         }
 
         static public List<string> testGetFileNames(IWebHostEnvironment environment)
@@ -115,7 +137,33 @@ namespace WAPI.Models
             return blockModels;
         }
 
+        public static Dictionary<int, List<int>> GeneratePrecDict(string fileName)
+        {
 
+            string precFilesPath = _environment.WebRootPath + "\\PrecFiles\\";
+            string precName = Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(fileName));
+
+            DirectoryInfo directoryInfo = new DirectoryInfo(precFilesPath);
+            List<FileInfo> fileInfos = directoryInfo.GetFiles(precName + "*").ToList();
+            if (fileInfos.Count > 0)
+            {
+                FileInfo file = fileInfos[0];
+                string pathProcFile = file.FullName;
+                Dictionary<int, List<int>> dic = PrecManager.GenerateDictionary(pathProcFile);
+                return dic;
+            }
+            else
+            {
+                return new Dictionary<int, List<int>>();
+            }
+            
+        }
+
+        public static List<int> ExtractCubes(int index, Dictionary<int, List<int>> precDictionary)
+        {
+            List<int> answer = PrecManager.ExtractBlock(index, precDictionary);
+            return answer;
+        }
 
         static public void UpdateModel(BlockModel blockModel)
         {
@@ -157,6 +205,8 @@ namespace WAPI.Models
         }
 
 
+
+
         public BlockModelContext(DbContextOptions<BlockModelContext> options) : base(options)
         {
         }
@@ -165,59 +215,7 @@ namespace WAPI.Models
 
         public DbSet<BlockModel> BlockModels { get; set; }
 
-        
+
     }
 }
 
-/*
- * Original, se debiese poder borrar
-static public List<string> LoadAllBlockModelNames() {
-    string path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName + @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models";
-    List<string> blockModelsNames = new List<string>();
-    DirectoryInfo directoryInfo = new DirectoryInfo(path);
-    if (!Directory.Exists(path)) {
-        Directory.CreateDirectory(path);
-    }
-    List<FileInfo> fileInfos = directoryInfo.GetFiles("*.grupo3").ToList();
-    if (fileInfos.Count > 0) {
-        foreach (FileInfo fileInfo in fileInfos) {
-            blockModelsNames.Add(fileInfo.Name.Remove(fileInfo.Name.Length-fileInfo.Extension.Length));
-        }
-    }
-    return blockModelsNames;
-}
-*/
-
-/*
- * Borrable
-static public void SaveNewModel(string path, string attributesString)
-{
-    if (File.Exists(path))
-    {
-        FileInfo file = new FileInfo(path);
-        if (!File.Exists(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
-                @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3"))
-        {
-            List<string> attributesSplit = new List<string>(attributesString.Trim(' ').Split(' '));
-            List<string> continuous_att = new List<string>();
-            List<string> mass_proportional_att = new List<string>();
-            List<string> categorical_att = new List<string>();
-            foreach (string attribute in attributesSplit)
-            {
-                string[] att = attribute.Split(":");
-                if (att.Length <= 1) continue;
-                if (att[1].Equals("cont")) continuous_att.Add(att[0]);
-                else if (att[1].Equals("prop")) mass_proportional_att.Add(att[0]);
-                else if (att[1].Equals("cat")) categorical_att.Add(att[0]);
-            }
-
-            BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
-            List<Block> blocks = BlockLoaders.GatherBlocks(path, attributesSplit, blockModel);
-            blockModel.SetBlocks(blocks);
-            BlockSerializer.SerializeBlockModel(Directory.GetParent(Directory.GetCurrentDirectory()).FullName +
-                @"\PreEntregaProjecto1SoftwareDesign\bin\Debug\netcoreapp3.1\Models\" + file.Name + ".grupo3", blockModel);
-
-        }
-    }
-}
-*/
