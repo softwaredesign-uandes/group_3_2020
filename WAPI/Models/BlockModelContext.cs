@@ -53,7 +53,7 @@ namespace WAPI.Models
 
                 BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
 
-                new Trace("block_model_loaded", blockModel.Name, false);
+                new Trace("block_model_loaded", blockModel.Name, true);
 
                 List<Block> blocks = BlockLoaders.GatherBlocks(filePath, attributesSplit, blockModel);
                 blockModel.SetBlocks(blocks);
@@ -111,7 +111,7 @@ namespace WAPI.Models
             {
                 foreach (FileInfo fileInfo in fileInfos)
                 {
-                    blockModelsNames.Add(Path.GetFileNameWithoutExtension(fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length)));
+                    blockModelsNames.Add(fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length));
                 }
             }
             return blockModelsNames;

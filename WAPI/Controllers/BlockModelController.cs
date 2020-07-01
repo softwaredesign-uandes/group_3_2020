@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -101,7 +101,7 @@ namespace WAPI.Controllers
                 bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
                 List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
                 BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
-                new Trace("blocks_requested", name, false);
+                new Trace("blocks_requested", name, true);
                 List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
                 foreach (Block block in blockModel.Blocks)
                 {
@@ -151,6 +151,7 @@ namespace WAPI.Controllers
         [HttpGet("{name}/blocks/{index}")]
         public string GetCube(string name, string index)
         {
+            
             BlockModel blockModel = BlockModelContext.GetBlockModel(name);
             int blockid;
             if (blockModel.Name != "noBlockModel" && int.TryParse(index, out blockid))
@@ -158,6 +159,9 @@ namespace WAPI.Controllers
                 Block block = blockModel.Blocks.FirstOrDefault(b => b.Id == blockid);
                 BlockForIndexEndpoint bloque = new BlockForIndexEndpoint(block.Id, block.X, block.Y, block.Z, block.Weight, block.MassProportionalAttributes);
                 Dictionary<string, BlockForIndexEndpoint> dic = new Dictionary<string, BlockForIndexEndpoint>();
+
+                new Trace("block_info_requested", block.X.ToString() + "," + block.Y.ToString() + "," + block.Z.ToString() , true);
+                
                 dic.Add("block", bloque);
                 string json = JsonConvert.SerializeObject(dic);
                 return json;
@@ -188,6 +192,13 @@ namespace WAPI.Controllers
                         valuesDicForJson.Add(value);
                     }
                     dicForJson.Add("blocks", valuesDicForJson);
+
+                    BlockModel blockModel = BlockModelContext.GetBlockModel(name);
+                    if (blockModel.Name != "noBlockModel")
+                    {
+                        Block block = blockModel.Blocks.FirstOrDefault(b => b.Id == id);
+                        new Trace("block_extracted", block.X.ToString() + "," + block.Y.ToString() + "," + block.Z.ToString(), true);
+                    }
 
                     string elJsonDeRetorno = JsonConvert.SerializeObject(dicForJson);
                     return elJsonDeRetorno;
@@ -258,6 +269,9 @@ namespace WAPI.Controllers
             try
             {
                 BlockModelContext.SaveNewPrecFile(objFile);
+
+                new Trace("block_model_precedences_loaded", Path.GetFileNameWithoutExtension(objFile.file.FileName) , true);
+
                 return "prec file uploaded";
             }
             catch (Exception ex)

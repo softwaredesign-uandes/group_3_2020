@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Configuration\" />
     <Folder Include="wwwroot\Models\" />
+    <Folder Include="wwwroot\PrecFiles\" />
     <Folder Include="wwwroot\TempModelFiles\" />
   </ItemGroup>
 

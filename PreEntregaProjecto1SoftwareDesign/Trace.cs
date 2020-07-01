@@ -12,6 +12,7 @@ namespace PreEntregaProjecto1SoftwareDesign {
         public static int spanId;
         public string eventName;
         public string eventData;
+        public static bool initialized;
 
         static HttpClient client = new HttpClient();
 
@@ -27,9 +28,14 @@ namespace PreEntregaProjecto1SoftwareDesign {
         }
 
         public async Task InitializeClient(bool production) {
-            // Check if production or development
-            if(production) client.BaseAddress = new Uri(productionURL);
-            else client.BaseAddress = new Uri(developmentURL);
+            if (!initialized)
+            {
+                // Check if production or development
+                if (production) client.BaseAddress = new Uri(productionURL);
+                else client.BaseAddress = new Uri(developmentURL);
+                initialized = true;
+            }
+            
 
             // Accept Json type for post
             client.DefaultRequestHeaders.Accept.Clear();

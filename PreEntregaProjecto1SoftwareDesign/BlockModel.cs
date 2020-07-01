@@ -72,7 +72,7 @@ namespace SDPreSubmissionNS
 
         public void Reblock(int rx, int ry, int rz)
         {
-            new Trace("block_model_reblocked", Name, false);
+            new Trace("block_model_reblocked", Name, true);
 
             List<Block> newBlocks = new List<Block>();
             int[] maximos = GetMaxCoordinates();
