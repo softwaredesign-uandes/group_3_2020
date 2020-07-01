@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using PreEntregaProjecto1SoftwareDesign;
 using SDPreSubmissionNS;
 using WAPI.Controllers;
 using static WAPI.Controllers.BlockModelController;
@@ -51,6 +52,9 @@ namespace WAPI.Models
                 }
 
                 BlockModel blockModel = new BlockModel(file.Name, continuous_att, mass_proportional_att, categorical_att);
+
+                new Trace("block_model_loaded", blockModel.Name, false);
+
                 List<Block> blocks = BlockLoaders.GatherBlocks(filePath, attributesSplit, blockModel);
                 blockModel.SetBlocks(blocks);
                 string serializedFilePath = _environment.WebRootPath + "\\Models\\" + objFile.file.FileName + ".grupo3";
