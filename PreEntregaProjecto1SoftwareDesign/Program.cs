@@ -19,11 +19,14 @@ namespace SDPreSubmissionNS
 
         static void Main(string[] args)
         {
+            //Dictionary<int, List<int>> precDictionary = PrecManager.GenerateDictionary(@"C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\newman1.prec");
+            //List<int> results = PrecManager.ExtractBlock(20, precDictionary);
             mainProgram = new Program();
             blockModels = new List<BlockModel>();
             CreateModelsFolder();
             mainProgram.LoadAllModels();
             MainMenu();
+
         }
         static void MainMenu()
         {

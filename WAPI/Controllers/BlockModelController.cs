@@ -13,6 +13,8 @@ using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using Azure.Core;
+using System.Web.Helpers;
+using Microsoft.AspNetCore.Cors;
 
 namespace WAPI.Controllers
 {
@@ -22,12 +24,14 @@ namespace WAPI.Controllers
     [ApiController]
     public class BlockModelController : ControllerBase
     {
+
         private readonly IFeatureManager _featureManager;
         public static IWebHostEnvironment _environment;
         public BlockModelController(IFeatureManager featureManager, IWebHostEnvironment environment)
         {
             _featureManager = featureManager;
             _environment = environment;
+
         }
 
         public class FileUploadAPI
@@ -124,6 +128,42 @@ namespace WAPI.Controllers
             return json;
         }
 
+        [HttpPost("{name}/blocks/{index}/extract")]
+        public string Get(string name, string index)
+        {
+            int id;
+            if (int.TryParse(index, out id))
+            {
+                Dictionary<int, List<int>> precDictionary = BlockModelContext.GeneratePrecDict(name);
+                if (precDictionary.Count > 0)
+                {
+                    List<int> blocksToExtract = BlockModelContext.ExtractCubes(id, precDictionary);
+
+                    Dictionary<string, List<Dictionary<string, int>>> dicForJson = new Dictionary<string, List<Dictionary<string, int>>>();
+                    List<Dictionary<string, int>> valuesDicForJson = new List<Dictionary<string, int>>();
+                    foreach (int i in blocksToExtract)
+                    {
+                        Dictionary<string, int> value = new Dictionary<string, int>();
+                        value.Add("index", i);
+                        valuesDicForJson.Add(value);
+                    }
+                    dicForJson.Add("blocks", valuesDicForJson);
+
+                    string elJsonDeRetorno = JsonConvert.SerializeObject(dicForJson);
+                    return elJsonDeRetorno;
+                }
+                else
+                {
+                    return "no se encontro precFile";
+                }
+                
+            }
+            else
+            {
+                return "id Malo";
+            }
+            
+        }
 
         //Ejemplo de funcion para subir archivos
         [HttpPost("upload")]
@@ -171,6 +211,22 @@ namespace WAPI.Controllers
             BlockModelContext.Reblock(name, x, y, z);
             return "wapi mapi";
         }
+
+        [HttpPost("newprec")]
+        public string PostPrec([FromForm] FileUploadAPI objFile)
+        {
+            try
+            {
+                BlockModelContext.SaveNewPrecFile(objFile);
+                return "prec file uploaded";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
+        
 
         [HttpDelete("{name}/delete")]
         public string Delete(string name)
