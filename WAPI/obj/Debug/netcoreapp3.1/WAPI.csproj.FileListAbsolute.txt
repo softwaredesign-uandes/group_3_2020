@@ -661,9 +661,6 @@ C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\bin\Debug\
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.csprojAssemblyReference.cache
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.AssemblyInfoInputs.cache
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.AssemblyInfo.cs
-C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.csproj.CoreCompileInputs.cache
-C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.RazorTargetAssemblyInfo.cache
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.csproj.CopyComplete
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\staticwebassets\WAPI.StaticWebAssets.Manifest.cache
@@ -671,3 +668,8 @@ C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.dll
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.pdb
 C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.genruntimeconfig.cache
+C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\System.Web.Cors.dll
+C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\bin\Debug\netcoreapp3.1\System.Web.Http.Cors.dll
+C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.csproj.CoreCompileInputs.cache
+C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Mis cosas\_uandes\2020-01\Software Design\Sub4-2\group_3_2020\WAPI\obj\Debug\netcoreapp3.1\WAPI.MvcApplicationPartsAssemblyInfo.cache

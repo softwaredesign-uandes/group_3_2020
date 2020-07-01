@@ -15,6 +15,7 @@ using System.IO;
 using Azure.Core;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Cors;
+using System.Web.Cors;
 
 namespace WAPI.Controllers
 {
@@ -27,11 +28,11 @@ namespace WAPI.Controllers
 
         private readonly IFeatureManager _featureManager;
         public static IWebHostEnvironment _environment;
+        
         public BlockModelController(IFeatureManager featureManager, IWebHostEnvironment environment)
         {
             _featureManager = featureManager;
             _environment = environment;
-
         }
 
         public class FileUploadAPI
