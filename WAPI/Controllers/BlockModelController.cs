@@ -15,6 +15,7 @@ using System.IO;
 using Azure.Core;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Cors;
+using System.Web.Cors;
 using PreEntregaProjecto1SoftwareDesign;
 
 namespace WAPI.Controllers
@@ -28,11 +29,11 @@ namespace WAPI.Controllers
 
         private readonly IFeatureManager _featureManager;
         public static IWebHostEnvironment _environment;
+        
         public BlockModelController(IFeatureManager featureManager, IWebHostEnvironment environment)
         {
             _featureManager = featureManager;
             _environment = environment;
-
         }
 
         public class FileUploadAPI
@@ -77,6 +78,14 @@ namespace WAPI.Controllers
             return json;
         }
 
+        [HttpGet("prec")]
+        public List<string> GetPrecs()
+        {
+            List<string> names = BlockModelContext.RecivePrecFiles();
+
+            return names;
+        }
+
         [HttpGet("webrootpath")]
         public string TestDos()
         {
@@ -86,50 +95,77 @@ namespace WAPI.Controllers
         [HttpGet("{name}/blocks")]
         public string Get(string name)
         {
-            bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
-            List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
-            BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
 
-            new Trace("blocks_requested", name, false);
-
-            List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
-            foreach (Block block in blockModel.Blocks)
+            try
             {
-                Dictionary<string, dynamic> dic = new Dictionary<string, dynamic>();
-                dic.Add("x", block.X);
-                dic.Add("y", block.Y);
-                dic.Add("z", block.Z);
-                dic.Add("id", block.Id);
-                dic.Add("weight", block.Weight);
-                foreach (var keyValuePair in block.CategoricalAttributes)
+                bool flagRestfulResponse = _featureManager.IsEnabledAsync("restful_response").Result;
+                List<BlockModel> blockModels = BlockModelContext.LoadAllModels(_environment);
+                BlockModel blockModel = blockModels.Find(r => r.Name.Equals(name));
+                new Trace("blocks_requested", name, false);
+                List<Dictionary<string, dynamic>> dics = new List<Dictionary<string, dynamic>>();
+                foreach (Block block in blockModel.Blocks)
                 {
-                    dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    Dictionary<string, dynamic> dic = new Dictionary<string, dynamic>();
+                    dic.Add("x", block.X);
+                    dic.Add("y", block.Y);
+                    dic.Add("z", block.Z);
+                    dic.Add("id", block.Id);
+                    dic.Add("weight", block.Weight);
+                    foreach (var keyValuePair in block.CategoricalAttributes)
+                    {
+                        dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    }
+                    foreach (var keyValuePair in block.ContinuousAttributes)
+                    {
+                        dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    }
+                    foreach (var keyValuePair in block.MassProportionalAttributes)
+                    {
+                        dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    }
+                    dics.Add(dic);
                 }
-                foreach (var keyValuePair in block.ContinuousAttributes)
+                string json = "";
+                if (flagRestfulResponse)
                 {
-                    dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    Dictionary<string, List<Dictionary<string, dynamic>>> prefix = new Dictionary<string, List<Dictionary<string, dynamic>>>();
+                    prefix.Add("blocks", dics);
+                    Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>> preprefix = new Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>>();
+                    preprefix.Add("block_model", prefix);
+                    json = JsonConvert.SerializeObject(preprefix);
                 }
-                foreach (var keyValuePair in block.MassProportionalAttributes)
+                else
                 {
-                    dic.Add(keyValuePair.Key, keyValuePair.Value);
+                    json = JsonConvert.SerializeObject(dics);
                 }
-                dics.Add(dic);
+
+                return json;
             }
-            string json = "";
-            if (flagRestfulResponse)
+            catch (Exception ex)
             {
-                Dictionary<string, List<Dictionary<string, dynamic>>> prefix = new Dictionary<string, List<Dictionary<string, dynamic>>>();
-                prefix.Add("blocks", dics);
-                Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>> preprefix = new Dictionary<string, Dictionary<string, List<Dictionary<string, dynamic>>>>();
-                preprefix.Add("block_model", prefix);
-                json = JsonConvert.SerializeObject(preprefix);
+                return "error";
+            }
+            
+        }
+
+        [HttpGet("{name}/blocks/{index}")]
+        public string GetCube(string name, string index)
+        {
+            BlockModel blockModel = BlockModelContext.GetBlockModel(name);
+            int blockid;
+            if (blockModel.Name != "noBlockModel" && int.TryParse(index, out blockid))
+            {
+                Block block = blockModel.Blocks.FirstOrDefault(b => b.Id == blockid);
+                BlockForIndexEndpoint bloque = new BlockForIndexEndpoint(block.Id, block.X, block.Y, block.Z, block.Weight, block.MassProportionalAttributes);
+                Dictionary<string, BlockForIndexEndpoint> dic = new Dictionary<string, BlockForIndexEndpoint>();
+                dic.Add("block", bloque);
+                string json = JsonConvert.SerializeObject(dic);
+                return json;
             }
             else
             {
-                json = JsonConvert.SerializeObject(dics);
+                return "Error Loading Block Model or Index";
             }
-
-            return json;
         }
 
         [HttpPost("{name}/blocks/{index}/extract")]
@@ -158,13 +194,13 @@ namespace WAPI.Controllers
                 }
                 else
                 {
-                    return "no se encontro precFile";
+                    return "precFile not found";
                 }
                 
             }
             else
             {
-                return "id Malo";
+                return "wrong id";
             }
             
         }
@@ -198,7 +234,7 @@ namespace WAPI.Controllers
             try
             {
                 BlockModelContext.SaveNewModel(objFile, attributesString);
-                return "wapi mapi";
+                return "Model Saved";
             }
             catch (Exception ex)
             {
@@ -213,7 +249,7 @@ namespace WAPI.Controllers
             int y = int.Parse(ry);
             int z = int.Parse(rz);
             BlockModelContext.Reblock(name, x, y, z);
-            return "wapi mapi";
+            return "reblocked";
         }
 
         [HttpPost("newprec")]
@@ -230,6 +266,7 @@ namespace WAPI.Controllers
             }
         }
 
+
         
 
         [HttpDelete("{name}/delete")]
@@ -238,11 +275,11 @@ namespace WAPI.Controllers
             bool borro = BlockModelContext.DeleteFile(_environment, name);
             if (borro)
             {
-                return "wapi mafuckyou";
+                return "deleted";
             }
             else
             {
-                return "no se borro naaa";
+                return "nothing was deleted";
             }
         }
     }

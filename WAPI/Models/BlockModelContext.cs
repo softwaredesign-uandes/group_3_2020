@@ -61,6 +61,7 @@ namespace WAPI.Models
                 BlockSerializer.SerializeBlockModel(serializedFilePath, blockModel);
             }
         }
+
         static public void SaveNewPrecFile(FileUploadAPI objFile)
         {
             if (!Directory.Exists(_environment.WebRootPath + "\\PrecFiles\\"))
@@ -96,7 +97,6 @@ namespace WAPI.Models
             return files;
         }
 
-
         static public List<string> LoadAllBlockModelNames(IWebHostEnvironment environment)
         {
             string path = environment.WebRootPath + "\\Models\\";
@@ -115,6 +115,48 @@ namespace WAPI.Models
                 }
             }
             return blockModelsNames;
+        }
+
+        public static List<string> RecivePrecFiles()
+        {
+            string path = _environment.WebRootPath + "\\PrecFiles\\";
+            List<string> precFilesNames = new List<string>();
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            List<FileInfo> fileInfos = directoryInfo.GetFiles("*.prec").ToList();
+            if (fileInfos.Count > 0)
+            {
+                foreach (FileInfo fileInfo in fileInfos)
+                {
+                    precFilesNames.Add(Path.GetFileNameWithoutExtension(fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length)));
+                }
+            }
+            return precFilesNames;
+        }
+
+        public static BlockModel GetBlockModel(string name)
+        {
+            string path = _environment.WebRootPath + "\\Models\\";
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            List<FileInfo> fileInfos = directoryInfo.GetFiles(name + "*.grupo3").ToList();
+            if (fileInfos.Count > 0)
+            {
+                FileInfo fileInfo = fileInfos[0];
+                BlockModel blockModel = BlockSerializer.DeserializeBlockModel(fileInfo.FullName);
+                return blockModel;
+            }
+            else
+            {
+                return new BlockModel("noBlockModel");
+            }
+
         }
 
         static public List<BlockModel> LoadAllModels(IWebHostEnvironment environment)
@@ -219,7 +261,7 @@ namespace WAPI.Models
 
         public DbSet<BlockModel> BlockModels { get; set; }
 
-
+        
     }
 }
 
