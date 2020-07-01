@@ -107,7 +107,7 @@ namespace WAPI.Models
             {
                 foreach (FileInfo fileInfo in fileInfos)
                 {
-                    blockModelsNames.Add(fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length));
+                    blockModelsNames.Add(Path.GetFileNameWithoutExtension(fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length)));
                 }
             }
             return blockModelsNames;

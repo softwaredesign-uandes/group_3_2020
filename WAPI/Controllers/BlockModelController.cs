@@ -14,6 +14,7 @@ using Microsoft.FeatureManagement.Mvc;
 using System.IO;
 using Azure.Core;
 using System.Web.Helpers;
+using Microsoft.AspNetCore.Cors;
 
 namespace WAPI.Controllers
 {
@@ -23,12 +24,14 @@ namespace WAPI.Controllers
     [ApiController]
     public class BlockModelController : ControllerBase
     {
+
         private readonly IFeatureManager _featureManager;
         public static IWebHostEnvironment _environment;
         public BlockModelController(IFeatureManager featureManager, IWebHostEnvironment environment)
         {
             _featureManager = featureManager;
             _environment = environment;
+
         }
 
         public class FileUploadAPI
@@ -125,7 +128,7 @@ namespace WAPI.Controllers
             return json;
         }
 
-        [HttpGet("{name}/blocks/{index}/extract")]
+        [HttpPost("{name}/blocks/{index}/extract")]
         public string Get(string name, string index)
         {
             int id;
@@ -135,7 +138,18 @@ namespace WAPI.Controllers
                 if (precDictionary.Count > 0)
                 {
                     List<int> blocksToExtract = BlockModelContext.ExtractCubes(id, precDictionary);
-                    string elJsonDeRetorno = JsonConvert.SerializeObject(blocksToExtract);
+
+                    Dictionary<string, List<Dictionary<string, int>>> dicForJson = new Dictionary<string, List<Dictionary<string, int>>>();
+                    List<Dictionary<string, int>> valuesDicForJson = new List<Dictionary<string, int>>();
+                    foreach (int i in blocksToExtract)
+                    {
+                        Dictionary<string, int> value = new Dictionary<string, int>();
+                        value.Add("index", i);
+                        valuesDicForJson.Add(value);
+                    }
+                    dicForJson.Add("blocks", valuesDicForJson);
+
+                    string elJsonDeRetorno = JsonConvert.SerializeObject(dicForJson);
                     return elJsonDeRetorno;
                 }
                 else
