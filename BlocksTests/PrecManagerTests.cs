@@ -43,7 +43,7 @@ namespace BlocksTests
             correctDictionary.Add(3, l3);
             correctDictionary.Add(4, l4);
             correctDictionary.Add(5, l5);
-            Dictionary<int, List<int>> evaluatedDictionary = PrecManager.GenerateDictionary("Test Files/GenerateDictionaryTestFile.txt");
+            Dictionary<int, List<int>> evaluatedDictionary = PrecManager.GenerateDictionary("TestFiles/GenerateDictionaryTestFile.txt");
             bool dictionariesEqual = correctDictionary.Keys.Count == evaluatedDictionary.Keys.Count && correctDictionary.Keys.All(k => evaluatedDictionary.ContainsKey(k) && evaluatedDictionary[k].All(correctDictionary[k].Contains) && evaluatedDictionary[k].Count == correctDictionary[k].Count);
             Assert.IsTrue(dictionariesEqual);
         }
